@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { CardModule } from 'primeng/card';
 
     //PrimeNG
     CardModule,
+    ButtonModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
