@@ -1,0 +1,41 @@
+<div>
+    <input type="text" placeholder="Buscar tour..." [(ngModel)]="searchTerm">
+    <button mat-button class="buscar" (click)="buscar()"><mat-icon>search</mat-icon>Buscar</button>
+      <h2>Tours</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Parque</th>
+            <th>Precio</th>
+            <th>Descripcion</th>
+            <th>HoraInicio</th>
+            <th>Duracion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="tours && tours.length > 0">
+            <tr *ngFor="let tour of tours">
+              <td>{{ tour.idTour }}</td>
+              <td>{{ tour.fecha }}</td>
+              <td>{{ tour.idParque }}</td>
+              <td>{{ tour.precio }}</td>
+              <td>{{ tour.descripcion }}</td>
+              <td>{{ tour.horaInicio }}</td>
+              <td>{{ tour.duracion}}</td>
+              <td>
+                <button class="edit" (click)="actualizarTour(tour)"><mat-icon>edit</mat-icon>Editar</button>
+                <button class="delete" (click)="eliminarTour(tour)"><mat-icon>delete</mat-icon>Eliminar</button>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="!tours || tours.length === 0">
+            <tr>
+              <td colspan="8">No hay productos disponibles.</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  
