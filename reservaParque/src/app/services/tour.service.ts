@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from "@angular/common/http";
+import { HttpClient,HttpHeaders,HttpParams } from "@angular/common/http";
 import { server } from "./global";
 import { Tour } from '../models/tour';
 import { Observable,throwError } from "rxjs";
@@ -48,10 +48,7 @@ export class TourService {
     return this._http.delete(`${this.urlAPI}tour/${id}`);
   }
   buscarNombre(nombre: string): Observable<any> {
-    let params = 'nombre=' + nombre;
-    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-
-    return this._http.post(this.urlAPI + 'buscarNombre', params, { headers: headers });
+    return this._http.get(`${this.urlAPI}tour/buscar/${nombre}`);
   }
 
 }
