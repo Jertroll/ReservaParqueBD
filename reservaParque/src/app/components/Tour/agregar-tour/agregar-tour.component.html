@@ -15,12 +15,6 @@
     </span>
     <form class="col-md-8 mx-auto" #tourForm="ngForm" (ngSubmit)="onSubmit(tourForm)">
       <div class="form-group">
-        <label for="idTour">Código</label>
-        <input id="idTour" type="text" #idTour="ngModel" class="form-control" name="idTour"
-        required pattern="^[0-9]+$" [(ngModel)]="tour.idTour"/>
-        @if(idTour.invalid && idTour.touched){
-          <small class="invalid-feedback d-block">Formato no valido</small>
-        }
   
         <label for="fecha">Fecha</label>
         <input id="fecha" type="date" #fecha="ngModel" class="form-control" name="fecha"

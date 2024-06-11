@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Tour } from '../../../models/tour'; 
 import { Parque } from '../../../models/parque';
 import { timer } from 'rxjs';
@@ -18,21 +17,22 @@ import { CommonModule } from '@angular/common';
 export class AgregarTourComponent implements OnInit {
   public status: number;
   public tour: Tour;
-  parques: Parque[] = []; // Asegúrate de que esto coincida con el tipo de datos esperado
+  parques: Parque[];
 
   constructor(
     private _tourService: TourService,
     private parqueService: ParqueService
   ) {
     this.status = -1;
+    this.parques = [];
     this.tour = new Tour(0, 0, 0, 0, '', 0, 0);
   }
 
   ngOnInit() {
-    this.loadParques();
+    this.mostrarParques();
   }
 
-  loadParques() {
+  mostrarParques() {
     this.parqueService.obtenerParques().subscribe(
       (response) => {
         this.parques = response.data; // Asegúrate de asignar los datos correctamente
