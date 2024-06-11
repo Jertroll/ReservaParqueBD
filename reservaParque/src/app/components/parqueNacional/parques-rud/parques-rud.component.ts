@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-parques-rud',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './parques-rud.component.html',
   styleUrl: './parques-rud.component.css'
 })

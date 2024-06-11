@@ -3,12 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { Parque } from '../../../models/parque';
 import { timer } from 'rxjs';
 import { ParqueService } from '../../../services/parque.service';
+import { RouterModule } from '@angular/router';
 import { ActivatedRoute,Route } from '@angular/router';
 
 @Component({
   selector: 'app-parque-agregar',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './parque-agregar.component.html',
   styleUrl: './parque-agregar.component.css'
 })
