@@ -1,0 +1,72 @@
+<div class="col-md-12 mt-4">
+    <h3>Registro de Tour</h3>
+    <span>
+      @switch (status) {
+        @case (0) {
+          <div class="alert alert-success"><p>Registro exitoso!</p></div>
+        }
+        @case (1) {
+          <div class="alert alert-warning"><p>No se pudo agregar el Tour!</p></div>
+        }
+        @case (2) {
+          <div class="alert alert-danger"><p>Error de servidor!</p></div>
+        }
+      }
+    </span>
+    <form class="col-md-8 mx-auto" #tourForm="ngForm" (ngSubmit)="onSubmit(tourForm)">
+      <div class="form-group">
+        <label for="idTour">Código</label>
+        <input id="idTour" type="text" #idTour="ngModel" class="form-control" name="idTour"
+        required pattern="^[0-9]+$" [(ngModel)]="tour.idTour"/>
+        @if(idTour.invalid && idTour.touched){
+          <small class="invalid-feedback d-block">Formato no valido</small>
+        }
+  
+        <label for="fecha">Fecha</label>
+        <input id="fecha" type="date" #fecha="ngModel" class="form-control" name="fecha"
+        required [(ngModel)]="tour.fecha"/>
+        @if(fecha.invalid && fecha.touched){
+          <small class="invalid-feedback d-block">Fecha es requerida</small>
+        }
+  
+        <label for="idParque">Parque</label>
+        <select id="idParque" #idParque="ngModel" class="form-control" name="idParque"
+        required [(ngModel)]="tour.idParque">
+          <option *ngFor="let parque of parques" [value]="parque.idParque">{{ parque.nombre }}</option>
+        </select>
+        @if(idParque.invalid && idParque.touched){
+          <small class="invalid-feedback d-block">ID de parque es requerido</small>
+        }
+  
+        <label for="precio">Precio</label>
+        <input id="precio" type="number" #precio="ngModel" class="form-control" name="precio"
+        required [(ngModel)]="tour.precio"/>
+        @if(precio.invalid && precio.touched){
+          <small class="invalid-feedback d-block">Precio es requerido</small>
+        }
+  
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" #descripcion="ngModel" class="form-control" name="descripcion"
+        required [(ngModel)]="tour.descripcion"></textarea>
+        @if(descripcion.invalid && descripcion.touched){
+          <small class="invalid-feedback d-block">Descripción es requerida</small>
+        }
+  
+        <label for="horaInicio">Hora de Inicio</label>
+        <input id="horaInicio" type="time" #horaInicio="ngModel" class="form-control" name="horaInicio"
+        required [(ngModel)]="tour.horaInicio"/>
+        @if(horaInicio.invalid && horaInicio.touched){
+          <small class="invalid-feedback d-block">Hora de inicio es requerida</small>
+        }
+  
+        <label for="duracion">Duración (minutos)</label>
+        <input id="duracion" type="number" #duracion="ngModel" class="form-control" name="duracion"
+        required [(ngModel)]="tour.duracion"/>
+        @if(duracion.invalid && duracion.touched){
+          <small class="invalid-feedback d-block">Duración es requerida</small>
+        }
+      </div>
+      <button type="submit" class="btn btn-primary mt-2" [disabled]="tourForm.invalid">Guardar</button>
+    </form>
+  </div>
+  
