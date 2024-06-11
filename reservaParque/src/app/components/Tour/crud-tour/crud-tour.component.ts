@@ -17,14 +17,14 @@ import { EditTourComponent } from '../edit-tour/edit-tour.component';
 })
 export class CrudTourComponent {
   status: number;
-  searchTerm: string = '';
+  buscaNom: string = '';
   tours: Tour[];
   tour: Tour;
   editando: boolean = false;
   constructor(private tourService: TourService, public dialog: MatDialog) {
     this.status = -1;
     this.tours = [];
-    this.tour = new Tour(0, 0, 0, 0, '', 0, 0);
+    this.tour = new Tour(0,'', 0, 0, 0, '', 0, 0);
   }
   ngOnInit(): void {
     this.verTour();
@@ -85,31 +85,25 @@ export class CrudTourComponent {
   }
 
   buscar(): void {
-    if (this.searchTerm.trim() !== '') {
-      // Llamar al servicio para buscar el producto por su ID
-      this.tourService.buscarTour(parseInt(this.searchTerm, 10)).subscribe(
-        tour => {
-          console.log('Producto encontrado:', tour); // Agregar esta línea para depurar
-          if (tour) {
-            // Producto encontrado, actualizar la lista de productos
-            this.tours = [tour];
-          } else {
-            // Producto no encontrado, vaciar la lista de productos
-            this.tours = [];
-          }
-        },
-        error => {
-          console.error('Error al buscar producto por ID:', error);
-          // Manejo de errores, si es necesario
+    this.tourService.buscarNombre(this.buscaNom).subscribe(
+      response => {
+        if (response.status === 200) {
+          this.tours = response.data;
+          this.status = 0;
+        } else {
+          this.tours = [];
+          this.status = 1;
         }
-      );
-    } else {
-      // Si el término de búsqueda está vacío, mostrar todos los productos
-      this.verTour();
-    }
+      },
+      error => {
+        this.tours = [];
+        this.status = 2;
+        console.error('Error al buscar tours:', error);
+      }
+    );
   }
   resetForm(): void {
-    this.tour = new Tour(0, 0, 0, 0, '', 0, 0);
+    this.tour = new Tour(0,'', 0, 0, 0, '', 0, 0);
     this.editando = false;
   }
 

@@ -47,14 +47,11 @@ export class TourService {
   eliminarTour(id: number): Observable<any> {
     return this._http.delete(`${this.urlAPI}tour/${id}`);
   }
-  buscarTour(id: number): Observable<Tour> {
-    return this._http.get<{ status: number, message: string, tour: Tour }>(`${this.urlAPI}tour/${id}`)
-      .pipe(
-        map(response => response.tour), // Extraer el objeto de producto del cuerpo de la respuesta
-        catchError(error => {
-          console.error('Error al buscar tour por nombre:', error);
-          return throwError(error); // Propagar el error
-        })
-      );
+  buscarNombre(nombre: string): Observable<any> {
+    let params = 'nombre=' + nombre;
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this._http.post(this.urlAPI + 'buscarNombre', params, { headers: headers });
   }
+
 }

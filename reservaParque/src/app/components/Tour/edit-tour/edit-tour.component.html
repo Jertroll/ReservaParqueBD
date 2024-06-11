@@ -18,6 +18,10 @@
 
     <div class="form-grid">
       <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" [(ngModel)]="data.nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
         <label for="fecha">Fecha:</label>
         <input type="date" [(ngModel)]="data.fecha" name="fecha" required>
       </div>

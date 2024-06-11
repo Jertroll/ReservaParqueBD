@@ -25,7 +25,7 @@ export class AgregarTourComponent implements OnInit {
   ) {
     this.status = -1;
     this.parques = [];
-    this.tour = new Tour(0, 0, 0, 0, '', 0, 0);
+    this.tour = new Tour(0,'', 0, 0, 0, '', 0, 0);
   }
 
   ngOnInit() {

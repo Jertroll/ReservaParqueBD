@@ -15,6 +15,12 @@
     </span>
     <form class="col-md-8 mx-auto" #tourForm="ngForm" (ngSubmit)="onSubmit(tourForm)">
       <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <textarea id="nombre" #nombre="ngModel" class="form-control" name="nombre"
+        required [(ngModel)]="tour.nombre"></textarea>
+        <div *ngIf="nombre.invalid && nombre.touched" class="invalid-feedback d-block">
+          Nombre es requerido
+        </div>
   
         <label for="fecha">Fecha</label>
         <input id="fecha" type="date" #fecha="ngModel" class="form-control" name="fecha"
