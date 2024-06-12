@@ -15,12 +15,7 @@
   </span>
   <form class="col-md-8 mx-auto" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
       <div class="form-group">
-          <label for="idParque">Id del Parque</label>
-          <input id="idParque" type="text" #id="ngModel" class="form-control" name="idParque"
-          pattern="^[0-9]+$" [(ngModel)]="parque.idParque"/>
-          @if(!id.valid && id.touched){ 
-              <small class="invalid-feedback d-block">Formato no valido</small>
-          }
+        
           <label for="nombre">Nombre</label>
           <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
           pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$"  [(ngModel)]="parque.nombre"/>
@@ -63,8 +58,8 @@
               }
 
           <label for="telefono">Teléfono</label>
-          <input id="telefono" type="tel" #telefono="ngModel" class="form-control" name="telefono" 
-             pattern="^[5-9]\d{3}-?\d{4}$" [(ngModel)]="parque.telefono"/>
+          <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono" 
+            [(ngModel)]="parque.telefono"/>
               @if(!telefono.valid && telefono.touched){
                   <small class="invalid-feedback d-block">Formato invalido</small>
               }
