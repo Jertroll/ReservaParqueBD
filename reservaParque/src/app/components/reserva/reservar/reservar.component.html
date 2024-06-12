@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="tours-container">
+        <div class="tour-card" *ngFor="let tour of tours">
+          <h3>{{ tour.nombre }}</h3>
+          <p>{{ tour.idParque}}</p>
+          <p>{{ tour.precio}}</p>
+          <p>{{ tour.descripcion }}</p>
+          <p>{{ tour.horaInicio}}</p>
+          <p>{{ tour.duracion}}</p>
+          <button (click)="addToReserva(tour)">Agregar a Reserva</button>
+        </div>
+      </div>
+    <h2>Selected Tours</h2>
+    <div *ngFor="let tour of selectedTours" class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ tour.nombre }}</h5>
+        <p class="card-text">{{ tour.descripcion }}</p>
+        <p class="card-text">Precio: {{ tour.precio }}</p>
+        <button class="btn btn-danger" (click)="removeFromReserva(tour)">Remove</button>
+      </div>
+    </div>
+  
+    <h3>Reservation Details</h3>
+    <form (ngSubmit)="createReserva()">
+      <div class="form-group">
+        <label for="fechaReserva">Reservation Date:</label>
+        <input type="date" id="fechaReserva" class="form-control" [(ngModel)]="fechaReserva" name="fechaReserva" required>
+      </div>
+      <div class="form-group">
+        <label for="idCliente">Client ID:</label>
+        <input type="number" id="idCliente" class="form-control" [(ngModel)]="idCliente" name="idCliente" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Reservation</button>
+    </form>
+  </div>

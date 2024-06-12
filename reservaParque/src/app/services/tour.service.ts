@@ -35,7 +35,7 @@ export class TourService {
     }*/
     const body = new URLSearchParams();
 
-     body.set('fecha', tour.fecha.toString());
+     body.set('nombre', tour.nombre);
      body.set('idParque', tour.idParque.toString());
      body.set('precio', tour.precio.toString());
      body.set('descripcion', tour.descripcion);
