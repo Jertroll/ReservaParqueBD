@@ -1,0 +1,48 @@
+<div>
+  <input type="text" placeholder="Buscar Parque..." [(ngModel)]="searchTerm">
+  <button mat-button class="buscar" (click)="search()">
+    <mat-icon>search</mat-icon>Buscar
+  </button>
+  <h2>Parques Nacionales</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Ubicacion</th>
+        <th>Descripción</th>
+        <th>Tipo Bosque</th>
+        <th>Tipo Clima</th>
+        <th>correo</th>
+        <th>Telefono</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="parques && parques.length > 0">
+        <tr *ngFor="let parque of parques">
+          <td>{{ parque.idParque }}</td>
+          <td>{{ parque.nombre }}</td>
+          <td>{{ parque.ubicacion }}</td>
+          <td>{{ parque.descripcion }}</td>
+          <td>{{ parque.tipoBosque }}</td>
+          <td>{{ parque.tipoClima }}</td>
+          <td>{{ parque.correo }}</td>
+          <td>{{ parque.telefono }}</td>
+          <td>
+            <button class="edit" (click)="actualizarParque(parque)">
+              <mat-icon>edit</mat-icon>Editar
+            </button>
+            <button class="delete" (click)="eliminarParque(parque)">
+              <mat-icon>delete</mat-icon>Eliminar
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="!parques || parques.length === 0">
+        <tr>
+          <td colspan="8">No hay parques disponibles.</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

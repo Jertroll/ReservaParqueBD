@@ -85,20 +85,25 @@ export class CrudTourComponent {
   }
 
   buscar(): void {
+    if (!this.buscaNom.trim()) {
+      // No se ha ingresado nada para buscar
+      return;
+    }
+
     this.tourService.buscarNombre(this.buscaNom).subscribe(
       response => {
         if (response.status === 200) {
           this.tours = response.data;
-          this.status = 0;
+          this.status = 0; // Tours encontrados
         } else {
           this.tours = [];
-          this.status = 1;
+          this.status = 1; // No se encontraron tours
         }
       },
       error => {
-        this.tours = [];
-        this.status = 2;
         console.error('Error al buscar tours:', error);
+        this.tours = [];
+        this.status = 2; // Error al buscar tours
       }
     );
   }

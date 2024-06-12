@@ -1,76 +1,74 @@
 <div class="col-md-12 mt-4">
-    <h3>Registro de Parque Nacional</h3>
-    <span>
+  <h3>Registro de Parque Nacional</h3>
+  <span>
       @switch (status) {
-        @case (0) {
-            <div class="alert alert-success"><p>Registro exitoso!</p></div>
-        }
-        @case (1) {
-            <div class="alert alert-warning"><p>No se pudo agregar el Producto!</p></div>
-        }
-        @case (2) {
-            <div class="alert alert-danger"><p>Error de servidor!</p></div>
-        }
+          @case (0) {
+              <div class="alert alert-success"><p>Registro exitoso!</p></div>
+          }
+          @case (1) {
+              <div class="alert alert-warning"><p>No se pudo agregar el Producto!</p></div>
+          }
+          @case (2) {
+              <div class="alert alert-danger"><p>Error de servidor!</p></div>
+          }
       }
-    </span>
-    <form class="col-md-8 mx-auto" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+  </span>
+  <form class="col-md-8 mx-auto" #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
       <div class="form-group">
-        <label for="idParque">Id del Parque</label>
-        <input id="idParque" type="text" #id="ngModel" class="form-control" name="idParque"
-        pattern="^[0-9]+$" [(ngModel)]="parque.idParque"/>
-        @if(!id.valid && id.touched){ 
-            <small class="invalid-feedback d-block">Formato no valido</small>
-        }
-        <label for="nombre">Nombre</label>
-        <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
-        pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$"  [(ngModel)]="parque.nombre"/>
-        @if(!nombre.valid && nombre.touched){ 
-            <small class="invalid-feedback d-block">Formato no valido</small>
-        }
-        <label for="ubicacion">Ubicacion</label>
-        <input id="ubicacion" type="number" #ubicacion="ngModel" class="form-control" name="ubicacion"
-        pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="parque.ubicacion"/>
-        @if(!ubicacion.valid && ubicacion.touched){ 
-          <small class="invalid-feedback d-block">Precio es requerido y debe ser un número entero</small>
-        }
         
-        <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" #descripcion="ngModel" class="form-control" name="descripcion"
-        [(ngModel)]="parque.descripcion"></textarea>
-        @if(!descripcion.valid && descripcion.touched){ 
-          <small class="invalid-feedback d-block">Descripción es requerida</small>
-        }
-        
-        <label for="tipoBosque">Tipo de Bosque</label>
-        <textarea id="tipoBosque" #tipoBosque="ngModel" class="form-control" name="tipoBosque"
-        [(ngModel)]="parque.tipoBosque"></textarea>
-        @if(!tipoBosque.valid && tipoBosque.touched){ 
-          <small class="invalid-feedback d-block">Descripción es requerida</small>
-        }
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
+          pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$"  [(ngModel)]="parque.nombre"/>
+          @if(!nombre.valid && nombre.touched){ 
+              <small class="invalid-feedback d-block">Formato no valido</small>
+          }
+          <label for="ubicacion">Ubicación</label>
+          <input id="ubicacion" type="text" #ubicacion="ngModel" class="form-control" name="ubicacion"
+          pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="parque.ubicacion"/>
+          @if(!ubicacion.valid && ubicacion.touched){ 
+            <small class="invalid-feedback d-block">Ubicación es requerida</small>
+          }
+          
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" #descripcion="ngModel" class="form-control" name="descripcion"
+          [(ngModel)]="parque.descripcion"></textarea>
+          @if(!descripcion.valid && descripcion.touched){ 
+            <small class="invalid-feedback d-block">Descripción es requerida</small>
+          }
+          
+          <label for="tipoBosque">Tipo de Bosque</label>
+          <textarea id="tipoBosque" #tipoBosque="ngModel" class="form-control" name="tipoBosque"
+          [(ngModel)]="parque.tipoBosque"></textarea>
+          @if(!tipoBosque.valid && tipoBosque.touched){ 
+            <small class="invalid-feedback d-block">Tipo de Bosque es requerido</small>
+          }
 
-        <label for="tipoClima">Tipo de Clima</label>
-        <textarea id="tipoClima" #tipoClima="ngModel" class="form-control" name="tipoClima"
-        [(ngModel)]="parque.tipoClima"></textarea>
-        @if(!tipoClima.valid && tipoClima.touched){ 
-          <small class="invalid-feedback d-block">Descripción es requerida</small>
-        }
+          <label for="tipoClima">Tipo de Clima</label>
+          <textarea id="tipoClima" #tipoClima="ngModel" class="form-control" name="tipoClima"
+          [(ngModel)]="parque.tipoClima"></textarea>
+          @if(!tipoClima.valid && tipoClima.touched){ 
+            <small class="invalid-feedback d-block">Tipo de Clima es requerido</small>
+          }
 
-        <label for="correo">Correo</label>
-        <input id="correo" type="correo" #correo="ngModel" class="form-control" name="correo" 
-            pattern="\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b" [(ngModel)]="parque.correo"/>
-            @if(!correo.valid && correo.touched){
-                <small class="invalid-feedback d-block">Formato invalido</small>
-            }
-  
-        <label for="telefono">Telefono</label>
-        <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono" 
-                pattern="^[5-9]\d{3}-?\d{4}$" [(ngModel)]="parque.telefono"/>
-            @if(!telefono.valid && telefono.touched){
-                <small class="invalid-feedback d-block">Formato invalido</small>
-            }
+          <label for="correo">Correo</label>
+          <input id="correo" type="email" #correo="ngModel" class="form-control" name="correo" 
+              pattern="^[\w\.-]+@[\w\.-]+\.\w{2,4}$" [(ngModel)]="parque.correo"/>
+              @if(!correo.valid && correo.touched){
+                  <small class="invalid-feedback d-block">Formato invalido</small>
+              }
 
-      </div>        
-      <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="productForm.invalid">
-    </form>
-  </div>
-  
+          <label for="telefono">Teléfono</label>
+          <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono" 
+            [(ngModel)]="parque.telefono"/>
+              @if(!telefono.valid && telefono.touched){
+                  <small class="invalid-feedback d-block">Formato invalido</small>
+              }
+
+      </div>      
+      <a routerLink="/parqueRUD">Parque Tablas</a>
+      <div class="button-container">
+          <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="productForm.invalid">
+          <a routerLink="/parqueRUD" class="btn btn-danger mt-2 ml-2">Regresar</a>
+      </div>
+  </form>
+</div>
