@@ -1,0 +1,51 @@
+<h4 mat-dialog-title>Editar Parque</h4>
+<div class="editParque" mat-dialog-content>
+  <div *ngIf="status === 0" class="alert alert-success">
+    <p>Registro exitoso!</p>
+  </div>
+  <div *ngIf="status === 1" class="alert alert-warning">
+    <p>No se pudo actualizar el Producto!</p>
+  </div>
+  <div *ngIf="status === 2" class="alert alert-danger">
+    <p>Error de servidor!</p>
+  </div>
+  <form class="col-md-8 mx-auto" #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+    <input id="idParque" type="text" [(ngModel)]="data.idParque" name="idParque" hidden>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input matInput type="text" [(ngModel)]="data.nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="ubicacion">Ubicación:</label>
+        <input matInput type="text" [(ngModel)]="data.ubicacion" name="ubicacion" required>
+      </div>
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <input matInput type="text" [(ngModel)]="data.descripcion" name="descripcion" required>
+      </div>
+      <div class="form-group">
+        <label for="tipoBosque">Tipo de Bosque:</label>
+        <input matInput type="text" [(ngModel)]="data.tipoBosque" name="tipoBosque" required>
+      </div>
+      <div class="form-group">
+        <label for="tipoClima">Tipo de Clima:</label>
+        <input matInput type="text" [(ngModel)]="data.tipoClima" name="tipoClima" required>
+      </div>
+      <div class="form-group">
+        <label for="correo">Email:</label>
+        <input matInput type="email" [(ngModel)]="data.correo" name="correo" required>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono:</label>
+        <input matInput type="number" [(ngModel)]="data.telefono" name="telefono" required>
+      </div>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+      <button mat-button type="submit">Actualizar</button>
+    </div>
+  </form>
+</div>

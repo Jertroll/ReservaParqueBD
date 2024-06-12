@@ -2,7 +2,8 @@ import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { server } from "./global";
 import { Parque } from "../models/parque";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
+import { map,catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn:'root'
@@ -56,4 +57,15 @@ export class ParqueService{
     eliminarParque(idParque: number): Observable<any> {
         return this._http.delete(`${this.urlAPI}parque/${idParque}`);
     }
+
+    buscarParquePorId(idParque: number): Observable<Parque> {
+        return this._http.get<{ status: number, message: string, parque: Parque }>(`${this.urlAPI}parque/${idParque}`)
+          .pipe(
+            map(response => response.parque), // Extraer el objeto de producto del cuerpo de la respuesta
+            catchError(error => {
+              console.error('Error al buscar parque por ID:', error);
+              return throwError(error); // Propagar el error
+            })
+          );
+      }
 }

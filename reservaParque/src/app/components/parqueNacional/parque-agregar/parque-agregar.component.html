@@ -64,12 +64,13 @@
 
           <label for="telefono">Teléfono</label>
           <input id="telefono" type="tel" #telefono="ngModel" class="form-control" name="telefono" 
-                  pattern="^[5-9]\d{3}-?\d{4}$" [(ngModel)]="parque.telefono"/>
+             pattern="^[5-9]\d{3}-?\d{4}$" [(ngModel)]="parque.telefono"/>
               @if(!telefono.valid && telefono.touched){
                   <small class="invalid-feedback d-block">Formato invalido</small>
               }
 
-      </div>        
+      </div>      
+      <a routerLink="/parqueRUD">Parque Tablas</a>
       <div class="button-container">
           <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="productForm.invalid">
           <a routerLink="/parqueRUD" class="btn btn-danger mt-2 ml-2">Regresar</a>
