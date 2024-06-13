@@ -5,6 +5,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { routes } from './app.routes';
 import { importProvidersFrom } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';  // Importa RouterModule
 
 // Importing client components
 import { AgregarClienteComponent } from './components/client/agregar-client/agregar-client.component';
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(),
     importProvidersFrom(FormsModule),
+    importProvidersFrom(RouterModule),  // Asegúrate de incluir RouterModule
     AgregarClienteComponent, // Add AgregarClienteComponent to providers
     ClienteCrudComponent // Add ClienteCrudComponent to providers
   ]
