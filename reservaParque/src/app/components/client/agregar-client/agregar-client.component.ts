@@ -1,53 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { timer } from 'rxjs';
+import { RouterModule } from '@angular/router';
+import { ActivatedRoute,Route } from '@angular/router';
+
 import { Cliente } from '../../../models/cliente'; 
 import { ClienteService } from '../../../services/cliente.service'; 
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-agregar-cliente',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './agregar-client.component.html',
   styleUrls: ['./agregar-client.component.css']
 })
-export class AgregarClienteComponent implements OnInit {
+export class AgregarClienteComponent {
   public status: number;
   public cliente: Cliente;
 
   
   constructor(
-    private servicioCliente: ClienteService
+    private _clienteService: ClienteService
   ) {
     this.status = -1;
-    this.cliente = new Cliente(0, '', '', 0, '');
+    this.cliente = new Cliente(0, '', '', 0, 0);
   }
 
-  ngOnInit() {}
-
   onSubmit(form: any) {
-    this.servicioCliente.crear(this.cliente).subscribe({
+    this._clienteService.crear(this.cliente).subscribe({
       next: (respuesta) => {
         console.log(respuesta);
-        if (respuesta.status == 201) {
+        if (respuesta.status == 200) {
           form.reset();
-          this.cambiarEstado(0);
+          this.changeStatus(0);
         } else {
-          this.cambiarEstado(1);
+          this.changeStatus(1);
         }
       },
       error: (error: Error) => {
-        this.cambiarEstado(2);
+        this.changeStatus(2);
       }
     })
   }
 
-  cambiarEstado(estado: number) {
-    this.status = estado;
-    let cuentaRegresiva = timer(5000);
-    cuentaRegresiva.subscribe(n => {
-      this.status = -1;
-    });
+  changeStatus(st:number){
+    this.status=st;
+    let countdown=timer(5000);
+    countdown.subscribe(n=>{
+      this.status=-1;
+    })
   }
 }

@@ -1,7 +1,10 @@
 <div class="search-container">
-  <input type="text" placeholder="Buscar cliente..." [(ngModel)]="buscaNom" class="search-input">
-  <button mat-button class="buscar" (click)="buscar()">
-      <mat-icon>search</mat-icon>Buscar
+  <input type="text" placeholder="Buscar cliente..." [(ngModel)]="searchTerm" class="search-input">
+  <button mat-button class="buscar" (click)="search()">
+    <mat-icon>search</mat-icon>Buscar
+  </button>
+  <button mat-button class="agregar-parque" [routerLink]="['/agregar-client']">
+    <mat-icon>add</mat-icon>Agregar Cliente
   </button>
 </div>
 <h2>Clientes</h2>
@@ -18,7 +21,7 @@
           </tr>
       </thead>
       <tbody>
-          <ng-container *ngIf="clientes && clientes.length > 0; else noClientes">
+          <ng-container *ngIf="clientes && clientes.length > 0">
               <tr *ngFor="let cliente of clientes">
                   <td>{{ cliente.idCliente }}</td>
                   <td>{{ cliente.nombre }}</td>
@@ -26,20 +29,20 @@
                   <td>{{ cliente.cedula }}</td>
                   <td>{{ cliente.telefono }}</td>
                   <td>
-                      <button class="edit" (click)="editarCliente(cliente)">
-                          <mat-icon>edit</mat-icon>Editar
+                    <button mat-button class="edit" (click)="actualizarCliente(cliente)">
+                        <mat-icon>edit</mat-icon>Editar
                       </button>
-                      <button class="delete" (click)="eliminar(cliente.idCliente)">
-                          <mat-icon>delete</mat-icon>Eliminar
+                      <button mat-button class="delete" (click)="eliminarCliente(cliente)">
+                        <mat-icon>delete</mat-icon>Eliminar
                       </button>
                   </td>
               </tr>
           </ng-container>
-          <ng-template #noClientes>
-              <tr>
-                  <td colspan="6">No hay clientes disponibles.</td>
-              </tr>
-          </ng-template>
+          <ng-container *ngIf="!clientes || clientes.length === 0">
+            <tr>
+              <td colspan="8">No hay clientes disponibles.</td>
+            </tr>
+          </ng-container>
       </tbody>
   </table>
 </div>
