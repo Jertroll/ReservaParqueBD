@@ -1,8 +1,13 @@
 <div>
   <input type="text" placeholder="Buscar Parque..." [(ngModel)]="searchTerm">
-  <button mat-button class="buscar" (click)="search()">
-    <mat-icon>search</mat-icon>Buscar
-  </button>
+  <div style="display: inline-block;">
+    <button mat-button class="buscar" (click)="search()">
+      <mat-icon>search</mat-icon>Buscar
+    </button>
+    <button mat-button class="agregar-parque" [routerLink]="['/agregarParque']">
+      <mat-icon>add</mat-icon>Agregar Parque
+    </button>
+  </div>
   <h2>Parques Nacionales</h2>
   <table>
     <thead>
@@ -29,10 +34,10 @@
           <td>{{ parque.correo }}</td>
           <td>{{ parque.telefono }}</td>
           <td>
-            <button class="edit" (click)="actualizarParque(parque)">
+            <button mat-button class="edit" (click)="actualizarParque(parque)">
               <mat-icon>edit</mat-icon>Editar
             </button>
-            <button class="delete" (click)="eliminarParque(parque)">
+            <button mat-button class="delete" (click)="eliminarParque(parque)">
               <mat-icon>delete</mat-icon>Eliminar
             </button>
           </td>

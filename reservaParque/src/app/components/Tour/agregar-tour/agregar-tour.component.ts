@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './agregar-tour.component.css'
 })
 export class AgregarTourComponent implements OnInit {
+  
   public status: number;
   public tour: Tour;
   parques: Parque[];
@@ -25,7 +26,7 @@ export class AgregarTourComponent implements OnInit {
   ) {
     this.status = -1;
     this.parques = [];
-    this.tour = new Tour(0,'', 0, 0, 0, '', 0, 0);
+    this.tour = new Tour(0,'', 0, 0, '', 0, 0);
   }
 
   ngOnInit() {

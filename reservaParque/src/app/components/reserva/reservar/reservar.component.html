@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="tours-container">
+    <div class="tour-card" *ngFor="let tour of tours">
+      <h3>{{ tour.nombre }}</h3>
+      <p><strong>Precio:</strong> {{ tour.precio }}</p>
+      <p><strong>Descripción:</strong> {{ tour.descripcion }}</p>
+      <p><strong>Hora de Inicio:</strong> {{ tour.horaInicio }}</p>
+      <p><strong>Duración:</strong> {{ tour.duracion }}</p>
+    </div>
+  </div>
+
+  <h3>Reservar</h3>
+  <span>
+    <ng-container [ngSwitch]="status">
+      <div *ngSwitchCase="0" class="alert alert-success"><p>Registro exitoso!</p></div>
+      <div *ngSwitchCase="1" class="alert alert-warning"><p>No se pudo agregar el Tour!</p></div>
+      <div *ngSwitchCase="2" class="alert alert-danger"><p>Error de servidor!</p></div>
+    </ng-container>
+  </span>
+
+  <form class="col-md-8 mx-auto" #reservaForm="ngForm" (ngSubmit)="onSubmit(reservaForm)">
+    <div class="form-group">
+      <label for="idCliente">ID Cliente</label>
+      <input id="idCliente" type="number" class="form-control" name="idCliente" required
+             [(ngModel)]="reserva.idCliente" #idCliente="ngModel">
+      <div *ngIf="idCliente.invalid && idCliente.touched" class="invalid-feedback d-block">
+        ID de Cliente es requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tour">Tours</label>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Seleccionar</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Descripción</th>
+          <th>Fecha del Tour</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tour of tours">
+          <td>
+            <input type="checkbox" [value]="tour.idTour" (change)="onTourSelectionChange(tour, $event)">
+          </td>
+          <td>{{ tour.nombre }}</td>
+          <td>{{ tour.precio }}</td>
+          <td>{{ tour.descripcion }}</td>
+          <td>
+            <input type="date" [(ngModel)]="tour.fechaSeleccionada" name="fechaTour{{ tour.idTour }}"
+                   class="form-control" [disabled]="!tour.seleccionado">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-group">
+      <label for="idEmpleado">ID Empleado</label>
+      <input id="idEmpleado" type="number" class="form-control" name="idEmpleado" required
+             [(ngModel)]="detalle.idEmpleado" #idEmpleado="ngModel">
+      <div *ngIf="idEmpleado.invalid && idEmpleado.touched" class="invalid-feedback d-block">
+        ID de Empleado es requerido
+      </div>
+
+      <label for="cantVisitantes">Cantidad de Visitantes</label>
+      <input id="cantVisitantes" type="number" class="form-control" name="cantVisitantes" required
+             [(ngModel)]="detalle.cantVisitantes" #cantVisitantes="ngModel">
+      <div *ngIf="cantVisitantes.invalid && cantVisitantes.touched" class="invalid-feedback d-block">
+        Cantidad de Visitantes es requerida
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2" [disabled]="reservaForm.invalid">Guardar</button>
+  </form>
+</div>

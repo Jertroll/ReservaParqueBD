@@ -9,10 +9,16 @@ import { EditParqueDialogComponent } from '../edit-parque-dialog/edit-parque-dia
 import { NgFor } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button'; // Asegúrate de importar esto
 
+
+import { RouterModule } from '@angular/router';
+
+
 @Component({
   selector: 'app-parquerud',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIconModule, NgFor, MatButtonModule],
+  imports: [FormsModule, CommonModule, MatIconModule, NgFor, MatButtonModule, RouterModule
+  
+  ],
   templateUrl: './parquerud.component.html',
   styleUrls: ['./parquerud.component.css']
 })

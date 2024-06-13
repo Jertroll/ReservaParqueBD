@@ -63,5 +63,5 @@ form {
 .button-container {
     display: flex; /* Utiliza flexbox para los botones */
     justify-content: center; /* Centra los botones horizontalmente */
-    gap: 30px; /* Espacio entre los botones */
+    gap: 3    0px; /* Espacio entre los botones */
 }

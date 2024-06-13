@@ -22,13 +22,6 @@
           Nombre es requerido
         </div>
   
-        <label for="fecha">Fecha</label>
-        <input id="fecha" type="date" #fecha="ngModel" class="form-control" name="fecha"
-        required [(ngModel)]="tour.fecha"/>
-        @if(fecha.invalid && fecha.touched){
-          <small class="invalid-feedback d-block">Fecha es requerida</small>
-        }
-  
         <label for="idParque">Parque</label>
         <select id="idParque" #idParque="ngModel" class="form-control" name="idParque"
         required [(ngModel)]="tour.idParque">
