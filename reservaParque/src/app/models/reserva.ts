@@ -1,11 +1,18 @@
 import { Detalle } from "./detalle"; 
 export class Reserva {
-    constructor(
-      public idReserva: number,
-      public idCliente: number,
-      public fechaReserva: number,
-      public idEmpleado: number,
-      public cantVisitantes: number,
-      public detallesReserva: Detalle[] = []
-    ) {}
+  idReserva: number;
+  idCliente: number;
+  fechaReserva: string;
+  idEmpleado: number;
+  cantVisitantes: number;
+  detallesReserva: Detalle[];
+
+  constructor(idReserva: number, idCliente: number, fechaReserva: string, idEmpleado: number, cantVisitantes: number, detallesReserva: Detalle[]) {
+    this.idReserva = idReserva;
+    this.idCliente = idCliente;
+    this.fechaReserva = fechaReserva;
+    this.idEmpleado = idEmpleado;
+    this.cantVisitantes = cantVisitantes;
+    this.detallesReserva = detallesReserva;
   }
+}

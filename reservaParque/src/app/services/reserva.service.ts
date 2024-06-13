@@ -14,23 +14,16 @@ export class ReservaService {
   ){
       this.urlAPI=server.url
   }
+ 
   crear(reserva: Reserva): Observable<any> {
+    
+    let reservaJson = JSON.stringify(reserva);
+    let params = 'data=' + encodeURIComponent(reservaJson); // Codificar el JSON como parámetro 'data'
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    let body = new HttpParams()
-      .set('idCliente', reserva.idCliente.toString())
-      .set('fechaReserva', reserva.fechaReserva.toString())
-      .set('idEmpleado', reserva.idEmpleado.toString())
-      .set('cantVisitantes', reserva.cantVisitantes.toString());
 
-    // Convertir detallesReserva a una cadena URL-encoded
-    reserva.detallesReserva.forEach((detalle: any, index: number) => {
-      body = body
-        .set(`detallesReserva[${index}][tour]`, detalle.tour.toString())
-        .set(`detallesReserva[${index}][fechaTour]`, detalle.fechaTour);
-    });
-
-    return this._http.post(`${this.urlAPI}reserva`, body.toString(), { headers });
+    return this._http.post(`${this.urlAPI}reserva`, params, { headers });
   }
+
   verReservas(): Observable<{ status: number, message: string, data: Reserva[] }> {
     return this._http.get<{ status: number, message: string, data: Reserva[] }>(`${this.urlAPI}reserva`);
   }
