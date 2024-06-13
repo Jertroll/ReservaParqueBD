@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { timer } from 'rxjs';
 import { RouterModule } from '@angular/router';
-import { ActivatedRoute,Route } from '@angular/router';
 
 import { Cliente } from '../../../models/cliente'; 
 import { ClienteService } from '../../../services/cliente.service'; 
@@ -13,20 +12,22 @@ import { ClienteService } from '../../../services/cliente.service';
   imports: [FormsModule, RouterModule],
   templateUrl: './agregar-client.component.html',
   styleUrls: ['./agregar-client.component.css']
+})
 export class AgregarClienteComponent {
-  
-  constructor(
-    private _clienteService: ClienteService
-  ) {
-    this.status = -1;
+
+  cliente: Cliente;
+  status: number;
+
+  constructor(private clienteService: ClienteService) {
     this.cliente = new Cliente(0, '', '', 0, 0);
+    this.status = -1;
   }
 
-  onSubmit(form: any) {
-    this._clienteService.crear(this.cliente).subscribe({
+  onSubmit(form: any): void {
+    this.clienteService.crear(this.cliente).subscribe({
       next: (respuesta) => {
         console.log(respuesta);
-        if (respuesta.status == 200) {
+        if (respuesta.status === 200) {
           form.reset();
           this.changeStatus(0);
         } else {
@@ -34,16 +35,16 @@ export class AgregarClienteComponent {
         }
       },
       error: (error: Error) => {
+        console.error(error);
         this.changeStatus(2);
       }
-    })
+    });
   }
 
-  changeStatus(st:number){
-    this.status=st;
-    let countdown=timer(5000);
-    countdown.subscribe(n=>{
-      this.status=-1;
-    })
+  changeStatus(status: number): void {
+    this.status = status;
+    timer(5000).subscribe(() => {
+      this.status = -1;
+    });
   }
 }
