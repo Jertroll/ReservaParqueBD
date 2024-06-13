@@ -1,0 +1,54 @@
+<div class="col-md-12 mt-4">
+    <h3>Registro de Empleados</h3>
+    <span>
+      <div *NgIf="status === 0" class="alert alert-success">
+        <p>Registro exitoso!</p>
+      </div>
+      <div *NgIf="status === 1" class="alert alert-warning">
+        <p>No se pudo agregar el empleado!</p>
+      </div>
+      <div *NgIf="status === 2" class="alert alert-danger">
+        <p>Error de servidor!</p>
+      </div>
+    </span>
+    <form class="col-md-8 mx-auto" #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
+      <div class="form-group">
+        
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
+          pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="empleado.nombre" required>
+        <small *NgIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">Formato no valido</small>
+  
+        <label for="cedula">Cédula</label>
+        <input id="cedula" type="number" #cedula="ngModel" class="form-control" name="cedula"
+          [(ngModel)]="empleado.cedula" required>
+        <small *NgIf="!cedula.valid && cedula.touched" class="invalid-feedback d-block">Cédula es requerida</small>
+  
+        <label for="correo">Correo</label>
+        <input id="correo" type="email" #correo="ngModel" class="form-control" name="correo" 
+          pattern="^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}$" [(ngModel)]="empleado.correo" required>
+        <small *NgIf="!correo.valid && correo.touched" class="invalid-feedback d-block">Formato invalido</small>
+  
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono" 
+          [(ngModel)]="empleado.telefono" required>
+        <small *NgIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">Formato invalido</small>
+  
+        <label for="fechaIngreso">Fecha de Ingreso</label>
+        <input id="fechaIngreso" type="date" #fechaIngreso="ngModel" class="form-control" name="fechaIngreso"
+          [(ngModel)]="empleado.fechaIngreso" required>
+        <small *NgIf="!fechaIngreso.valid && fechaIngreso.touched" class="invalid-feedback d-block">Fecha de ingreso es requerida</small>
+  
+        <label for="roll">Rol</label>
+        <input id="roll" type="text" #roll="ngModel" class="form-control" name="roll"
+          [(ngModel)]="empleado.roll" required>
+        <small *NgIf="!roll.valid && roll.touched" class="invalid-feedback d-block">Rol es requerido</small>
+      </div>      
+      <a routerLink="/empleadoRUD">Empleado Tablas</a>
+      <div class="button-container">
+        <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="empleadoForm.invalid">
+        <a routerLink="/empleadoRUD" class="btn btn-danger mt-2 ml-2">Regresar</a>
+      </div>
+    </form>
+  </div>
+  

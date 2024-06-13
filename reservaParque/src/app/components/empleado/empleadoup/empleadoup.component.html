@@ -1,0 +1,47 @@
+<div>
+  <input type="text" placeholder="Buscar Empleado..." [(ngModel)]="searchTerm">
+  <button mat-button class="buscar" (click)="search()">
+    <mat-icon>search</mat-icon>Buscar
+  </button>
+    <h2>Empleados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>idEmpleado</th>
+          <th>cedula</th>
+          <th>nombre</th>
+          <th>correo</th>
+          <th>telefono</th>
+          <th>fechaIngreso</th>
+          <th>roll</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="empleados && empleados.length > 0">
+          <tr *ngFor="let empleados of empleados">
+            <td>{{ empleados.idEmpleado }}</td>
+            <td>{{ empleados.cedula }}</td>
+            <td>{{ empleados.nombre }}</td>
+            <td>{{ empleados.correo }}</td>
+            <td>{{ empleados.telefono }}</td>
+            <td>{{ empleados.fechaIngreso }}</td>
+            <td>{{ empleados.roll }}</td>
+            <td>
+              <button class="edit" (click)="actualizarEmpleado(empleados)">
+                <mat-icon>edit</mat-icon>Editar
+              </button>
+              <button class="delete" (click)="eliminarEmpleado(empleados)">
+                <mat-icon>delete</mat-icon>Eliminar
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="!empleados || empleados.length === 0">
+          <tr>
+            <td colspan="8">No hay empleados disponibles.</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  
