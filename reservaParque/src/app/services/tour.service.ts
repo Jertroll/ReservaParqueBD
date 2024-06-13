@@ -15,15 +15,19 @@ export class TourService {
   ){
       this.urlAPI=server.url
   }
-  crear(tour:Tour):Observable<any>{
-    let tourJson=JSON.stringify(tour);
-    let params='data='+tourJson;
-    let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    let options={
+  crear(tour: Tour): Observable<any> {
+    let tourJson = JSON.stringify(tour);
+    let params = 'data=' + encodeURIComponent(tourJson);
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    console.log('Datos enviados al backend:', params); // Log de los datos enviados
+
+    let options = {
         headers
-    }
-    return this._http.post(this.urlAPI+'tour',params,options);
-  }
+    };
+
+    return this._http.post(`${this.urlAPI}tour`, params, options);
+}
   verTours(): Observable<{ status: number, message: string, data: Tour[] }> {
       return this._http.get<{ status: number, message: string, data: Tour[] }>(`${this.urlAPI}tour`);
   }

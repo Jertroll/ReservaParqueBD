@@ -22,23 +22,17 @@ interface TourSeleccionable extends Tour {
   styleUrls: ['./reservar.component.css']
 })
 export class ReservarComponent {
-  public status: number;
-  tours: TourSeleccionable[];
-  public reserva: Reserva;
-  public detalle: Detalle;
-  detallesReserva: Detalle[];
+  public status: number = -1;
+  public tours: TourSeleccionable[] = [];
+  public reserva: Reserva = new Reserva(0, 0, '', 0, 0, []);
+  public detalle: Detalle = new Detalle(0, 0, 0, '', '', 0, 0, 0, 0);
+  public detallesReserva: Detalle[] = [];
 
   constructor(
     private tourService: TourService,
     private reservaService: ReservaService,
     private detalleService: DetalleService
-  ) {
-    this.status = -1;
-    this.tours = [];
-    this.detallesReserva = [];
-    this.reserva = new Reserva(0, 0, 0, 0, 0, []);
-    this.detalle = new Detalle(0, 0, 0, '', '', 0, 0, 0, 0);
-  }
+  ) {}
 
   ngOnInit() {
     this.mostrarTours();
@@ -47,11 +41,11 @@ export class ReservarComponent {
   mostrarTours() {
     this.tourService.verTours().subscribe(
       (response) => {
-        // Map the response to add 'seleccionado' and 'fechaSeleccionada' properties
+        // Mapear la respuesta para agregar propiedades 'seleccionado' y 'fechaSeleccionada'
         this.tours = response.data.map((tour: Tour) => ({ ...tour, seleccionado: false }));
       },
       error => {
-        console.error('Error loading tours', error);
+        console.error('Error cargando tours', error);
       }
     );
   }
@@ -60,8 +54,8 @@ export class ReservarComponent {
     tour.seleccionado = event.target.checked;
     if (tour.seleccionado) {
       if (!tour.fechaSeleccionada) {
-        // Initialize the date if not already set
-        tour.fechaSeleccionada = new Date().toISOString().split('T')[0]; // Default to today's date
+        // Inicializar la fecha si no está configurada
+        tour.fechaSeleccionada = new Date().toISOString().split('T')[0]; // Por defecto la fecha de hoy
       }
       this.detallesReserva.push(new Detalle(0, 0, tour.idTour, tour.fechaSeleccionada, '', 0, 0, 0, 0));
     } else {
@@ -76,11 +70,11 @@ export class ReservarComponent {
       console.log('No se han seleccionado tours');
       return;
     }
-
-    // Limpiar detallesReserva antes de rellenar
+  
+    // Limpiar detallesReserva antes de llenarlos
     this.detallesReserva = [];
-
-    // Agregar los detalles de reserva para los tours seleccionados
+  
+    // Agregar detalles de reserva para los tours seleccionados
     toursSeleccionados.forEach(tour => {
       let fechaTour: string = ''; // Valor por defecto
       if (tour.fechaSeleccionada) {
@@ -91,31 +85,29 @@ export class ReservarComponent {
         const year = date.getFullYear();
         fechaTour = `${day}/${month}/${year}`;
       }
-      const detalle = new Detalle(
-        0, // idDetalleReserva (dejar en 0 si es autoincremental)
-        0, // idReserva (se asignará después)
-        tour.idTour, // tour
-        fechaTour, // fechaTour
-        '', // horaTour (aquí deberías asignar la hora correcta)
-        this.detalle.idEmpleado, // idEmpleado
-        this.detalle.cantVisitantes, // cantVisitantes
-        0, // precioUnitario (deberías asignar el precio correcto)
-        0 // subTotal (deberías calcular el subtotal correcto)
-      );
+      const detalle = new Detalle(0, 0, tour.idTour, fechaTour, '', 0, 0, 0, 0); // Ajusta según tus necesidades
       this.detallesReserva.push(detalle);
     });
-
-    // Agregar los datos del empleado y la cantidad de visitantes a la reserva
-    this.reserva.idCliente = reservaForm.value.idCliente;
-    this.reserva.idEmpleado = this.detalle.idEmpleado;
-    this.reserva.cantVisitantes = this.detalle.cantVisitantes;
-    this.reserva.detallesReserva = this.detallesReserva;
-
+  
+    // Construir objeto de reserva para enviar al servicio
+    const reserva = new Reserva(
+      0, // idReserva (dejar en 0 si es autoincremental en el backend)
+      reservaForm.value.idCliente,
+      '', // Deberías asignar la fecha de reserva adecuada
+      reservaForm.value.idEmpleado, // idEmpleado
+      reservaForm.value.cantVisitantes, // cantVisitantes
+      this.detallesReserva
+    );
+  
+    // Console log para verificar la reserva antes de enviarla al servicio
+    console.log('Reserva a enviar:', reserva);
+  
     // Enviar la reserva al servicio
-    this.reservaService.crear(this.reserva).subscribe(
+    this.reservaService.crear(reserva).subscribe(
       (response) => {
         console.log('Reserva exitosa:', response);
-        this.saveDetallesReserva(response.reserva.id);
+        // Guardar detalles de reserva si es necesario
+        this.saveDetallesReserva(response.reserva.id); // Asumiendo que esto guarda los detalles de reserva
         // Reiniciar el formulario y limpiar la selección de tours
         reservaForm.reset();
         this.tours.forEach(tour => tour.seleccionado = false);
@@ -129,6 +121,8 @@ export class ReservarComponent {
       }
     );
   }
+
+  
 
   saveDetallesReserva(reservaId: number) {
     this.detallesReserva.forEach(detalle => {
