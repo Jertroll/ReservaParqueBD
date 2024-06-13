@@ -17,11 +17,7 @@ import { ClienteService } from '../../../services/cliente.service';
   selector: 'app-cliente-crud',
   standalone: true,
   imports: [FormsModule, CommonModule, MatIconModule, NgFor, MatButtonModule, RouterModule],
-  templateUrl: './cliente-crud.component.html',
   styleUrls: ['./cliente-crud.component.css']
-})
-export class ClienteCrudComponent implements OnInit {
-  status: number;
   searchTerm: string = '';
   clientes: Cliente[];
   cliente: Cliente;

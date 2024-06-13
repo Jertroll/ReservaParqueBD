@@ -13,11 +13,7 @@ import { ClienteService } from '../../../services/cliente.service';
   imports: [FormsModule, RouterModule],
   templateUrl: './agregar-client.component.html',
   styleUrls: ['./agregar-client.component.css']
-})
 export class AgregarClienteComponent {
-  public status: number;
-  public cliente: Cliente;
-
   
   constructor(
     private _clienteService: ClienteService

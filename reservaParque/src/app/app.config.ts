@@ -5,8 +5,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { routes } from './app.routes';
 import { importProvidersFrom } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; // Asegúrate de importar RouterModule
 
-// Importing client components
+// Importando componentes del cliente
 import { AgregarClienteComponent } from './components/client/agregar-client/agregar-client.component';
 import { ClienteCrudComponent } from './components/client/cliente-crud/cliente-crud.component';
 
@@ -17,9 +18,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(),
     importProvidersFrom(FormsModule),
-    AgregarClienteComponent, // Add AgregarClienteComponent to providers
-    ClienteCrudComponent // Add ClienteCrudComponent to providers
+    importProvidersFrom(RouterModule), // Asegúrate de incluir RouterModule
+    AgregarClienteComponent,
+    ClienteCrudComponent
   ]
 };
-
-

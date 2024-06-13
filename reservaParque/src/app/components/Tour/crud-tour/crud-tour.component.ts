@@ -6,12 +6,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { TourService } from '../../../services/tour.service';
 import { EditTourComponent } from '../edit-tour/edit-tour.component';
+import { RouterModule } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-crud-tour',
   standalone: true,
-  imports: [FormsModule, CommonModule,MatIconModule],
+  imports: [FormsModule, CommonModule,MatIconModule, RouterModule],
   templateUrl: './crud-tour.component.html',
   styleUrl: './crud-tour.component.css'
 })

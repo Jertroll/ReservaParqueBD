@@ -3,6 +3,9 @@
   <button mat-button class="buscar" (click)="search()">
     <mat-icon>search</mat-icon>Buscar
   </button>
+  <button mat-button class="agregarCliente" [routerLink]="['/agregarCliente']">
+    <mat-icon>add</mat-icon>Agregar Cliente
+</button>
     <h2>Empleados</h2>
     <table>
       <thead>
@@ -44,4 +47,9 @@
       </tbody>
     </table>
   </div>
+<div class="back-button-container">
+  <button mat-button class="back" [routerLink]="['/Admin']">
+      <mat-icon>arrow_back</mat-icon>Regresar al Admin Dashboard
+  </button>
+</div>
   

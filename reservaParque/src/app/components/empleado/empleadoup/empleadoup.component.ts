@@ -8,11 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NgFor } from '@angular/common';
 import { EditEmpleadoDialogComponent } from '../edit-empleado-dialog/edit-empleado-dialog.component'; // Asegúrate de crear este componente
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-empleado-up',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIconModule, NgFor, MatButtonModule],
+  imports: [FormsModule, CommonModule, MatIconModule, NgFor, MatButtonModule,RouterModule],
   templateUrl: './empleadoup.component.html',
   styleUrls: ['./empleadoup.component.css']
 })

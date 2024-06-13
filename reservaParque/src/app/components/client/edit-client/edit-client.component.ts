@@ -12,7 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { Cliente } from '../../../models/cliente';
 import { ClienteService } from '../../../services/cliente.service';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-edit-cliente',
   standalone: true,
