@@ -8,6 +8,7 @@ import { ParqueAgregarComponent } from './components/parqueNacional/parque-agreg
 import { AgregarTourComponent } from './components/Tour/agregar-tour/agregar-tour.component';
 import { CrudTourComponent } from './components/Tour/crud-tour/crud-tour.component';
 import { ParquerudComponent } from './components/parqueNacional/parquerud/parquerud.component';
+import {Clie}
 export const routes: Routes = [
 {path: '', component:HomeComponent},
 {path: 'home', component:HomeComponent},
