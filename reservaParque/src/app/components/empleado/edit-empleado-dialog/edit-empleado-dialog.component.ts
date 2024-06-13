@@ -42,7 +42,7 @@ export class EditEmpleadoDialogComponent {
     this.empleadoService.actualizarEmpleado(this.data).subscribe({
       next: (response) => {
         console.log(response);
-        if (response.status === 200) {
+        if (response.status === 201) {
           form.reset();
           this.changeStatus(0);
           this.dialogRef.close(response);
