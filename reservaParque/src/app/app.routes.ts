@@ -9,6 +9,9 @@ import { AgregarTourComponent } from './components/Tour/agregar-tour/agregar-tou
 import { CrudTourComponent } from './components/Tour/crud-tour/crud-tour.component';
 import { ParquerudComponent } from './components/parqueNacional/parquerud/parquerud.component';
 import { ReservarComponent } from './components/reserva/reservar/reservar.component';
+import { AdminComponent } from './components/Admin/admin.component';
+import { AgregarClienteComponent } from './components/client/agregar-client/agregar-client.component';
+import { ClienteCrudComponent } from './components/client/cliente-crud/cliente-crud.component';
 export const routes: Routes = [
 {path: '', component:HomeComponent},
 {path: 'home', component:HomeComponent},
@@ -18,7 +21,9 @@ export const routes: Routes = [
 {path: 'agregarTour', component:AgregarTourComponent},
 {path: 'tours', component:CrudTourComponent},
 {path:'reserva',component:ReservarComponent},
-
+{ path: 'agregarCliente', component: AgregarClienteComponent },
+{ path: 'cliente', component: ClienteCrudComponent },
+{ path: 'Admin', component: AdminComponent },
 {path: "parqueRUD", component:ParquerudComponent}
 
 ];
