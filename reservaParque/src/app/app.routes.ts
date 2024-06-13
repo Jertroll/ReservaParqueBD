@@ -8,6 +8,7 @@ import { ParqueAgregarComponent } from './components/parqueNacional/parque-agreg
 import { AgregarTourComponent } from './components/Tour/agregar-tour/agregar-tour.component';
 import { CrudTourComponent } from './components/Tour/crud-tour/crud-tour.component';
 import { ParquerudComponent } from './components/parqueNacional/parquerud/parquerud.component';
+import { ReservarComponent } from './components/reserva/reservar/reservar.component';
 export const routes: Routes = [
 {path: '', component:HomeComponent},
 {path: 'home', component:HomeComponent},
@@ -16,7 +17,7 @@ export const routes: Routes = [
 {path: 'agregarParque', component:ParqueAgregarComponent},
 {path: 'agregarTour', component:AgregarTourComponent},
 {path: 'tours', component:CrudTourComponent},
-
+{path:'reserva',component:ReservarComponent},
 
 {path: "parqueRUD", component:ParquerudComponent}
 
