@@ -36,7 +36,6 @@ h3 {
 
 /* Estilo para el formulario */
 form {
-    
     max-width: 60%; /* Ancho máximo del formulario */
     margin: auto; /* Centrar el formulario */
 }
@@ -48,12 +47,21 @@ form {
     border-radius: 0.25rem; /* Borde redondeado */
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Efecto de transición suave */
 }
+
 .form-control:focus {
     border-color: #28a745; /* Cambio de color del borde al obtener el foco */
     outline: 0; /* Eliminar el contorno */
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Sombra alrededor del borde al obtener el foco */
 }
+
 /* Estilo para el texto de ayuda de los campos inválidos */
 .invalid-feedback {
     color: #dc3545; /* Color del texto de ayuda para campos inválidos */
+}
+
+/* Estilo para el contenedor de los botones */
+.button-container {
+    display: flex; /* Utiliza flexbox para los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 30px; /* Espacio entre los botones */
 }
