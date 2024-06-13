@@ -16,10 +16,6 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item"><a [routerLink]="['login']">Login</a></li>
             <li class="nav-item"><a  [routerLink]="['reserva']">Reserva</a></li>
-            <li class="nav-item"><a  [routerLink]="['agregarTour']">Tour</a></li>
-            <li class="nav-item"><a  [routerLink]="['tours']">Tours</a></li>
-            <li class="nav-item"><a  [routerLink]="['agregarCliente']">Cliente</a></li>
-            <li class="nav-item"><a  [routerLink]="['cliente']">Clientes</a></li>
             <li class="nav-item"><a  [routerLink]="['Admin']">Admin</a></li> 
           </ul>
         }    
@@ -36,10 +32,6 @@
       </div>
     </div>
   </nav>
-
-  <button [routerLink]="['agregarParque']">Parque</button>
-  <button [routerLink]="['agregarEmpleado']">Empleado</button>
-  <button [routerLink]="['agregarCliente']">Cliente</button>
 
   <router-outlet></router-outlet>
 </div>

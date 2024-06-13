@@ -30,7 +30,7 @@ export const routes: Routes = [
 {path: "empleadoRUD", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},
 { path: 'agregarCliente', component: AgregarClienteComponent },
-{ path: 'cliente-crud', component: ClienteCrudComponent },
+{ path: 'cliente', component: ClienteCrudComponent },
 { path: 'Admin', component: AdminComponent },
 {path: "parqueRUD", component:ParquerudComponent}
 
