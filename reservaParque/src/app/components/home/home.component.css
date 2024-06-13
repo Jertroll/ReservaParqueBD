@@ -1,29 +1,66 @@
-.tours h1{
+/* Estilo del botón Buscar */
+.buscar-button {
+    background-color: #2f73da; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s, color 0.3s; /* Transición para efectos */
+    font-size: 1rem; /* Tamaño de la fuente */
+}
+
+.buscar-button:hover {
+    background-color: #1e5bb8; /* Color de fondo al pasar el cursor */
+    color: #fff; /* Color del texto al pasar el cursor */
+}
+
+/* Estilo del botón Agregar Parque */
+.agregar-button {
+    background-color: #4caf50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s, color 0.3s; /* Transición para efectos */
+    font-size: 1rem; /* Tamaño de la fuente */
+}
+
+.agregar-button:hover {
+    background-color: #388e3c; /* Color de fondo al pasar el cursor */
+    color: #fff; /* Color del texto al pasar el cursor */
+}
+
+/* Estilo del texto en general */
+.tours h1 {
     font-size: 350%;
     text-align: center;
     font-family: cursive;
+    color: #333; /* Color del texto */
 }
 
-.m-0{
+.m-0 {
     font-family: cursive;
+    color: #333; /* Color del texto */
 }
 
-.tours{
+/* Resto de los estilos existentes */
+.tours {
     background-color: rgb(247, 242, 242);
     border-radius: 1%;
     border-style: none;
 }
-.casona{
+
+.casona {
     width: 1250px;
     height: 1250px;
 }
 
-.vieja{
+.vieja {
     width: 1250px;
     height: 1250px;
 }
 
-.tamano{
+.tamano {
     width: 1250px;
     height: 1250px;
 }
@@ -55,7 +92,6 @@
     border-radius: 10px;
 }
 
-
 /* Contenedor que alinea el botón a la derecha */
 .button-container {
     text-align: right;
@@ -64,7 +100,6 @@
 
 /* Estilo del botón para que no parezca un enlace */
 .p-button {
-    
     text-decoration: none; /* Elimina el subrayado */
     color: white; /* Hereda el color del texto */
     background-color: rgb(47, 115, 218); /* Fondo transparente */
@@ -79,4 +114,8 @@
     background-color: #ddd; /* Color de fondo al pasar el cursor */
     color: #000; /* Color del texto al pasar el cursor */
     border-radius: 5px; /* Borde redondeado al pasar el cursor */
+}
+
+.agregar-parque {
+    text-decoration: none;
 }
