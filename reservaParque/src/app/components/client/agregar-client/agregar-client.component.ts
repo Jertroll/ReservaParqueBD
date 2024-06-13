@@ -4,11 +4,12 @@ import { ClienteService } from '../../../services/cliente.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { timer } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-cliente',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './agregar-client.component.html',
   styleUrls: ['./agregar-client.component.css']
 })

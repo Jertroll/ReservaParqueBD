@@ -1,41 +1,58 @@
 <div>
-    <input type="text" placeholder="Buscar tour..." [(ngModel)]="buscaNom">
-    <button mat-button class="buscar" (click)="buscar()"><mat-icon>search</mat-icon>Buscar</button>
-      <h2>Tours</h2>
-      <table>
-        <thead>
+  <div class="search-container">
+      <input type="text" placeholder="Buscar tour..." [(ngModel)]="buscaNom" class="search-input">
+      <button mat-button class="buscar" (click)="buscar()">
+          <mat-icon>search</mat-icon>Buscar
+      </button>
+      <button mat-button class="agregar-tour" [routerLink]="['/agregarTour']">
+          <mat-icon>add</mat-icon>Agregar Tour
+      </button>
+  </div>
+  <h2>Tours</h2>
+  <table>
+      <thead>
           <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Parque</th>
-            <th>Precio</th>
-            <th>Descripcion</th>
-            <th>HoraInicio</th>
-            <th>Duracion</th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Parque</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+              <th>Hora de Inicio</th>
+              <th>Duración</th>
+              <th>Acciones</th>
           </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngIf="tours && tours.length > 0">
-            <tr *ngFor="let tour of tours">
-              <td>{{ tour.idTour }}</td>
-              <td>{{ tour.nombre }}</td>
-              <td>{{ tour.idParque }}</td>
-              <td>{{ tour.precio }}</td>
-              <td>{{ tour.descripcion }}</td>
-              <td>{{ tour.horaInicio }}</td>
-              <td>{{ tour.duracion}}</td>
-              <td>
-                <button class="edit" (click)="actualizarTour(tour)"><mat-icon>edit</mat-icon>Editar</button>
-                <button class="delete" (click)="eliminarTour(tour)"><mat-icon>delete</mat-icon>Eliminar</button>
-              </td>
-            </tr>
+      </thead>
+      <tbody>
+          <ng-container *ngIf="tours && tours.length > 0; else noTours">
+              <tr *ngFor="let tour of tours">
+                  <td>{{ tour.idTour }}</td>
+                  <td>{{ tour.nombre }}</td>
+                  <td>{{ tour.idParque }}</td>
+                  <td>{{ tour.precio }}</td>
+                  <td>{{ tour.descripcion }}</td>
+                  <td>{{ tour.horaInicio }}</td>
+                  <td>{{ tour.duracion }}</td>
+                  <td>
+                      <button mat-button class="edit" (click)="actualizarTour(tour)">
+                          <mat-icon>edit</mat-icon>Editar
+                      </button>
+                      <button mat-button class="delete" (click)="eliminarTour(tour)">
+                          <mat-icon>delete</mat-icon>Eliminar
+                      </button>
+                  </td>
+              </tr>
           </ng-container>
-          <ng-container *ngIf="!tours || tours.length === 0">
-            <tr>
-              <td colspan="8">No hay productos disponibles.</td>
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
-    </div>
-  
+          <ng-template #noTours>
+              <tr>
+                  <td colspan="8">No hay tours disponibles.</td>
+              </tr>
+          </ng-template>
+      </tbody>
+  </table>
+</div>
+<div class="back-button-container">
+  <button mat-button class="back" [routerLink]="['/Admin']">
+      <mat-icon>arrow_back</mat-icon>Regresar al Admin Dashboard
+  </button>
+</div>
+

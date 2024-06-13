@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { timer } from 'rxjs';
 import { Cliente } from '../../../models/cliente';
 import { ClienteService } from '../../../services/cliente.service';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-edit-cliente',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './edit-client.component.html',
   styleUrls: ['./edit-client.component.css']
 })

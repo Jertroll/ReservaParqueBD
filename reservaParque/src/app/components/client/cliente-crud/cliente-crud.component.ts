@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { Cliente } from '../../../models/cliente';
 import { ClienteService } from '../../../services/cliente.service';
 import { EditClienteComponent } from '../edit-client/edit-client.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-crud',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIconModule],
+  imports: [FormsModule, CommonModule, MatIconModule, RouterModule], 
   templateUrl: './cliente-crud.component.html',
   styleUrls: ['./cliente-crud.component.css']
 })
