@@ -1,0 +1,45 @@
+<div class="search-container">
+  <input type="text" placeholder="Buscar cliente..." [(ngModel)]="buscaNom" class="search-input">
+  <button mat-button class="buscar" (click)="buscar()">
+      <mat-icon>search</mat-icon>Buscar
+  </button>
+</div>
+<h2>Clientes</h2>
+<div class="table-container">
+  <table class="table">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Cédula</th>
+              <th>Teléfono</th>
+              <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+          <ng-container *ngIf="clientes && clientes.length > 0; else noClientes">
+              <tr *ngFor="let cliente of clientes">
+                  <td>{{ cliente.idCliente }}</td>
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.apellido }}</td>
+                  <td>{{ cliente.cedula }}</td>
+                  <td>{{ cliente.telefono }}</td>
+                  <td>
+                      <button class="edit" (click)="editarCliente(cliente)">
+                          <mat-icon>edit</mat-icon>Editar
+                      </button>
+                      <button class="delete" (click)="eliminar(cliente.idCliente)">
+                          <mat-icon>delete</mat-icon>Eliminar
+                      </button>
+                  </td>
+              </tr>
+          </ng-container>
+          <ng-template #noClientes>
+              <tr>
+                  <td colspan="6">No hay clientes disponibles.</td>
+              </tr>
+          </ng-template>
+      </tbody>
+  </table>
+</div>
