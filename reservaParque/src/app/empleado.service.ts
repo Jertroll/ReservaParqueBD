@@ -40,17 +40,14 @@ export class EmpleadoService {
           headers
         }*/
         const body = new URLSearchParams();
-    
-         body.set('cedula', empleado.cedula.toString());
-         body.set('nombre', empleado.nombre.toString());
+
          body.set('correo', empleado.correo.toString());
-         body.set('telefono', empleado.telefono);
+         body.set('telefono', empleado.telefono.toString());
          body.set('fechaIngreso', empleado.fechaIngreso.toString());
-         body.set('roll', empleado.roll.toString());
     
         return this._http.put(`${this.urlAPI}empleados/${empleado.idEmpleado}`, body.toString(), { headers });
       }
-      
+
     eliminarEmpleado(idEmpleado: number): Observable<any> {
         return this._http.delete(`${this.urlAPI}empleados/${idEmpleado}`);
     }
