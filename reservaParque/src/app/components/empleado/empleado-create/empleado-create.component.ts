@@ -24,10 +24,10 @@ export class EmpleadoCreateComponent {
   }
 
   onSubmit(form: any): void {
-    this.empleadoService.crearEmpleado(this.empleado).subscribe({
+    this.empleadoService.crearEmpleados(this.empleado).subscribe({
       next: (response) => {
         console.log(response);
-        if (response.status === 200) {
+        if (response.status === 201) {
           form.reset();
           this.changeStatus(0);
         } else {

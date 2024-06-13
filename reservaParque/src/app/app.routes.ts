@@ -19,6 +19,7 @@ export const routes: Routes = [
 {path: 'agregarTour', component:AgregarTourComponent},
 {path: 'tours', component:CrudTourComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
+{path: 'agregarEmpleado', component:EmpleadoCreateComponent},
 
 
 {path: "parqueRUD", component:ParquerudComponent},
