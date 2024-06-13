@@ -9,6 +9,7 @@ import { AgregarTourComponent } from './components/Tour/agregar-tour/agregar-tou
 import { CrudTourComponent } from './components/Tour/crud-tour/crud-tour.component';
 import { AgregarClienteComponent } from './components/client/agregar-client/agregar-client.component';
 import { ClienteCrudComponent } from './components/client/cliente-crud/cliente-crud.component';
+import { AdminComponent } from './components/Admin/admin.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,4 +21,5 @@ export const routes: Routes = [
   { path: 'crudTour', component: CrudTourComponent },
   { path: 'agregarCliente', component: AgregarClienteComponent },
   { path: 'cliente', component: ClienteCrudComponent },
+  { path: 'Admin', component: AdminComponent },
 ];
