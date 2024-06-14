@@ -16,16 +16,13 @@ export class ReservaService {
   }
  
   crear(reserva: Reserva): Observable<any> {
-    
-    let reservaJson = JSON.stringify(reserva);
-    let params = 'data=' + encodeURIComponent(reservaJson); // Codificar el JSON como parámetro 'data'
-    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-
-    return this._http.post(`${this.urlAPI}reserva`, params, { headers });
+    return this._http.post<any>(`${this.urlAPI}reserva`, reserva);
   }
-
   verReservas(): Observable<{ status: number, message: string, data: Reserva[] }> {
     return this._http.get<{ status: number, message: string, data: Reserva[] }>(`${this.urlAPI}reserva`);
+  }
+  verEmpleados(): Observable<{ status: number, message: string, data: Reserva[] }> {
+    return this._http.get<{ status: number, message: string, data: Reserva[] }>(`${this.urlAPI}empleados`);
   }
   actualizarTour(reserva: Reserva): Observable<any> {
   let tourJson = JSON.stringify(reserva);
