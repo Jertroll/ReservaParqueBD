@@ -47,7 +47,8 @@ export class ReservarComponent {
   mostrarEmpleados() {
     this.empleadoService.obtenerEmpleados().subscribe(
       (response) => {
-        this.empleados = response.data.map((empleado: Empleado) => ({ ...empleado, seleccionado: false }));
+        this.empleados = response.data.filter((empleado: Empleado) => empleado.roll === 'guia')
+           .map((empleado: Empleado)=>({ ...empleado, seleccionado: false }));
       },
       error => {
         console.error('Error cargando empleados', error);
