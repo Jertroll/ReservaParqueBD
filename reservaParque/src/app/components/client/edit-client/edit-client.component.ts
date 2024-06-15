@@ -3,13 +3,24 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { timer } from 'rxjs';
+import { RouterOutlet, RouterLink } from '@angular/router';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { Cliente } from '../../../models/cliente';
 import { ClienteService } from '../../../services/cliente.service';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-edit-cliente',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule],
   templateUrl: './edit-client.component.html',
   styleUrls: ['./edit-client.component.css']
 })
@@ -18,8 +29,8 @@ export class EditClienteComponent {
 
   constructor(
     public dialogRef: MatDialogRef<EditClienteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Cliente,
-    private clienteService: ClienteService
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private clienteService: ClienteService // corregido el typo en 'parqueService'
   ) {
     this.status = -1;
   }
@@ -27,7 +38,6 @@ export class EditClienteComponent {
   onCancel(): void {
     this.dialogRef.close();
   }
-
   onSubmit(form: any) {
     this.clienteService.actualizarCliente(this.data).subscribe({
       next: (response) => {

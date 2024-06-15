@@ -1,42 +1,52 @@
 <div class="col-md-12 mt-4">
     <h3>Registro de Cliente</h3>
-    <div class="status-container">
-        <ng-container [ngSwitch]="status">
-            <div *ngSwitchCase="0" class="alert alert-success"><p>¡Registro exitoso!</p></div>
-            <div *ngSwitchCase="1" class="alert alert-warning"><p>No se pudo agregar el Cliente.</p></div>
-            <div *ngSwitchCase="2" class="alert alert-danger"><p>Error de servidor.</p></div>
-        </ng-container>
-    </div>
+    <span>
+        @switch (status) {
+            @case (0) {
+                <div class="alert alert-success"><p>Registro exitoso!</p></div>
+            }
+            @case (1) {
+                <div class="alert alert-warning"><p>No se pudo agregar el Producto!</p></div>
+            }
+            @case (2) {
+                <div class="alert alert-danger"><p>Error de servidor!</p></div>
+            }
+        }
+    </span>
     <form class="col-md-8 mx-auto" #clienteForm="ngForm" (ngSubmit)="onSubmit(clienteForm)">
         <div class="form-group">
+
             <label for="nombre">Nombre</label>
             <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
-                   required [(ngModel)]="cliente.nombre"/>
-            <div *ngIf="nombre.invalid && nombre.touched" class="invalid-feedback d-block">
-                Nombre es requerido
-            </div>
+            pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="cliente.nombre"/>
+               @if(!nombre.valid && nombre.touched){ 
+              <small class="invalid-feedback d-block">Formato no valido</small>
+            }
 
             <label for="apellido">Apellido</label>
             <input id="apellido" type="text" #apellido="ngModel" class="form-control" name="apellido"
-                   required [(ngModel)]="cliente.apellido"/>
-            <div *ngIf="apellido.invalid && apellido.touched" class="invalid-feedback d-block">
-                Apellido es requerido
-            </div>
+            pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="cliente.apellido"/>
+                 @if(!apellido.valid && apellido.touched){ 
+                    <small class="invalid-feedback d-block">Formato no valido</small>
+             }
 
             <label for="cedula">Cédula</label>
             <input id="cedula" type="number" #cedula="ngModel" class="form-control" name="cedula"
-                   required [(ngModel)]="cliente.cedula"/>
-            <div *ngIf="cedula.invalid && cedula.touched" class="invalid-feedback d-block">
-                Cédula es requerida
-            </div>
+                    [(ngModel)]="cliente.cedula"/>
+                   @if(!cedula.valid && cedula.touched){
+                    <small class="invalid-feedback d-block">Formato invalido</small>
+                }
 
             <label for="telefono">Teléfono</label>
-            <input id="telefono" type="text" #telefono="ngModel" class="form-control" name="telefono"
-                   required [(ngModel)]="cliente.telefono"/>
-            <div *ngIf="telefono.invalid && telefono.touched" class="invalid-feedback d-block">
-                Teléfono es requerido
-            </div>
+            <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono" 
+              [(ngModel)]="cliente.telefono"/>
+                @if(!telefono.valid && telefono.touched){
+                    <small class="invalid-feedback d-block">Formato invalido</small>
+                }
         </div>
-        <button type="submit" class="btn btn-primary mt-2" [disabled]="clienteForm.invalid">Guardar</button>
+        <div class="button-container">
+            <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="clienteForm.invalid">
+            <a routerLink="/cliente" class="btn btn-danger mt-2 ml-2">Regresar</a>
+        </div>
     </form>
 </div>

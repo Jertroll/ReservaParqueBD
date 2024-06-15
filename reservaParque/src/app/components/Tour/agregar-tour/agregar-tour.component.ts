@@ -6,11 +6,12 @@ import { ParqueService } from '../../../services/parque.service';
 import { TourService } from '../../../services/tour.service'; 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-tour',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './agregar-tour.component.html',
   styleUrl: './agregar-tour.component.css'
 })

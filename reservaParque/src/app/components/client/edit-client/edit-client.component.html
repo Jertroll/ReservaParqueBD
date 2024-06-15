@@ -1,20 +1,23 @@
-<h4 class="mat-dialog-title">Editar Cliente</h4>
-<div class="editCliente mat-dialog-content">
-    <div class="status-container">
-        <ng-container *ngSwitch="status">
-            <div *ngSwitchCase="0" class="alert alert-success"><p>Registro exitoso!</p></div>
-            <div *ngSwitchCase="1" class="alert alert-warning"><p>No se pudo agregar el Cliente!</p></div>
-            <div *ngSwitchCase="2" class="alert alert-danger"><p>Error de servidor!</p></div>
-        </ng-container>
+<h4 mat-dialog-title>Editar Cliente</h4>
+<div class="editParque" mat-dialog-content>
+    <div *ngIf="status === 0" class="alert alert-success">
+      <p>Registro exitoso!</p>
     </div>
-    <form class="edit-form" #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
-        <input id="id" type="text" [(ngModel)]="data.idCliente" name="idCliente" hidden>
+    <div *ngIf="status === 1" class="alert alert-warning">
+      <p>No se pudo actualizar el Producto!</p>
+    </div>
+    <div *ngIf="status === 2" class="alert alert-danger">
+      <p>Error de servidor!</p>
+    </div>
+    <form class="col-md-8 mx-auto" #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+        <input id="idCliente" type="text" [(ngModel)]="data.idCliente" name="idCliente" hidden>
 
         <div class="form-grid">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" [(ngModel)]="data.nombre" name="nombre" required>
             </div>
+
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
                 <input type="text" [(ngModel)]="data.apellido" name="apellido" required>
@@ -25,13 +28,13 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" [(ngModel)]="data.telefono" name="telefono" required>
+                <input type="number" [(ngModel)]="data.telefono" name="telefono" required>
             </div>
         </div>
 
-        <div class="form-actions">
+        <div mat-dialog-actions>
             <button mat-button type="button" (click)="onCancel()">Cancelar</button>
             <button mat-button type="submit">Actualizar</button>
-        </div>
+          </div>
     </form>
 </div>

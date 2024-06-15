@@ -14,15 +14,7 @@
 
     <div class="form-grid">
       <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input matInput type="text" [(ngModel)]="data.nombre" name="nombre" required>
-      </div>
-      <div class="form-group">
-        <label for="cedula">Cédula:</label>
-        <input matInput type="number" [(ngModel)]="data.cedula" name="cedula" required>
-      </div>
-      <div class="form-group">
-        <label for="correo">Email:</label>
+        <label for="correo">Correo:</label>
         <input matInput type="email" [(ngModel)]="data.correo" name="correo" required>
       </div>
       <div class="form-group">
@@ -33,15 +25,11 @@
         <label for="fechaIngreso">Fecha de Ingreso:</label>
         <input matInput type="date" [(ngModel)]="data.fechaIngreso" name="fechaIngreso" required>
       </div>
-      <div class="form-group">
-        <label for="roll">Roll:</label>
-        <input matInput type="text" [(ngModel)]="data.roll" name="roll" required>
-      </div>
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button type="button" (click)="onCancel()">Cancelar</button>
-      <button mat-button type="submit">Actualizar</button>
-    </div>
+        <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+        <button mat-button type="submit">Actualizar</button>
+      </div>
   </form>
 </div>

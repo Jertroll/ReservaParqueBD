@@ -1,12 +1,14 @@
 <div>
-  <input type="text" placeholder="Buscar Parque..." [(ngModel)]="searchTerm">
-  <div style="display: inline-block;">
-    <button mat-button class="buscar" (click)="search()">
-      <mat-icon>search</mat-icon>Buscar
-    </button>
-    <button mat-button class="agregar-parque" [routerLink]="['/agregarParque']">
-      <mat-icon>add</mat-icon>Agregar Parque
-    </button>
+  <div class="search-container">
+    <input type="text" placeholder="Buscar Parque..." [(ngModel)]="searchTerm" class="search-input">
+    <div style="display: inline-block;">
+      <button mat-button class="buscar" (click)="search()">
+        <mat-icon>search</mat-icon>Buscar
+      </button>
+      <button mat-button class="agregar-parque" [routerLink]="['/agregarParque']">
+        <mat-icon>add</mat-icon>Agregar Parque
+      </button>
+    </div>
   </div>
   <h2>Parques Nacionales</h2>
   <table>
@@ -20,10 +22,11 @@
         <th>Tipo Clima</th>
         <th>correo</th>
         <th>Telefono</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngIf="parques && parques.length > 0">
+      <ng-container *ngIf="parques && parques.length > 0; else noParques">
         <tr *ngFor="let parque of parques">
           <td>{{ parque.idParque }}</td>
           <td>{{ parque.nombre }}</td>
@@ -43,11 +46,16 @@
           </td>
         </tr>
       </ng-container>
-      <ng-container *ngIf="!parques || parques.length === 0">
+      <ng-template #noParques>
         <tr>
-          <td colspan="8">No hay parques disponibles.</td>
+          <td colspan="9">No hay parques disponibles.</td>
         </tr>
-      </ng-container>
+      </ng-template>
     </tbody>
   </table>
+</div>
+<div class="back-button-container">
+  <button mat-button class="back" [routerLink]="['/Admin']">
+    <mat-icon>arrow_back</mat-icon>Regresar al Admin Dashboard
+  </button>
 </div>

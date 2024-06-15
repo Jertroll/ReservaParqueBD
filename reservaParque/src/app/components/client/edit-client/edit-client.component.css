@@ -1,74 +1,84 @@
-.mat-dialog-title {
-    font-size: 24px;
-    margin-bottom: 20px;
+/* Estilos para el contenedor principal del diálogo */
+.editParque {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 1000%; /* Ajustar el ancho máximo del contenedor principal */
+  width: 100%; 
+  margin: 0 auto; 
   }
   
-  .editCliente {
-    max-width: 400px;
-    margin: 0 auto;
+  h4{
+    color: black;
+    font-size: 1.5rem; 
+    text-align: center;
+    margin-bottom: 1rem; /* Espacio en la parte inferior del título */
   }
   
-  .status-container {
-    margin-bottom: 20px;
+  .col-md-8 {
+    max-width: 900px; /* Ancho máximo del formulario */
+    margin: 0 auto; /* Centra horizontalmente */
+    padding: 20px; /* Añade espacio interno */
   }
   
-  .alert {
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
   }
   
-  .alert-success {
-    background-color: #d4edda; /* Verde claro */
-    color: #155724; /* Verde oscuro */
+  /* Estilos para el grid del formulario */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
   }
   
-  .alert-warning {
-    background-color: #fff3cd; /* Amarillo claro */
-    color: #856404; /* Amarillo oscuro */
-  }
-  
-  .alert-danger {
-    background-color: #f8d7da; /* Rojo claro */
-    color: #721c24; /* Rojo oscuro */
-  }
-  
-  .edit-form {
-    margin-bottom: 20px;
-  }
-  
+  /* Estilos para los grupos de formulario */
   .form-group {
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
   }
   
-  .form-group label {
+
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Estilos para los inputs del formulario */
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button[mat-button] {
+    margin: 13px 4px 20px 0;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 12px;
     font-weight: bold;
   }
   
-  .form-group input[type="text"],
-  .form-group input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc; /* Gris claro */
-    border-radius: 5px;
+  button[mat-button]:first-child {
+    background-color: #d82013; 
+    color: white;
   }
   
-  .form-actions {
-    display: flex;
-    justify-content: space-between;
+  button[mat-button]:last-child {
+    background-color: #40a743; 
+    color: white;
   }
   
-  .form-actions button {
-    padding: 10px 20px;
-    border-radius: 5px;
-  }
-  
-  .form-actions button:nth-child(1) {
-    background-color: #ccc; /* Gris claro */
-  }
-  
-  .form-actions button:nth-child(2) {
-    background-color: #007bff; /* Azul */
-    color: #fff; /* Blanco */
+
+  button[mat-button]:hover {
+    opacity: 0.9;
   }
   
