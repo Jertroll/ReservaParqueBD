@@ -38,6 +38,8 @@
           <th>Precio</th>
           <th>Descripción</th>
           <th>Fecha del Tour</th>
+          <th>Guia</th>
+          <th>Cantidad de Visitantes</th>
         </tr>
         </thead>
         <tbody>
@@ -52,25 +54,19 @@
             <input type="date" [(ngModel)]="tour.fechaSeleccionada" name="fechaTour{{ tour.idTour }}"
                    class="form-control" [disabled]="!tour.seleccionado">
           </td>
+          <td>
+            <select class="form-control" [(ngModel)]="tour.empleadoSeleccionado" name="empleadoTour{{ tour.idTour }}"
+                    [disabled]="!tour.seleccionado">
+              <option *ngFor="let empleado of empleados" [value]="empleado.idEmpleado">{{ empleado.nombre }}</option>
+            </select>
+          </td>
+          <td>
+            <input type="number" [(ngModel)]="tour.cantVisitantes" name="cantVisitantes{{ tour.idTour }}"
+                   class="form-control" [disabled]="!tour.seleccionado">
+          </td>
         </tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="form-group">
-      <label for="idEmpleado">ID Empleado</label>
-      <input id="idEmpleado" type="number" class="form-control" name="idEmpleado" required
-             [(ngModel)]="detalle.idEmpleado" #idEmpleado="ngModel">
-      <div *ngIf="idEmpleado.invalid && idEmpleado.touched" class="invalid-feedback d-block">
-        ID de Empleado es requerido
-      </div>
-
-      <label for="cantVisitantes">Cantidad de Visitantes</label>
-      <input id="cantVisitantes" type="number" class="form-control" name="cantVisitantes" required
-             [(ngModel)]="detalle.cantVisitantes" #cantVisitantes="ngModel">
-      <div *ngIf="cantVisitantes.invalid && cantVisitantes.touched" class="invalid-feedback d-block">
-        Cantidad de Visitantes es requerida
-      </div>
     </div>
 
     <button type="submit" class="btn btn-primary mt-2" [disabled]="reservaForm.invalid">Guardar</button>
