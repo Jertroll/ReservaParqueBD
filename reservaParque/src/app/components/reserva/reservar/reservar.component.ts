@@ -10,7 +10,8 @@ import { Detalle } from '../../../models/detalle';
 import { DetalleService } from '../../../services/detalle.service';
 import { Empleado } from '../../../models/Empleado';
 import { EmpleadoService } from '../../../empleado.service';
-
+import { FacturaService } from '../../../services/factura.service';
+import { Factura } from '../../../models/factura';
 interface TourSeleccionable extends Tour {
   seleccionado?: boolean;
   fechaSeleccionada?: string;
@@ -31,12 +32,15 @@ export class ReservarComponent {
   public reserva: Reserva = new Reserva(0, 0, '', []);
   public detallesReserva: Detalle[] = [];
   public empleados: Empleado[] = [];
-
+  public factura: Factura = new Factura(0,0,'',0,0,0,0);
+  public mostrarInfoFactura: boolean = false;
+  public facturaId: number=0 ;
   constructor(
     private tourService: TourService,
     private reservaService: ReservaService,
     private detalleService: DetalleService,
-    private empleadoService: EmpleadoService
+    private empleadoService: EmpleadoService,
+    private facturaService: FacturaService
   ) {}
 
   ngOnInit() {
@@ -130,6 +134,8 @@ export class ReservarComponent {
       (response) => {
         console.log('Reserva exitosa:', response);
         this.saveDetallesReserva(response.reserva.id);
+         const reservaId = response.reserva.idReserva;
+        this.createFactura(reservaId);
         reservaForm.reset();
         this.tours.forEach(tour => tour.seleccionado = false);
         this.changeStatus(0);
@@ -154,6 +160,32 @@ export class ReservarComponent {
         }
       );
     });
+  }
+  createFactura(reservaId: number) {
+    const fechaEmision = new Date().toISOString().split('T')[0]
+    this.facturaService.crear(reservaId,fechaEmision).subscribe(
+      (response) => {
+        console.log('Factura creada:', response);
+        const facturaId = response.factura.idFactura; // Asume que la respuesta contiene el ID de la factura
+        this.mostrarFactura(facturaId);
+      },
+      (error) => {
+        console.error('Error creando factura:', error);
+      }
+    );
+  }
+  mostrarFactura(facturaId: number){
+    this.facturaService.mostrarFactura(facturaId).subscribe(
+      (response) => {
+        this.factura = response;
+        console.log('Factura obtenida:', this.factura);
+        this.mostrarInfoFactura = true; 
+        // Aquí puedes agregar la lógica para mostrar la factura en la interfaz de usuario
+      },
+      (error) => {
+        console.error('Error obteniendo factura:', error);
+      }
+    );
   }
 
   changeStatus(st: number) {
