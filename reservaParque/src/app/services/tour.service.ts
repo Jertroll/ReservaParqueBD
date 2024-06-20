@@ -31,6 +31,27 @@ export class TourService {
   verTours(): Observable<{ status: number, message: string, data: Tour[] }> {
       return this._http.get<{ status: number, message: string, data: Tour[] }>(`${this.urlAPI}tour`);
   }
+
+  obtenerToursPorParque(idParque: number): Observable<{ status: number, message: string, data: Tour[] }> {
+    return this._http.get<{ status: number, message: string, data: Tour[] }>(`${this.urlAPI}tour/parque/${idParque}`)
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching tours by parque:', error);
+          return throwError(error);
+        })
+      );
+  }
+  obtenerTodosLosTours(): Observable<Tour[]> {
+    return this._http.get<Tour[]>(`${this.urlAPI}tour`)
+        .pipe(
+            catchError(error => {
+                console.error('Error fetching all tours:', error);
+                return throwError(error);
+            })
+        );
+}
+
+  
   actualizarTour(tour: Tour): Observable<any> {
     let tourJson = JSON.stringify(tour);
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');

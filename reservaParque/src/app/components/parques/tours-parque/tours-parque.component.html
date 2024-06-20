@@ -1,0 +1,30 @@
+<div>
+    <h3>Tours del Parque</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Descripción</th>
+          <th>Hora de Inicio</th>
+          <th>Duración</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tour of tours">
+          <td>{{ tour.idTour }}</td>
+          <td>{{ tour.nombre }}</td>
+          <td>{{ tour.idParque }}</td>
+          <td>{{ tour.precio }}</td>
+          <td>{{ tour.descripcion }}</td>
+          <td>{{ tour.horaInicio }}</td>
+          <td>{{ tour.duracion }}</td>
+        </tr>
+        <tr *ngIf="tour && tour.length === 0">
+          <td colspan="6">No hay tours disponibles para este parque.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
