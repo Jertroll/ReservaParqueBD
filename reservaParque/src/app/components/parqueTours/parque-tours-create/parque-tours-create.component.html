@@ -1,0 +1,11 @@
+<div *ngIf="parque">
+    <h1>{{ parque.nombre }}</h1>
+    <p>{{ parque.descripcion }}</p>
+    <h2>Tours</h2>
+    <ul>
+      <li *ngFor="let tour of tours">
+        {{ tour.nombre }} - {{ tour.descripcion }} - ${{ tour.precio }}
+      </li>
+    </ul>
+  </div>
+  
