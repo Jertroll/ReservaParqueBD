@@ -63,7 +63,7 @@ export class ReservarComponent {
   mostrarTours() {
     this.tourService.verTours().subscribe(
       (response) => {
-        this.tours = response.data.map((tour: Tour) => ({ ...tour, seleccionado: false }));
+        this.tours = response.data;
       },
       error => {
         console.error('Error cargando tours', error);
@@ -117,9 +117,7 @@ export class ReservarComponent {
         return;
       }
   
-      const horaTour = '10:00';  // Ajusta esto según tu lógica para obtener la hora correcta
-  
-      const detalle = new Detalle(0, 0, tour.idTour, fechaTour, horaTour, empleadoId, tour.cantVisitantes, 0, 0);
+      const detalle = new Detalle(0, 0, tour.idTour, fechaTour,"", empleadoId, tour.cantVisitantes, 0, 0);
       this.detallesReserva.push(detalle);
     });
   
