@@ -14,7 +14,7 @@ import { ReservarComponent } from './components/reserva/reservar/reservar.compon
 import { AdminComponent } from './components/Admin/admin.component';
 import { AgregarClienteComponent } from './components/client/agregar-client/agregar-client.component';
 import { ClienteCrudComponent } from './components/client/cliente-crud/cliente-crud.component';
-import { ParqueToursComponent } from './components/parqueTours/parque-tours-create/parque-tours-create.component';
+import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
 
 export const routes: Routes = [
 {path: '', component:HomeComponent},
@@ -26,7 +26,7 @@ export const routes: Routes = [
 {path: 'tours', component:CrudTourComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
-{ path: 'parques/:idParque/tours', component: ParqueToursComponent }, 
+{ path: 'parques/:idParque/tours', component: ToursParqueComponent },
 
 
 {path: "parqueRUD", component:ParquerudComponent},
