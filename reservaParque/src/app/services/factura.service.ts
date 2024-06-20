@@ -22,7 +22,7 @@ export class FacturaService{
     }
 
 
-    buscarFacturaPorId(idFactura: number): Observable<Factura> {
+    mostrarFactura(idFactura: number): Observable<Factura> {
         return this._http.get<{ status: number, message: string, factura: Factura }>(`${this.urlAPI}factura/${idFactura}`)
           .pipe(
             map(response => response.factura), // Extraer el objeto de producto del cuerpo de la respuesta
@@ -33,15 +33,14 @@ export class FacturaService{
           );
       }
 
-      crear(idReserva: number, factura: Factura): Observable<any> {
-        factura.idReserva = idReserva;
-        let facturaJson = JSON.stringify(factura);
-        let params = 'data=' + facturaJson;
+      crear(idReserva: number,fechaEmision:string): Observable<any> {
+        let params = `idReserva=${idReserva}&fechaEmision=${fechaEmision}`;
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
         let options = {
-            headers
-        }
+          headers
+        };
         return this._http.post(this.urlAPI + 'factura', params, options);
+      
     }
 
 
