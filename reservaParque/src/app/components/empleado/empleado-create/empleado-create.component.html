@@ -29,6 +29,14 @@
         pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$" [(ngModel)]="empleado.correo" required>
       <small *ngIf="!correo.valid && correo.touched" class="invalid-feedback d-block">Formato inválido</small>
 
+      <label for="contrasena">Contraseña</label>
+      <input id="contrasena" type="password" #contrasena="ngModel" class="form-control" name="contrasena" 
+        pattern=".{6,}" [(ngModel)]="empleado.contrasena" required>
+      <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
+        La contraseña debe tener al menos 6 caracteres.
+      </small>
+      
+
       <label for="telefono">Teléfono</label>
       <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono" 
         [(ngModel)]="empleado.telefono" required>

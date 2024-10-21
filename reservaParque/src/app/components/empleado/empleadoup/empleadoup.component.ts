@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Empleado } from '../../../models/Empleado';
-import { EmpleadoService } from '../../../empleado.service';
+import { EmpleadoService } from '../../../services/empleado.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,7 +27,7 @@ export class EmpleadoUpComponent implements OnInit {
   constructor(private empleadoService: EmpleadoService, public dialog: MatDialog) {
     this.status = -1;
     this.empleados = [];
-    this.empleado = new Empleado(0, 0, '', '', '', '', '');
+    this.empleado = new Empleado(0, 0, '', '', '', '', '','','');
   }
 
   ngOnInit(): void {
@@ -116,7 +116,7 @@ export class EmpleadoUpComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.empleado = new Empleado(0, 0, '', '', '', '', '');
+    this.empleado = new Empleado(0, 0, '', '', '', '', '','','');
     this.editando = false;
   }
 }

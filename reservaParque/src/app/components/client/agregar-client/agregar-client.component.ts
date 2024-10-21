@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { timer } from 'rxjs';
 import { RouterModule } from '@angular/router';
 
-import { Cliente } from '../../../models/cliente'; 
-import { ClienteService } from '../../../services/cliente.service'; 
+import { Cliente } from '../../../models/usuario'; 
+import { ClienteService } from '../../../services/usuario.service'; 
 
 @Component({
   selector: 'app-agregar-cliente',

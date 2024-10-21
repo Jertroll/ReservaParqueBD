@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { timer } from 'rxjs';
-import { EmpleadoService } from '../../../empleado.service';
+import { EmpleadoService } from '../../../services/empleado.service';
 import { RouterOutlet, RouterLink } from '@angular/router';
 
 import { MatFormFieldModule } from '@angular/material/form-field';

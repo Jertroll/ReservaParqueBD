@@ -10,8 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { Cliente } from '../../../models/cliente';
-import { ClienteService } from '../../../services/cliente.service';
+import { Cliente } from '../../../models/usuario';
+import { ClienteService } from '../../../services/usuario.service';
 import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-edit-cliente',

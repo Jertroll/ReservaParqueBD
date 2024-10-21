@@ -11,20 +11,28 @@
   </div>
   <form class="col-md-8 mx-auto" #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
     <input id="idEmpleado" type="text" [(ngModel)]="data.idEmpleado" name="idEmpleado" hidden>
-
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input matInput type="text" [(ngModel)]="data.nombre" name="nombre" required>
+    </div>
+    <div class="form-group">
+      <label for="apellido">Apellidos:</label>
+      <input matInput type="text" [(ngModel)]="data.apellido" name="apellido" required>
+    </div>
     <div class="form-grid">
       <div class="form-group">
-        <label for="correo">Correo:</label>
+        <label for="correo">Correo Electronico:</label>
         <input matInput type="email" [(ngModel)]="data.correo" name="correo" required>
+      </div>
+      <div class="form-group">
+        <label for="contrasena">Contraseña:</label>
+        <input matInput type="password" [(ngModel)]="data.contrasena" name="contrasena" required>
       </div>
       <div class="form-group">
         <label for="telefono">Teléfono:</label>
         <input matInput type="number" [(ngModel)]="data.telefono" name="telefono" required>
       </div>
-      <div class="form-group">
-        <label for="fechaIngreso">Fecha de Ingreso:</label>
-        <input matInput type="date" [(ngModel)]="data.fechaIngreso" name="fechaIngreso" required>
-      </div>
+
     </div>
 
     <div mat-dialog-actions>

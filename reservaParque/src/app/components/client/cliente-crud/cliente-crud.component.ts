@@ -7,8 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
 import { EditClienteComponent } from '../edit-client/edit-client.component';
-import { Cliente } from '../../../models/cliente';
-import { ClienteService } from '../../../services/cliente.service';
+import { Cliente } from '../../../models/usuario';
+import { ClienteService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-cliente-crud',
