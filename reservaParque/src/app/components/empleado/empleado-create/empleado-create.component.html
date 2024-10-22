@@ -52,10 +52,10 @@
         [(ngModel)]="empleado.roll" required>
       <small *ngIf="!roll.valid && roll.touched" class="invalid-feedback d-block">Rol es requerido</small>
     </div>
-    <a routerLink="/empleadoRUD">Empleado Tablas</a>
+    <a routerLink="/empleadosTable">Empleado Tablas</a>
     <div class="button-container">
       <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="empleadoForm.invalid">
-      <a routerLink="/empleadoRUD" class="btn btn-danger mt-2 ml-2">Regresar</a>
+      <a routerLink="/empleadosTable" class="btn btn-danger mt-2 ml-2">Regresar</a>
     </div>
   </form>
 </div>

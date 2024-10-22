@@ -1,1 +1,57 @@
-<p>crud-usuario works!</p>
+<div class="search-container">
+    <input type="text" placeholder="Buscar cliente..." [(ngModel)]="searchTerm" class="search-input">
+    <button mat-button class="buscar" (click)="search()">
+      <mat-icon>search</mat-icon>Buscar
+    </button>
+  
+    <button mat-button class="agregarUsuario" [routerLink]="['/agregarUsuario']">
+        <mat-icon>add</mat-icon>Agregar Usuario
+    </button>
+  </div>
+  <h2>Clientes</h2>
+  <div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Alergias</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="usuarios && usuarios.length > 0">
+                <tr *ngFor="let usuario of usuarios">
+                    <td>{{ usuario.idUsuario }}</td>
+                    <td>{{ usuario.cedula }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td>{{ usuario.telefono }}</td>
+                    <td>{{ usuario.alergias }}</td>
+                    <td>
+                      <button mat-button class="edit" (click)="actualizarUsuario(usuario)">
+                          <mat-icon>edit</mat-icon>Editar
+                        </button>
+                        <button mat-button class="delete" (click)="eliminarUsuario(usuario)">
+                          <mat-icon>delete</mat-icon>Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="!usuarios || usuarios.length === 0">
+              <tr>
+                <td colspan="8">No hay usuarios disponibles.</td>
+              </tr>
+            </ng-container>
+        </tbody>
+    </table>
+  </div>
+  <div class="back-button-container">
+    <button mat-button class="back" [routerLink]="['/Admin']">
+        <mat-icon>arrow_back</mat-icon>Regresar al Admin Dashboard
+    </button>
+  </div>
+  

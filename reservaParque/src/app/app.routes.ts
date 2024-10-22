@@ -12,9 +12,10 @@ import { EmpleadoCreateComponent } from './components/empleado/empleado-create/e
 import { EmpleadoUpComponent } from './components/empleado/empleadoup/empleadoup.component';
 import { ReservarComponent } from './components/reserva/reservar/reservar.component';
 import { AdminComponent } from './components/Admin/admin.component';
-import { AgregarClienteComponent } from './components/client/agregar-client/agregar-client.component';
-import { ClienteCrudComponent } from './components/client/cliente-crud/cliente-crud.component';
+import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usuario.component';
+import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
 import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
+
 
 export const routes: Routes = [
 {path: '', component:HomeComponent},
@@ -25,15 +26,15 @@ export const routes: Routes = [
 {path: 'agregarTour', component:AgregarTourComponent},
 {path: 'tours', component:CrudTourComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
-{path: 'agregarEmpleado', component:EmpleadoCreateComponent},
-{ path: 'parques/:idParque/tours', component: ToursParqueComponent },
+{path: 'parques/:idParque/tours', component: ToursParqueComponent },
+
 
 
 {path: "parqueRUD", component:ParquerudComponent},
-{path: "empleadoRUD", component:EmpleadoUpComponent},
+{path: "empleadosTable", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},
-{ path: 'agregarCliente', component: AgregarClienteComponent },
-{ path: 'cliente', component: ClienteCrudComponent },
+{path: 'agregarUsuario', component:AgregarUsuarioComponent},
+{ path: 'usuariosTable', component: CrudUsuarioComponent },
 { path: 'Admin', component: AdminComponent },
 {path: "parqueRUD", component:ParquerudComponent}
 

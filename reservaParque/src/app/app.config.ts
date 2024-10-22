@@ -8,8 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router'; // Asegúrate de importar RouterModule
 
 // Importando componentes del cliente
-import { AgregarClienteComponent } from './components/client/agregar-client/agregar-client.component';
-import { ClienteCrudComponent } from './components/client/cliente-crud/cliente-crud.component';
+import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
+import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usuario.component';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     importProvidersFrom(FormsModule),
     importProvidersFrom(RouterModule), // Asegúrate de incluir RouterModule
-    AgregarClienteComponent,
-    ClienteCrudComponent
+    AgregarUsuarioComponent,
+    CrudUsuarioComponent
   ]
 };

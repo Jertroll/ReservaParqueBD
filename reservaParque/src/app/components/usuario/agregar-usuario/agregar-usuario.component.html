@@ -1,5 +1,5 @@
 <div class="col-md-12 mt-4">
-    <h3>Registro de Cliente</h3>
+    <h3>Registro de Usuario</h3>
     <span>
         @switch (status) {
             @case (0) {
@@ -59,7 +59,7 @@
         </div>
         <div class="button-container">
             <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="usuarioForm.invalid">
-            <a routerLink="/cliente" class="btn btn-danger mt-2 ml-2">Regresar</a>
+            <a routerLink="/usuariosTable" class="btn btn-danger mt-2 ml-2">Regresar</a>
         </div>
     </form>
 </div>
