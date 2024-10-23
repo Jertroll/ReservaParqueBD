@@ -4,6 +4,7 @@ import { server } from "./global";
 import { Parque } from "../models/parque";
 import { Observable, throwError } from "rxjs";
 import { map,catchError } from 'rxjs/operators';
+import { Router } from "@angular/router"; 
 
 @Injectable({
     providedIn:'root'
@@ -12,7 +13,8 @@ import { map,catchError } from 'rxjs/operators';
 export class ParqueService{
     private urlAPI:string
     constructor(
-        private _http:HttpClient
+        private _http:HttpClient,
+        private router: Router
     ){
         this.urlAPI=server.url
     }
@@ -21,6 +23,17 @@ export class ParqueService{
         return this._http.get<{ status: number, message: string, data: Parque[] }>(`${this.urlAPI}parque`);
     }
 
+    obtenerParqueConToursPorTour(idParque: number, idTour: number): Observable<Parque[]> {
+        return this._http.get<Parque[]>(`${this.urlAPI}parque/${idParque}/tour/${idTour}`)
+          .pipe(
+            catchError(error => {
+              console.error('Error fetching parque with tours by tour ID:', error);
+              return throwError(error);
+            })
+          );
+      }
+      
+      
     crear(parque:Parque):Observable<any>{
         let parqueJson=JSON.stringify(parque);
         let params='data='+parqueJson;

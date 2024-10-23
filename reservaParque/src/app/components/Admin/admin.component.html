@@ -2,56 +2,68 @@
 <br>
 
 <div class="fullscreen-image">
-    <img src="/assets/admin-banner.jpg" alt="Admin Dashboard">
+    <img src="/assets/costarica-tucan-01.jpg" alt="Admin Dashboard">
 </div>
 
 <br><br><br><br>
 <div class="admin">
     <h1>Admin Dashboard</h1>
     <div class="card-container">
-        <p-card header="User Management">
+        <p-card header="Gestión de Parques Nacionales">
             <p class="m-0">
-                Manage user accounts, roles, and permissions.
+                Administrar los parques nacionales, incluyendo creación, edición y eliminación.
             </p>
             <div class="button-container">
-                <a routerLink="/user-management" class="p-button font-bold">
-                    Go to User Management
+                <a [routerLink]="['/parqueRUD']" class="p-button font-bold">
+                    Ir a Gestión de Parques Nacionales
                 </a>
             </div>
         </p-card>
     </div>
     <div class="card-container">
-        <p-card header="Content Management">
+        <p-card header="Gestión de Tours">
             <p class="m-0">
-                Create, edit, and delete content for the website.
+                Crear, editar y eliminar tours disponibles.
             </p>
             <div class="button-container">
-                <a routerLink="/content-management" class="p-button font-bold">
-                    Go to Content Management
+                <a [routerLink]="['/tours']" class="p-button font-bold">
+                    Ir a Gestión de Tours
                 </a>
             </div>
         </p-card>
     </div>
     <div class="card-container">
-        <p-card header="Reports and Analytics">
+        <p-card header="Gestión de Usuarios">
             <p class="m-0">
-                View detailed reports and analytics of website activity.
+                Administrar la información y cuentas de los usuarios.
             </p>
             <div class="button-container">
-                <a routerLink="/reports" class="p-button font-bold">
-                    Go to Reports
+                <a [routerLink]="['/usuariosTable']" class="p-button font-bold">
+                    Ir a Gestión de Usuarios
                 </a>
             </div>
         </p-card>
     </div>
     <div class="card-container">
-        <p-card header="Settings">
+        <p-card header="Gestión de Usuarios">
             <p class="m-0">
-                Configure system settings and preferences.
+                Administrar las cuentas de usuarios, roles y permisos.
             </p>
             <div class="button-container">
-                <a routerLink="/settings" class="p-button font-bold">
-                    Go to Settings
+                <a [routerLink]="['/register']" class="p-button font-bold">
+                    Ir a Gestión de Usuarios
+                </a>
+            </div>
+        </p-card>
+    </div>
+    <div class="card-container">
+        <p-card header="Gestión de Empleados">
+            <p class="m-0">
+                Administrar la información y cuentas de los empleados.
+            </p>
+            <div class="button-container">
+                <a [routerLink]="['/empleadosTable']" class="p-button font-bold">
+                    Ir a Gestión de Empleados
                 </a>
             </div>
         </p-card>

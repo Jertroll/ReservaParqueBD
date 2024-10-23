@@ -59,7 +59,10 @@
           <small class="invalid-feedback d-block">Duración es requerida</small>
         }
       </div>
-      <button type="submit" class="btn btn-primary mt-2" [disabled]="tourForm.invalid">Guardar</button>
+      <div class="button-container">
+        <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="tourForm.invalid">
+        <a routerLink="/tours" class="btn btn-danger mt-2 ml-2">Regresar</a>
+    </div>
     </form>
   </div>
   

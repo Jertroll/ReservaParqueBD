@@ -7,7 +7,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { EditParqueDialogComponent } from '../edit-parque-dialog/edit-parque-dialog.component'; 
 import { NgFor } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button'; // Asegúrate de importar esto
+import { MatButtonModule } from '@angular/material/button'; 
+import { Router } from '@angular/router';
+import { TourService } from '../../../services/tour.service';
 
 
 import { RouterModule } from '@angular/router';
@@ -29,7 +31,7 @@ export class ParquerudComponent implements OnInit {
   parque: Parque;
   editando: boolean = false;
 
-  constructor(private parqueService: ParqueService, public dialog: MatDialog) {
+  constructor(private parqueService: ParqueService, public dialog: MatDialog, public router:Router, private tourService: TourService) {
     this.status = -1;
     this.parques = [];
     this.parque = new Parque(0, '', '', '', '', '', '', 0);
@@ -78,6 +80,11 @@ export class ParquerudComponent implements OnInit {
       }
     });
   }
+ 
+  verTours(parque: Parque): void {
+    this.router.navigate([`/parques/${parque.idParque}/tours`]);
+  }
+
 
   search(): void {
     if (this.searchTerm.trim() !== '') {
@@ -85,6 +92,7 @@ export class ParquerudComponent implements OnInit {
         parque => {
           if (parque) {
             this.parques = [parque];
+             this.router.navigate([`/parques/${parque.idParque}/tours`]);
           } else {
             this.parques = [];
           }

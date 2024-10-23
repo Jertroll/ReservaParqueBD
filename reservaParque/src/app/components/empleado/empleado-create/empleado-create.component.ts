@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Empleado } from '../../../models/Empleado';
 import { timer } from 'rxjs';
-import { EmpleadoService } from '../../../empleado.service';
+import { EmpleadoService } from '../../../services/empleado.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { NgModule } from '@angular/core';
@@ -20,7 +20,7 @@ export class EmpleadoCreateComponent {
 
   constructor(private empleadoService: EmpleadoService) {
     this.status = -1;
-    this.empleado = new Empleado(0, 0, '', '', '', '', '');
+    this.empleado = new Empleado(0, 0, '', '', '', '', '','','');
   }
 
   onSubmit(form: any): void {

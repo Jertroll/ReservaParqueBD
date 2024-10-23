@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AdminComponent } from './admin.component';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;

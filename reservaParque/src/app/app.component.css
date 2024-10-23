@@ -8,69 +8,19 @@
     border-bottom: 1px solid #ccc; /* Opcional: Agrega un borde inferior */
 }
 
-/* Resto de tu CSS para los elementos del navbar */
-
-
+/* Estilo para los enlaces dentro del navbar */
 .navbar a {
+    color: #000;
     float: left; /* Flota los enlaces hacia la izquierda */
     font-size: 1.1em; /* Tamaño de fuente */
     text-align: center; /* Alineación del texto al centro */
     padding: 14px 16px; /* Espaciado alrededor del contenido */
-}
-
-/* Estilo para los enlaces dentro de la subnav */
-.subnav a {
-    float: left; /* Flota los enlaces hacia la izquierda */
-    font-size: 1em; /* Tamaño de fuente */
-    color: #000; /* Color del texto */
-    text-align: center; /* Alineación del texto al centro */
-    padding: 12px 14px; /* Espaciado alrededor del contenido */
     text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
 }
 
 /* Cambia el color de fondo de los enlaces cuando se pasa el cursor sobre ellos */
-.navbar a:hover,
-.subnav:hover {
+.navbar a:hover {
     background-color: #e0dede;
-}
-
-/* Estilo para la subnav */
-.subnav {
-    float: left; /* Flota la subnav hacia la izquierda */
-    overflow: hidden; /* Oculta el contenido que se desborda */
-}
-
-/* Estilo para el botón de la subnav */
-.subnav .subnav-btn {
-    font-size: 1.2em; /* Tamaño de fuente */
-    border: none; /* Quita el borde */
-    outline: none; /* Quita el contorno de enfoque */
-    color: black; /* Color del texto */
-    padding: 14px 16px; /* Espaciado alrededor del contenido */
-    background-color: inherit; /* Hereda el color de fondo */
-    margin: 0; /* Elimina el margen */
-}
-
-/* Estilo para el contenido de la subnav */
-.subnav-content {
-    display: none; /* Oculta el contenido por defecto */
-    position: absolute; /* Posición absoluta */
-    left: 0; /* Posiciona a la izquierda */
-    background-color: #e0dede; /* Color de fondo */
-    width: 100%; /* Ancho completo */
-    z-index: 1; /* Controla la profundidad de apilamiento */
-}
-
-/* Estilo para los enlaces dentro del contenido de la subnav */
-.subnav-content a {
-    float: left; /* Flota los enlaces hacia la izquierda */
-    color: #000; /* Color del texto */
-    text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
-}
-
-/* Muestra el contenido de la subnav cuando se pasa el cursor sobre ella */
-.subnav:hover .subnav-content {
-    display: block;
 }
 
 /* Puedes agregar estos estilos a tu archivo de estilos global o específico del componente */
@@ -78,19 +28,18 @@ footer {
     width: 100%;
     background-color: #23242a;
     color: white;
-  }
-  
-  footer a {
+}
+
+footer a {
     color: #fff;
     text-decoration: none;
-  }
-  
-  footer a:hover {
+}
+
+footer a:hover {
     color: #ddd;
     text-decoration: underline;
-  }
-  
-  .navbar-green {
+}
+
+.navbar-green {
     background-color: #228B22;
-  }
-  
+}

@@ -9,7 +9,7 @@ import { ReservaService } from '../../../services/reserva.service';
 import { Detalle } from '../../../models/detalle';
 import { DetalleService } from '../../../services/detalle.service';
 import { Empleado } from '../../../models/Empleado';
-import { EmpleadoService } from '../../../empleado.service';
+import { EmpleadoService } from '../../../services/empleado.service';
 import { FacturaService } from '../../../services/factura.service';
 import { Factura } from '../../../models/factura';
 interface TourSeleccionable extends Tour {
