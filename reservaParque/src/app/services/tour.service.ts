@@ -28,9 +28,10 @@ export class TourService {
 
     return this._http.post(`${this.urlAPI}tour`, params, options);
 }
-  verTours(): Observable<{ status: number, message: string, data: Tour[] }> {
-      return this._http.get<{ status: number, message: string, data: Tour[] }>(`${this.urlAPI}tour`);
-  }
+verTours(): Observable<{ tours: Tour[] }> {
+  return this._http.get<{ tours: Tour[] }>(`${this.urlAPI}tour`);
+}
+
 
   obtenerToursPorParque(idParque: number): Observable<{ status: number, message: string, data: Tour[] }> {
     return this._http.get<{ status: number, message: string, data: Tour[] }>(`${this.urlAPI}tour/parque/${idParque}`)

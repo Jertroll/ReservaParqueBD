@@ -34,13 +34,14 @@ export class CrudTourComponent {
 
   verTour(): void {
     this.tourService.verTours().subscribe(response => {
-      if (response && response.data) {
-        this.tours = response.data; // Acceso correcto al array de productos
+      if (response && response.tours) {
+        this.tours = response.tours; // Acceso correcto al array de tours
       }
     }, error => {
       console.error('Error fetching tours', error);
     });
   }
+  
 
   eliminarTour(tour: Tour): void {
     this.tourService.eliminarTour(tour.idTour).subscribe(() => {

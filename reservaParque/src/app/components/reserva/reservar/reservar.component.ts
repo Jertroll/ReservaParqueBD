@@ -63,7 +63,7 @@ export class ReservarComponent {
   mostrarTours() {
     this.tourService.verTours().subscribe(
       (response) => {
-        this.tours = response.data;
+        this.tours = response.tours;
       },
       error => {
         console.error('Error cargando tours', error);
