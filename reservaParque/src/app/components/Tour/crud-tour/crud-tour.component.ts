@@ -26,7 +26,7 @@ export class CrudTourComponent {
   constructor(private tourService: TourService, public dialog: MatDialog) {
     this.status = -1;
     this.tours = [];
-    this.tour = new Tour(0,'', 0, 0, '', 0, 0);
+    this.tour = new Tour(0,'', 0, 0, '', '', 0);
   }
   ngOnInit(): void {
     this.verTour();
@@ -111,7 +111,7 @@ export class CrudTourComponent {
     );
   }
   resetForm(): void {
-    this.tour = new Tour(0,'', 0, 0, '', 0, 0);
+    this.tour = new Tour(0,'', 0, 0, '', '', 0);
     this.editando = false;
   }
 

@@ -5,7 +5,7 @@ export class Tour {
       public idParque: number,
       public precio: number,
       public descripcion: string,
-      public horaInicio: number,
+      public horaInicio: string,
       public duracion: number
     ) {}
   }

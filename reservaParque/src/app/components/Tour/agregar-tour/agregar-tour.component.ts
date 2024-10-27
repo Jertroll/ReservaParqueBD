@@ -27,7 +27,7 @@ export class AgregarTourComponent implements OnInit {
   ) {
     this.status = -1;
     this.parques = [];
-    this.tour = new Tour(0,'', 0, 0, '', 0, 0);
+    this.tour = new Tour(0,'', 0, 0, '', '', 0);
   }
 
   ngOnInit() {
@@ -46,6 +46,13 @@ export class AgregarTourComponent implements OnInit {
   }
 
   onSubmit(form: any) {
+     const [hours, minutes] = this.tour.horaInicio.split(':');
+    this.tour.horaInicio = `${hours}:${minutes}`;
+    
+    // Convierte `duracion` en minutos si es una cadena.
+    if (typeof this.tour.duracion === 'string') {
+        this.tour.duracion = parseInt(this.tour.duracion, 10);
+    }
     this._tourService.crear(this.tour).subscribe({
       next: (response) => {
         console.log(response);
@@ -60,6 +67,7 @@ export class AgregarTourComponent implements OnInit {
         this.changeStatus(2);
       }
     })
+    console.log(this.tour)
   }
 
   changeStatus(st: number) {
