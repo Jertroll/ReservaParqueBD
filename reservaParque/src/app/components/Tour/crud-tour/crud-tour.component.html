@@ -19,6 +19,7 @@
               <th>Descripción</th>
               <th>Hora de Inicio</th>
               <th>Duración</th>
+              <th>Imagen</th>
               <th>Acciones</th>
           </tr>
       </thead>
@@ -32,6 +33,7 @@
                   <td>{{ tour.descripcion }}</td>
                   <td>{{ tour.horaInicio }}</td>
                   <td>{{ tour.duracion }}</td>
+                  <td><img src="{{url+'tour/image/'+tour.imagen}}" class="imagen" width="100"></td>
                   <td>
                       <button mat-button class="edit" (click)="actualizarTour(tour)">
                           <mat-icon>edit</mat-icon>Editar

@@ -51,7 +51,9 @@ verTours(): Observable<{ tours: Tour[] }> {
             })
         );
 }
-
+uploadImage(formData: FormData): Observable<any> {
+  return this._http.post<any>(this.urlAPI + 'tour/upload', formData);
+}
   
   actualizarTour(tour: Tour): Observable<any> {
     let tourJson = JSON.stringify(tour);

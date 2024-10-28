@@ -19,6 +19,7 @@ export class AgregarTourComponent implements OnInit {
   
   public status: number;
   public tour: Tour;
+  public fileName:string;
   parques: Parque[];
 
   constructor(
@@ -27,7 +28,8 @@ export class AgregarTourComponent implements OnInit {
   ) {
     this.status = -1;
     this.parques = [];
-    this.tour = new Tour(0,'', 0, 0, '', '', 0);
+    this.tour = new Tour(0,'', 0, 0, '', '', 0,'');
+    this.fileName="";
   }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class AgregarTourComponent implements OnInit {
   }
 
   onSubmit(form: any) {
+    console.log('Datos del tour antes de enviar:', this.tour);
      const [hours, minutes] = this.tour.horaInicio.split(':');
     this.tour.horaInicio = `${hours}:${minutes}`;
     
@@ -68,6 +71,28 @@ export class AgregarTourComponent implements OnInit {
       }
     })
     console.log(this.tour)
+  }
+  uploadImage(event:any){
+    const file: File = event.target.files[0];
+    if (file) {
+      this.fileName = file.name;
+      const formData = new FormData();
+      formData.append('file0', file);
+
+      this._tourService.uploadImage(formData).subscribe({
+        next: (response: any) => {
+          console.log('Respuesta al subir imagen:', response);
+          console.log(response);
+          if (response.status === 201) {
+            this.tour.imagen = response.filename;
+            console.log('Nombre del archivo de imagen guardado en tour:', this.tour.imagen);
+          }
+        },
+        error: (err: any) => {
+          console.log(err);
+        }
+      });
+    }
   }
 
   changeStatus(st: number) {

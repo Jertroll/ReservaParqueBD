@@ -6,14 +6,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { TourService } from '../../../services/tour.service';
 import { EditTourComponent } from '../edit-tour/edit-tour.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule,RouterLink,RouterOutlet } from '@angular/router';
+import { server } from '../../../services/global';
 
 
 
 @Component({
   selector: 'app-crud-tour',
   standalone: true,
-  imports: [FormsModule, CommonModule,MatIconModule, RouterModule],
+  imports: [FormsModule, CommonModule,MatIconModule, RouterModule, RouterLink,RouterOutlet],
   templateUrl: './crud-tour.component.html',
   styleUrl: './crud-tour.component.css'
 })
@@ -23,10 +24,12 @@ export class CrudTourComponent {
   tours: Tour[];
   tour: Tour;
   editando: boolean = false;
+  public url:string;
   constructor(private tourService: TourService, public dialog: MatDialog) {
     this.status = -1;
     this.tours = [];
-    this.tour = new Tour(0,'', 0, 0, '', '', 0);
+    this.tour = new Tour(0,'', 0, 0, '', '', 0,'');
+    this.url=server.url
   }
   ngOnInit(): void {
     this.verTour();
@@ -111,7 +114,7 @@ export class CrudTourComponent {
     );
   }
   resetForm(): void {
-    this.tour = new Tour(0,'', 0, 0, '', '', 0);
+    this.tour = new Tour(0,'', 0, 0, '', '', 0,'');
     this.editando = false;
   }
 

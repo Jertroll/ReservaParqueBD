@@ -58,6 +58,12 @@
         @if(duracion.invalid && duracion.touched){
           <small class="invalid-feedback d-block">Duración es requerida</small>
         }
+        <label>Selecione una imagen</label><br>
+      <input type="file" class="file-input" (change)="uploadImage($event)" #fileUpload/>
+      <button class="btn btn-outline-secondary" (click)="fileUpload.click()">
+          <i>+</i>           
+      </button> {{fileName || "Archivo no ha sido seleccionado"}}
+     
       </div>
       <div class="button-container">
         <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="tourForm.invalid">
