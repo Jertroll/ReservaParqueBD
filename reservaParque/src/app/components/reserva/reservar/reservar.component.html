@@ -2,6 +2,7 @@
   <div class="tours-container">
     <div class="tour-card" *ngFor="let tour of tours">
       <h3>{{ tour.nombre }}</h3>
+      <p><strong>Parque:</strong> {{ tour.nombreParque}}</p>
       <p><strong>Precio:</strong> {{ tour.precio }}</p>
       <p><strong>Descripción:</strong> {{ tour.descripcion }}</p>
       <p><strong>Hora de Inicio:</strong> {{ tour.horaInicio }}</p>
