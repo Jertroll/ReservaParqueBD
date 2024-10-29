@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { server } from './global';
+import { getIssFromSession, server } from './global';
 import { Reserva } from '../models/reserva';
 
 @Injectable({
@@ -15,7 +15,9 @@ export class ReservaService {
       this.urlAPI=server.url
   }
  
-  crear(reserva: Reserva): Observable<any> {
+  crear(reserva: Reserva): Observable<any> { 
+   // const body = { reserva: reserva,clienteId:getIssFromSession()};
+    reserva.idCliente=parseInt(getIssFromSession());
     return this._http.post<any>(`${this.urlAPI}reserva`, reserva);
   }
   verReservas(): Observable<{ status: number, message: string, data: Reserva[] }> {
