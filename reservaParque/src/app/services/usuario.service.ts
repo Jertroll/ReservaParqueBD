@@ -39,13 +39,14 @@ obtenerUsuarios(): Observable<{ status: number, message: string, data: Usuario[]
     const body = new URLSearchParams();
 
      body.set('nombre', usuario.nombre);
-     body.set('cedula', usuario.cedula.toString());
-     body.set('telefono', usuario.telefono.toString());
+     body.set('correo', usuario.correo);
+     body.set('telefono', usuario.telefono);
+     body.set('contrasena', usuario.contrasena);
+     body.set('alergias', usuario.alergias);
 
 
-
- return this._http.put(`${this.urlAPI}usuario/${usuario.idUsuario}`, body.toString(), { headers });
-}
+   return this._http.put(`${this.urlAPI}usuario/${usuario.idUsuario}`, body.toString(), { headers });
+  }
 
   eliminarUsuario(idUsuario: number): Observable<any> {
     return this._http.delete(`${this.urlAPI}usuario/${idUsuario}`);
