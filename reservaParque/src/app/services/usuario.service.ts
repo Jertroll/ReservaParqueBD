@@ -19,7 +19,7 @@ export class UsuarioService {
 
   crear(usuario: Usuario): Observable<any> {
     const params = new URLSearchParams();
-    params.set('data', JSON.stringify(usuario)); // Aquí se convierte en formato URL-encoded
+    params.set('data', JSON.stringify(usuario)); 
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
   
     return this._http.post(this.urlAPI + 'usuario', params.toString(), { headers });

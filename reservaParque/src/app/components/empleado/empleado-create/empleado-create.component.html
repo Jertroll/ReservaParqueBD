@@ -14,7 +14,7 @@
   <form class="col-md-8 mx-auto" #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
 
       <label for="cedula">Cédula</label>
-      <input id="cedula" type="number" #cedula="ngModel" class="form-control" name="cedula"
+      <input id="cedula" type="text" #cedula="ngModel" class="form-control" name="cedula"
         [(ngModel)]="empleado.cedula" required>
       <small *ngIf="!cedula.valid && cedula.touched" class="invalid-feedback d-block">Cédula es requerida</small>
       
@@ -23,6 +23,11 @@
         <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
           pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="empleado.nombre" required>
         <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">Formato no válido</small>
+
+        <label for="apellido">Apellido</label>
+        <input id="apellido" type="text" #apellido="ngModel" class="form-control" name="apellido"
+          pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="empleado.apellido" required>
+        <small *ngIf="!apellido.valid && apellido.touched" class="invalid-feedback d-block">Formato no válido</small>
 
       <label for="correo">Correo</label>
       <input id="correo" type="email" #correo="ngModel" class="form-control" name="correo" 
@@ -38,7 +43,7 @@
       
 
       <label for="telefono">Teléfono</label>
-      <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono" 
+      <input id="telefono" type="text" #telefono="ngModel" class="form-control" name="telefono" 
         [(ngModel)]="empleado.telefono" required>
       <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">Formato inválido</small>
 

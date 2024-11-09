@@ -6,6 +6,8 @@ import { EmpleadoService } from '../../../services/empleado.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { NgModule } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-empleado-create',
@@ -25,7 +27,7 @@ export class EmpleadoCreateComponent {
 
   onSubmit(form: any): void {
     this.empleadoService.crearEmpleados(this.empleado).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         console.log(response);
         if (response.status === 201) {
           form.reset();
@@ -34,7 +36,8 @@ export class EmpleadoCreateComponent {
           this.changeStatus(1);
         }
       },
-      error: (error: Error) => {
+      error: (error: HttpErrorResponse) => {
+        console.error('Error al crear empleado:', error);
         this.changeStatus(2);
       }
     });
