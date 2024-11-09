@@ -51,14 +51,8 @@ obtenerUsuarios(): Observable<{ status: number, message: string, data: Usuario[]
     return this._http.delete(`${this.urlAPI}usuario/${idUsuario}`);
   }
 
-  buscarUsuarioPorId(idUsuario: number): Observable<Usuario> {
-    return this._http.get<{ status: number, message: string, usuario: Usuario }>(`${this.urlAPI}usuario/${idUsuario}`)
-      .pipe(
-        map(response => response.usuario), // Extraer el objeto de producto del cuerpo de la respuesta
-        catchError(error => {
-          console.error('Error al buscar usuario por ID:', error);
-          return throwError(error); // Propagar el error
-        })
-      );
+  buscarUsuarioPorId(idUsuario: number): Observable<any> {
+    return this._http.get(`${this.urlAPI}usuario/${idUsuario}`);
   }
+  
 }
