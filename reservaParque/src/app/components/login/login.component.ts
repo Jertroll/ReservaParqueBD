@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -26,7 +27,7 @@ export class LoginComponent {
         }
       },
       error: (error) => {
-        this.errorMessage = error.error?.message || 'Error en el inicio de sesión';
+        this.errorMessage = error.error?.message || 'Error en el inicio de sesión, correo o contraseña incorrectos';
       }
     });
   }
