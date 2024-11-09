@@ -20,7 +20,7 @@ export class EmpleadoCreateComponent {
 
   constructor(private empleadoService: EmpleadoService) {
     this.status = -1;
-    this.empleado = new Empleado(0, 0, '', '', '', '', '','','');
+    this.empleado = new Empleado(0, '', '', '', '', '', '','','');
   }
 
   onSubmit(form: any): void {

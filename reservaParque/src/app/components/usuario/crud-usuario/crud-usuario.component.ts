@@ -27,7 +27,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 export class CrudUsuarioComponent {
   searchTerm: string = '';
   usuarios: Usuario[] = [];
-  usuario: Usuario = new Usuario(0, 0, '', '', '', 0, '');
+  usuario: Usuario = new Usuario(0, '', '', '', '', '', '');
   editando: boolean = false;
   status: number = -1;
 
@@ -124,7 +124,7 @@ export class CrudUsuarioComponent {
   }
 
   resetForm(): void {
-    this.usuario = new Usuario(0, 0, '', '', '', 0, '');
+    this.usuario = new Usuario(0, '', '', '', '', '', '');
     this.editando = false;
   }
 

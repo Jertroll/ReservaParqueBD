@@ -48,9 +48,9 @@
       <small *ngIf="!fechaIngreso.valid && fechaIngreso.touched" class="invalid-feedback d-block">Fecha de ingreso es requerida</small>
 
       <label for="roll">Rol</label>
-      <input id="roll" type="text" #roll="ngModel" class="form-control" name="roll"
-        [(ngModel)]="empleado.roll" required>
-      <small *ngIf="!roll.valid && roll.touched" class="invalid-feedback d-block">Rol es requerido</small>
+      <input id="rol" type="text" #rol="ngModel" class="form-control" name="rol"
+        [(ngModel)]="empleado.rol" required>
+      <small *ngIf="!rol.valid && rol.touched" class="invalid-feedback d-block">Rol es requerido</small>
     </div>
     <a routerLink="/empleadosTable">Empleado Tablas</a>
     <div class="button-container">

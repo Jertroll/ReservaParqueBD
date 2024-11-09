@@ -17,18 +17,17 @@ export class UsuarioService {
     this.urlAPI = server.url;
   }
 
-  crear(usuario:Usuario):Observable<any>{
-    let usuarioJson=JSON.stringify(usuario); //Aqui convierte el objeto a string
-    let params='data='+usuarioJson;
-    let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    let options={
-        headers
-    }
-    return this._http.post(this.urlAPI+'usuario',params,options);
-}
+  crear(usuario: Usuario): Observable<any> {
+    const params = new URLSearchParams();
+    params.set('data', JSON.stringify(usuario)); // Aquí se convierte en formato URL-encoded
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+  
+    return this._http.post(this.urlAPI + 'usuario', params.toString(), { headers });
+  }
+  
 
 obtenerUsuarios(): Observable<{ status: number, message: string, data: Usuario[] }> {
-    return this._http.get<{ status: number, message: string, data: Usuario[] }>(`${this.urlAPI}cliente`);
+    return this._http.get<{ status: number, message: string, data: Usuario[] }>(`${this.urlAPI}usuarios`);
   }
 
   actualizarUsuario(usuario: Usuario): Observable<any> {
