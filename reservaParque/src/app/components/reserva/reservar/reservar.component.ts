@@ -51,7 +51,7 @@ export class ReservarComponent {
   mostrarEmpleados() {
     this.empleadoService.obtenerEmpleados().subscribe(
       (response) => {
-        this.empleados = response.data.filter((empleado: Empleado) => empleado.roll === 'guia')
+        this.empleados = response.data.filter((empleado: Empleado) => empleado.rol === 'guia')
            .map((empleado: Empleado)=>({ ...empleado, seleccionado: false }));
       },
       error => {

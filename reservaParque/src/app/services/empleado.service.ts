@@ -28,20 +28,14 @@ export class EmpleadoService {
   }
 
   crearEmpleados(empleado: Empleado): Observable<any> {
-    let empleadoJson = JSON.stringify(empleado);
-    let params = 'data=' + encodeURIComponent(empleadoJson);
-    let headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
-
-    console.log('Datos enviados al backend:', params); // Log de los datos enviados
-
-    let options = {
-      headers,
-    };
-    return this._http.post(this.urlAPI + 'empleados', params, options);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    
+    // Asegúrate de enviar todos los campos requeridos
+    return this._http.post(this.urlAPI + 'empleados', empleado, { headers });
   }
+  
+  
+  
 
   actualizarEmpleado(empleado: Empleado): Observable<any> {
     let empleadoJson = JSON.stringify(empleado);

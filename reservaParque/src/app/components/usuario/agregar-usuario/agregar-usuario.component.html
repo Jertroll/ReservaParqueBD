@@ -1,62 +1,60 @@
 <div class="col-md-12 mt-4">
     <h3>Registro de Usuario</h3>
+    
+    <!-- Alertas de Estado -->
     <span>
-        @switch (status) {
-            @case (0) {
-                <div class="alert alert-success"><p>Registro exitoso!</p></div>
-            }
-            @case (1) {
-                <div class="alert alert-warning"><p>No se pudo agregar el Producto!</p></div>
-            }
-            @case (2) {
-                <div class="alert alert-danger"><p>Error de servidor!</p></div>
-            }
-        }
+        <div *ngIf="status === 0" class="alert alert-success"><p>Registro exitoso!</p></div>
+        <div *ngIf="status === 1" class="alert alert-warning"><p>No se pudo agregar el usuario!</p></div>
+        <div *ngIf="status === 2" class="alert alert-danger"><p>Error de servidor!</p></div>
+        <div *ngIf="status === 3" class="alert alert-danger"><p>Correo ya utilizado!</p></div>
     </span>
-    <form class="col-md-8 mx-auto" #usuarioForm="ngForm" (ngSubmit)="onSubmit(usuario)">
+
+    <!-- Formulario de Usuario -->
+    <form class="col-md-8 mx-auto" #usuarioForm="ngForm" (ngSubmit)="onSubmit(usuarioForm)">
+        
+        <!-- Campo Cédula -->
         <div class="form-group">
             <label for="cedula">Cédula</label>
-            <input id="cedula" type="number" #cedula="ngModel" class="form-control" name="cedula"
-                   [(ngModel)]="usuario.cedula"/>
-            @if (!cedula.valid && cedula.touched) {
-                <small class="invalid-feedback d-block">Formato inválido</small>
-            }
-
-            <label for="nombre">Nombre</label>
-            <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
-                   pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="usuario.nombre"/>
-            @if (!nombre.valid && nombre.touched) {
-                <small class="invalid-feedback d-block">Formato no válido</small>
-            }
-
-            <label for="correo">Correo Electrónico</label>
-            <input id="correo" type="email" #correo="ngModel" class="form-control" name="correo"
-                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$" [(ngModel)]="usuario.correo" required>
-            @if (!correo.valid && correo.touched) {
-                <small class="invalid-feedback d-block">Formato no válido</small>
-            }
-
-            <label for="contrasena">Contraseña</label>
-            <input id="contrasena" type="password" #contrasena="ngModel" class="form-control" name="contrasena"
-                   pattern=".{6,}" [(ngModel)]="usuario.contrasena" required>
-            @if (!contrasena.valid && contrasena.touched) {
-                <small class="invalid-feedback d-block">Formato no válido</small>
-            }
-
-            <label for="telefono">Teléfono</label>
-            <input id="telefono" type="number" #telefono="ngModel" class="form-control" name="telefono"
-                   [(ngModel)]="usuario.telefono"/>
-            @if (!telefono.valid && telefono.touched) {
-                <small class="invalid-feedback d-block">Formato inválido</small>
-            }
-
-            <label for="alergias">Alergias</label>
-            <input id="alergias" type="text" #alergias="ngModel" class="form-control" name="alergias"
-                   [(ngModel)]="usuario.alergias"/>
-            @if (!alergias.valid && alergias.touched) {
-                <small class="invalid-feedback d-block">Formato no válido</small>
-            }
+            <input id="cedula" type="text" #cedula="ngModel" class="form-control" name="cedula" [(ngModel)]="usuario.cedula"/>
+            <small *ngIf="!cedula.valid && cedula.touched" class="invalid-feedback d-block">Formato inválido</small>
         </div>
+        
+        <!-- Campo Nombre -->
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre" pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="usuario.nombre"/>
+            <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">Formato no válido</small>
+        </div>
+
+        <!-- Campo Correo -->
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" id="correo" class="form-control" [(ngModel)]="usuario.correo" name="correo" required>
+            <small *ngIf="errors?.correo" class="text-danger">{{ errors.correo[0] }}</small>
+        </div>
+
+        <!-- Campo Contraseña -->
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input id="contrasena" type="password" #contrasena="ngModel" class="form-control" name="contrasena" pattern=".{6,}" [(ngModel)]="usuario.contrasena" required>
+            <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">Formato no válido</small>
+        </div>
+
+        <!-- Campo Teléfono -->
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" type="text" #telefono="ngModel" class="form-control" name="telefono" [(ngModel)]="usuario.telefono"/>
+            <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">Formato inválido</small>
+        </div>
+
+        <!-- Campo Alergias -->
+        <div class="form-group">
+            <label for="alergias">Alergias</label>
+            <input id="alergias" type="text" #alergias="ngModel" class="form-control" name="alergias" [(ngModel)]="usuario.alergias"/>
+            <small *ngIf="!alergias.valid && alergias.touched" class="invalid-feedback d-block">Formato no válido</small>
+        </div>
+
+        <!-- Botones Guardar y Regresar -->
         <div class="button-container">
             <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="usuarioForm.invalid">
             <a routerLink="/usuariosTable" class="btn btn-danger mt-2 ml-2">Regresar</a>

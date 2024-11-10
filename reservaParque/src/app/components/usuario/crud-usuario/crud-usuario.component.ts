@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-
+import { HttpErrorResponse } from '@angular/common/http';
 import { EditUsuarioComponent } from '../edit-usuario/edit-usuario.component';
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
@@ -27,7 +27,7 @@ import { UsuarioService } from '../../../services/usuario.service';
 export class CrudUsuarioComponent {
   searchTerm: string = '';
   usuarios: Usuario[] = [];
-  usuario: Usuario = new Usuario(0, 0, '', '', '', 0, '');
+  usuario: Usuario = new Usuario(0, '', '', '', '', '', '');
   editando: boolean = false;
   status: number = -1;
 
@@ -85,22 +85,31 @@ export class CrudUsuarioComponent {
       this.usuarioService
         .buscarUsuarioPorId(parseInt(this.searchTerm, 10))
         .subscribe(
-          (usuario) => {
-            if (usuario) {
-              this.usuarios = [usuario];
+          (response: any) => {
+            // Si la respuesta es exitosa y tiene el usuario
+            if (response && response.user) {
+              this.usuarios = [response.user];
             } else {
               this.usuarios = [];
             }
           },
-          (error) => {
-            console.error('Error al buscar Usuario por ID:', error);
+          (error: HttpErrorResponse) => {
+            // Si Angular considera esto un error (por ejemplo, 404)
+            if (error.status === 404) {
+              console.log('Usuario no encontrado');
+              this.usuarios = [];
+            } else {
+              console.error('Error al buscar Usuario por ID:', error);
+            }
           }
         );
     } else {
       this.obtenerUsuarios();
     }
   }
-
+  
+  
+  
   changeStatus(status: number): void {
     this.status = status;
     setTimeout(() => {
@@ -124,7 +133,7 @@ export class CrudUsuarioComponent {
   }
 
   resetForm(): void {
-    this.usuario = new Usuario(0, 0, '', '', '', 0, '');
+    this.usuario = new Usuario(0, '', '', '', '', '', '');
     this.editando = false;
   }
 

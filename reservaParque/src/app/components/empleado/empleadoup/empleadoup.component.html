@@ -13,10 +13,11 @@
           <th>idEmpleado</th>
           <th>cedula</th>
           <th>nombre</th>
+          <th>apellido</th>
           <th>correo</th>
           <th>telefono</th>
           <th>fechaIngreso</th>
-          <th>roll</th>
+          <th>rol</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +30,7 @@
             <td>{{ empleados.correo }}</td>
             <td>{{ empleados.telefono }}</td>
             <td>{{ empleados.fechaIngreso }}</td>
-            <td>{{ empleados.roll }}</td>
+            <td>{{ empleados.rol }}</td>
             <td>
               <button class="edit" (click)="actualizarEmpleado(empleados)">
                 <mat-icon>edit</mat-icon>Editar

@@ -27,7 +27,7 @@ export class EmpleadoUpComponent implements OnInit {
   constructor(private empleadoService: EmpleadoService, public dialog: MatDialog) {
     this.status = -1;
     this.empleados = [];
-    this.empleado = new Empleado(0, 0, '', '', '', '', '','','');
+    this.empleado = new Empleado(0, '', '', '', '', '', '','','');
   }
 
   ngOnInit(): void {
@@ -116,7 +116,7 @@ export class EmpleadoUpComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.empleado = new Empleado(0, 0, '', '', '', '', '','','');
+    this.empleado = new Empleado(0, '', '', '', '', '', '','','');
     this.editando = false;
   }
 }
