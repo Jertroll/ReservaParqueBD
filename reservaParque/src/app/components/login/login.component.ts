@@ -20,15 +20,40 @@ export class LoginComponent {
 
   onLogin() {
     this.loginService.login(this.correo, this.contrasena).subscribe({
-      next: (response) => {
-        if (response.token) {
-          this.loginService.setSession(response.token, response.role);
-          this.router.navigate(['/home']); // Redirigir a la página principal o deseada
+        next: (response) => {
+            console.log(response); // Ver el formato de la respuesta
+
+            if (response.status !== 401) {
+                // Almacena el token en sessionStorage
+                sessionStorage.setItem('token', response.token);
+
+                // Obtener la identidad del usuario desde el backend usando el token
+                this.loginService.getIdentityFromAPI().subscribe({
+                    next: (resp) => {
+                        console.log(resp); // Verifica la identidad
+                        // Aquí pasamos 'resp' como el tercer argumento
+                        this.loginService.setSession(response.token, response.role, resp);
+                        // Guarda la identidad en sessionStorage
+                        sessionStorage.setItem('idUsuario', JSON.stringify(resp));
+
+                        // Redirige a la página principal
+                        this.router.navigate(['/home']);
+                    },
+                    error: (error) => {
+                        console.error('Error al obtener la identidad', error);
+                    }
+                });
+            } else {
+                console.error('Error de credenciales', response.message);
+                this.errorMessage = response.message || 'Credenciales incorrectas';
+            }
+        },
+        error: (error) => {
+            console.error('Error en el inicio de sesión:', error);
+            this.errorMessage = error.error?.message || 'Error en el inicio de sesión, correo o contraseña incorrectos';
         }
-      },
-      error: (error) => {
-        this.errorMessage = error.error?.message || 'Error en el inicio de sesión, correo o contraseña incorrectos';
-      }
     });
-  }
+}
+
+
 }

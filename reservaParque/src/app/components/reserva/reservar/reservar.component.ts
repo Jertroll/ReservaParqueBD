@@ -12,6 +12,9 @@ import { Empleado } from '../../../models/Empleado';
 import { EmpleadoService } from '../../../services/empleado.service';
 import { FacturaService } from '../../../services/factura.service';
 import { Factura } from '../../../models/factura';
+import { server } from '../../../services/global';
+import { getIssFromSession } from '../../../services/global';
+
 interface TourSeleccionable extends Tour {
   seleccionado?: boolean;
   fechaSeleccionada?: string;
@@ -35,13 +38,16 @@ export class ReservarComponent {
   public factura: Factura = new Factura(0,0,'',0,0,0,0);
   public mostrarInfoFactura: boolean = false;
   public facturaId: number=0 ;
+  public url:string;
   constructor(
     private tourService: TourService,
     private reservaService: ReservaService,
     private detalleService: DetalleService,
     private empleadoService: EmpleadoService,
     private facturaService: FacturaService
-  ) {}
+  ) {
+    this.url=server.url
+  }
 
   ngOnInit() {
     this.mostrarEmpleados();
@@ -80,13 +86,15 @@ export class ReservarComponent {
       tour.empleadoSeleccionado = 0;
       tour.cantVisitantes = 0;
 
-      this.detallesReserva.push(new Detalle(0, 0, tour.idTour, tour.fechaSeleccionada, '', tour.empleadoSeleccionado ?? 0, tour.cantVisitantes, 0, 0));
+      this.detallesReserva.push(new Detalle(0, 0, tour.fechaSeleccionada, '', tour.empleadoSeleccionado ?? 0, tour.cantVisitantes, 0, 0, tour.idTour));
     } else {
       this.detallesReserva = this.detallesReserva.filter(det => det.tour !== tour.idTour);
     }
   }
 
   onSubmit(reservaForm: any) {
+    const idUsuario = parseInt(getIssFromSession() || '0');
+    console.log('getIssFromSession:',getIssFromSession());// Captura el ID del cliente desde sessionStorage
     const toursSeleccionados = this.tours.filter(tour => tour.seleccionado);
     if (toursSeleccionados.length === 0) {
       console.log('No se han seleccionado tours');
@@ -105,7 +113,6 @@ export class ReservarComponent {
         fechaTour = `${year}-${month}-${day}`;  // Formato YYYY-MM-DD
       }
   
-      // Validar cantVisitantes
       if (tour.cantVisitantes === undefined || tour.cantVisitantes < 1) {
         console.error('El campo cantVisitantes es inválido para el tour:', tour.idTour);
         return;
@@ -117,22 +124,23 @@ export class ReservarComponent {
         return;
       }
   
-      const detalle = new Detalle(0, 0, tour.idTour, fechaTour,"", empleadoId, tour.cantVisitantes, 0, 0);
+      const detalle = new Detalle(0, 0, fechaTour, "", empleadoId, tour.cantVisitantes, 0, 0, tour.idTour);
       this.detallesReserva.push(detalle);
     });
   
     const reserva = new Reserva(
       0, // No es necesario enviar idReserva desde el frontend
-      reservaForm.value.idCliente,
+      idUsuario, // Asigna el ID del cliente aquí
       new Date().toISOString().split('T')[0],
       this.detallesReserva
     );
+  
     console.log('Datos de reserva a enviar:', reserva);
     this.reservaService.crear(reserva).subscribe(
       (response) => {
         console.log('Reserva exitosa:', response);
         this.saveDetallesReserva(response.reserva.id);
-         const reservaId = response.reserva.idReserva;
+        const reservaId = response.reserva.idReserva;
         this.createFactura(reservaId);
         reservaForm.reset();
         this.tours.forEach(tour => tour.seleccionado = false);
@@ -144,7 +152,7 @@ export class ReservarComponent {
       }
     );
   }
-
+  
 
   saveDetallesReserva(reservaId: number) {
     this.detallesReserva.forEach(detalle => {
