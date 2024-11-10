@@ -2,11 +2,13 @@
   <div class="tours-container">
     <div class="tour-card" *ngFor="let tour of tours">
       <h3>{{ tour.nombre }}</h3>
+      <td><img src="{{url+'tour/image/'+tour.imagen}}" class="imagen" width="100"></td>
       <p><strong>Parque:</strong> {{ tour.nombreParque}}</p>
       <p><strong>Precio:</strong> {{ tour.precio }}</p>
       <p><strong>Descripción:</strong> {{ tour.descripcion }}</p>
       <p><strong>Hora de Inicio:</strong> {{ tour.horaInicio }}</p>
       <p><strong>Duración:</strong> {{ tour.duracion }}</p>
+
     </div>
   </div>
 
@@ -20,15 +22,6 @@
   </span>
 
   <form class="col-md-8 mx-auto" #reservaForm="ngForm" (ngSubmit)="onSubmit(reservaForm)">
-    <div class="form-group">
-      <label for="idCliente">ID Cliente</label>
-      <input id="idCliente" type="number" class="form-control" name="idCliente" required
-             [(ngModel)]="reserva.idCliente" #idCliente="ngModel">
-      <div *ngIf="idCliente.invalid && idCliente.touched" class="invalid-feedback d-block">
-        ID de Cliente es requerido
-      </div>
-    </div>
-
     <div class="form-group">
       <label for="tour">Tours</label>
       <table class="table">

@@ -17,7 +17,7 @@ export class ReservaService {
  
   crear(reserva: Reserva): Observable<any> { 
    // const body = { reserva: reserva,clienteId:getIssFromSession()};
-    reserva.idCliente=parseInt(getIssFromSession());
+    // servereserva.idUsuario=parseInt(getIssFromSession());
     return this._http.post<any>(`${this.urlAPI}reserva`, reserva);
   }
   verReservas(): Observable<{ status: number, message: string, data: Reserva[] }> {
@@ -33,9 +33,9 @@ export class ReservaService {
     headers
   }*/
   const body = new URLSearchParams();
-   body.set('idCliente', reserva.idCliente.toString());
+   body.set('idCliente', reserva.idUsuario.toString());
 
-  return this._http.put(`${this.urlAPI}reserva/${reserva.idCliente}`, body.toString(), { headers });
+  return this._http.put(`${this.urlAPI}reserva/${reserva.idUsuario}`, body.toString(), { headers });
   }
   eliminarTour(id: number): Observable<any> {
   return this._http.delete(`${this.urlAPI}reserva/${id}`);
