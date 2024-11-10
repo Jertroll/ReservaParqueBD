@@ -93,7 +93,7 @@ export class ReservarComponent {
   }
 
   onSubmit(reservaForm: any) {
-    const idUsuario = parseInt(getIssFromSession() || '0');
+    const idUsuario = parseInt(getIssFromSession());
     console.log('getIssFromSession:',getIssFromSession());// Captura el ID del cliente desde sessionStorage
     const toursSeleccionados = this.tours.filter(tour => tour.seleccionado);
     if (toursSeleccionados.length === 0) {
