@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="form-group">
+    <label for="reservas">Reservas</label>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID Reserva</th>
+          <th>ID Cliente</th>
+          <th>Fecha Reserva</th>
+          <th>Detalle del Tour</th>
+          <th>Cantidad de Visitantes</th>
+          <th>Guía</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Mostrar las reservas con sus detalles -->
+        <tr *ngFor="let reserva of reservas">
+          <td>{{ reserva.idReserva }}</td>
+          <td>{{ reserva.idCliente }}</td>
+          <td>{{ reserva.fechaReserva }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let detalle of reserva.detallesReserva">
+                Tour: {{ detalle.tour.nombre }} - Fecha: {{ detalle.fechaTour }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let detalle of reserva.detallesReserva">
+                Cantidad de Visitantes: {{ detalle.cantVisitantes }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let detalle of reserva.detallesReserva">
+                Guía: {{ detalle.empleadoSeleccionado }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+  
