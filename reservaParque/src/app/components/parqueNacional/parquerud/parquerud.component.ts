@@ -30,6 +30,9 @@ export class ParquerudComponent implements OnInit {
   parques: Parque[];
   parque: Parque;
   editando: boolean = false;
+    nombreParque: string = '';  // Nueva propiedad para la búsqueda de tours
+  tours: any[] = [];  // Nueva propiedad para almacenar los tours encontrados
+
 
   constructor(private parqueService: ParqueService, public dialog: MatDialog, public router:Router, private tourService: TourService) {
     this.status = -1;
@@ -80,11 +83,6 @@ export class ParquerudComponent implements OnInit {
       }
     });
   }
- 
-  verTours(parque: Parque): void {
-    this.router.navigate([`/parques/${parque.idParque}/tours`]);
-  }
-
 
   search(): void {
     if (this.searchTerm.trim() !== '') {
@@ -132,4 +130,22 @@ export class ParquerudComponent implements OnInit {
     this.parque = new Parque(0, '', '', '', '', '', '', 0);
     this.editando = false;
   }
+  buscarTours(): void {
+    this.tourService.obtenerToursPorParque(this.nombreParque).subscribe(
+      (response: any) => {
+        if (response && (response as { data: any[] }).data) {
+          this.tours = (response as { data: any[] }).data;
+        }
+      },
+      (error) => {
+        console.error('Error al obtener los tours:', error);
+        this.tours = [];
+      }
+    );
+  }
+  regresar() {
+    this.tours = [];  
+    this.nombreParque = '';  
+  } 
+
 }

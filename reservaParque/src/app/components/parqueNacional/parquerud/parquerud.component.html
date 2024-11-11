@@ -2,15 +2,16 @@
   <div class="search-container">
     <input type="text" placeholder="Buscar Parque..." [(ngModel)]="searchTerm" class="search-input">
     <div style="display: inline-block;">
-      <button mat-button class="buscar" (click)="search()">
+      <button mat-button class="buscar" (click)="search()" style="background-color: #0e130eb6; color: white;">
         <mat-icon>search</mat-icon>Buscar
       </button>
-      <button mat-button class="agregar-parque" [routerLink]="['/agregarParque']">
+      <button mat-button class="agregar-parque" [routerLink]="['/agregarParque']" style="background-color: #369746; color: white;">
         <mat-icon>add</mat-icon>Agregar Parque
       </button>
     </div>
   </div>
-  <h2>Parques Nacionales</h2>
+  
+  <h1>Parques Nacionales</h1>
   <table>
     <thead>
       <tr>
@@ -20,7 +21,7 @@
         <th>Descripción</th>
         <th>Tipo Bosque</th>
         <th>Tipo Clima</th>
-        <th>correo</th>
+        <th>Correo</th>
         <th>Telefono</th>
         <th>Acciones</th>
       </tr>
@@ -37,15 +38,12 @@
           <td>{{ parque.correo }}</td>
           <td>{{ parque.telefono }}</td>
           <td>
-            <button mat-button class="edit" (click)="actualizarParque(parque)">
+            <button mat-button class="edit" (click)="actualizarParque(parque)" style="background-color: #369746; color: white;">
               <mat-icon>edit</mat-icon>Editar
             </button>
-            <button mat-button class="delete" (click)="eliminarParque(parque)">
+            <button mat-button class="delete" (click)="eliminarParque(parque)" style="background-color: #7c250f; color: white;">
               <mat-icon>delete</mat-icon>Eliminar
             </button>
-          <button mat-button class="ver-tours" (click)="verTours(parque)">
-            <mat-icon>list</mat-icon>Ver Tours
-          </button>
           </td>
         </tr>
       </ng-container>
@@ -58,7 +56,32 @@
   </table>
 </div>
 <div class="back-button-container">
-  <button mat-button class="back" [routerLink]="['/Admin']">
-    <mat-icon>arrow_back</mat-icon>Regresar al Admin Dashboard
+  <button mat-button class="back" [routerLink]="['/Admin']" style="background-color: #0f0f0f; color: rgb(187, 185, 185);">
+      <mat-icon>arrow_back</mat-icon>Regresar
   </button>
+</div>
+<p></p>
+<div>
+  <input 
+    type="text" 
+    [(ngModel)]="nombreParque" 
+    placeholder="Buscar tours por nombre de parque" 
+  />
+  <button (click)="buscarTours()" style="background-color: #369746; color: white;">Buscar</button>
+</div>
+
+<div *ngIf="tours.length > 0" class="tour-results">
+  <h3>Tours en {{ nombreParque }}</h3>
+  <div *ngFor="let tour of tours" class="tour-item">
+    <h4>{{ tour.nombre }}</h4>
+    <p>Precio: {{ tour.precio }}</p>
+    <p>Descripción: {{ tour.descripcion }}</p>
+    <p>Hora de inicio: {{ tour.horaInicio }}</p>
+    <p>Duración: {{ tour.duracion }}</p>
+  </div>
+  <button (click)="regresar()" style="background-color: #080808; color: white;">Regresar</button> 
+</div>
+
+<div *ngIf="tours.length === 0 && nombreParque">
+  <p>No se encontraron tours para el parque ingresado.</p>
 </div>

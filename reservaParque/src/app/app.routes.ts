@@ -28,8 +28,6 @@ export const routes: Routes = [
 {path: 'agregarTour', component:AgregarTourComponent},
 {path: 'tours', component:CrudTourComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
-{path: 'parques/:idParque/tours', component: ToursParqueComponent },
-
 
 
 {path: "parqueRUD", component:ParquerudComponent},
