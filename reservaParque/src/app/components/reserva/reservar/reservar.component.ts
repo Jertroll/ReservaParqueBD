@@ -148,7 +148,7 @@ export class ReservarComponent implements OnInit {
             console.log('Reserva exitosa:', response);
             const idReserva = response.reserva.idReserva; // Extraer el idReserva del response
             this.saveDetallesReserva(idReserva); // Pasar el idReserva a la función
-            this.createFactura(idReserva); // Crear factura usando el idReserva
+            //this.createFactura(idReserva); // Crear factura usando el idReserva
             reservaForm.reset();
             this.tours.forEach(tour => tour.seleccionado = false);
             this.changeStatus(0);
@@ -178,7 +178,7 @@ export class ReservarComponent implements OnInit {
     });
   }
 
-  createFactura(reservaId: number) {
+  /*createFactura(reservaId: number) {
     const fechaEmision = new Date().toISOString().split('T')[0];
     this.facturaService.crear(reservaId, fechaEmision).pipe(
       catchError(error => {
@@ -193,7 +193,7 @@ export class ReservarComponent implements OnInit {
         }
       }
     );
-  }
+  }*/
 
   mostrarFactura(facturaId: number) {
     this.facturaService.mostrarFactura(facturaId).pipe(
