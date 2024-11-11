@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservaService } from '../../../services/reserva.service';
 import { Reserva } from '../../../models/reserva';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common'; // Importa Location
 
 @Component({
   selector: 'app-vis-reservas',
@@ -10,7 +12,10 @@ import { Reserva } from '../../../models/reserva';
 export class VisReservasComponent implements OnInit {
   reservas: Reserva[] = [];
 
-  constructor(private reservaService: ReservaService) {}
+  constructor(
+    private reservaService: ReservaService,
+    private location: Location // Inyecta Location
+  ) {}
 
   ngOnInit(): void {
     this.cargarReservas();
@@ -31,4 +36,10 @@ export class VisReservasComponent implements OnInit {
       }
     );
   }
+
+  // Método para regresar a la página anterior
+  regresar() {
+    this.location.back();
+  }
 }
+
