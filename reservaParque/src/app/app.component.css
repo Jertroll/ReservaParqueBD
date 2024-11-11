@@ -4,8 +4,11 @@
     justify-content: space-between;
     align-items: center;
     height: 85px; /* Puedes ajustar este valor según tus necesidades */
-    background-color: #f8f9fa; /* Cambia el color de fondo según lo que desees */
-    border-bottom: 1px solid #ccc; /* Opcional: Agrega un borde inferior */
+    background: linear-gradient(90deg, rgba(171, 206, 212, 0.5), rgba(112, 213, 247, 0.5), rgba(106, 247, 106, 0.5));
+    backdrop-filter: blur(8px); /* Ajusta el nivel de desenfoque */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    z-index: 10;
 }
 
 /* Estilo para los enlaces dentro del navbar */
@@ -20,26 +23,38 @@
 
 /* Cambia el color de fondo de los enlaces cuando se pasa el cursor sobre ellos */
 .navbar a:hover {
-    background-color: #e0dede;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #000;
 }
 
 /* Puedes agregar estos estilos a tu archivo de estilos global o específico del componente */
 footer {
     width: 100%;
     background-color: #23242a;
-    color: white;
+    color: rgb(15, 15, 15);
 }
 
 footer a {
-    color: #fff;
+    color: #0c0c0c;
     text-decoration: none;
 }
 
 footer a:hover {
-    color: #ddd;
+    color: #030303;
     text-decoration: underline;
 }
 
 .navbar-green {
-    background-color: #228B22;
+    background: linear-gradient(90deg,rgba(221, 248, 221, 0.5),rgba(109, 242, 247, 0.5), rgba(4, 124, 68, 0.5));
+}
+
+h5{
+    color: rgb(5, 83, 48);
+}
+
+ul{
+    color: rgb(5, 5, 5);
+}
+p{
+    color: rgb(3, 3, 3);
 }
