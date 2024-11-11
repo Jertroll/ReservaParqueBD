@@ -94,93 +94,107 @@ export class ReservarComponent implements OnInit {
     tour.seleccionado = event.target.checked;
     if (tour.seleccionado) {
       tour.fechaSeleccionada = tour.fechaSeleccionada || new Date().toISOString().split('T')[0];
-      tour.empleadoSeleccionado = 0;
-      tour.cantVisitantes = 0;
-
-      this.detallesReserva.push(new Detalle(0, tour.idTour, tour.fechaSeleccionada, '', tour.empleadoSeleccionado ?? 0, tour.cantVisitantes, 0, 0, 0));
+      tour.empleadoSeleccionado = tour.empleadoSeleccionado ?? 0; // Asegura un valor predeterminado
+      tour.cantVisitantes = tour.cantVisitantes ?? 1; // Asegura al menos 1 visitante
+      
+      // Crea un nuevo detalle con valores seguros y válidos
+      this.detallesReserva.push(new Detalle(
+        0, 
+        tour.idTour, 
+        tour.fechaSeleccionada, 
+        '', 
+        tour.empleadoSeleccionado, 
+        tour.cantVisitantes, 
+        0, 
+        0, 
+        0
+      ));
     } else {
       this.detallesReserva = this.detallesReserva.filter(det => det.tour !== tour.idTour);
     }
   }
+  
 
   onSubmit(reservaForm: any) {
     const idUsuario = this.loginService.getUserId();
     if (idUsuario === null) {
-        console.error('ID de usuario no encontrado');
-        return;
+      console.error('ID de usuario no encontrado');
+      return;
     }
-
+  
     const toursSeleccionados = this.tours.filter(tour => tour.seleccionado);
     if (toursSeleccionados.length === 0) {
-        console.log('No se han seleccionado tours');
-        return;
+      console.log('No se han seleccionado tours');
+      return;
     }
-
-    this.detallesReserva = [];
-
-    toursSeleccionados.forEach(tour => {
-        const fechaTour = tour.fechaSeleccionada ? new Date(tour.fechaSeleccionada).toISOString().split('T')[0] : '';
-        if (!tour.cantVisitantes || tour.cantVisitantes < 1) {
-            console.error('El campo cantVisitantes es inválido para el tour:', tour.idTour);
-            return;
-        }
-
-        if (tour.empleadoSeleccionado === undefined) {
-            console.error('El campo empleadoSeleccionado es inválido para el tour:', tour.idTour);
-            return;
-        }
-
-        const detalle = new Detalle(0, tour.idTour, fechaTour, "", tour.empleadoSeleccionado, tour.cantVisitantes, 0, 0, 0);
-        this.detallesReserva.push(detalle);
-    });
-
-    // Crear el objeto de reserva con idReserva en 0
-    const reserva = new Reserva(
-        0,  // No se debe pasar idReserva
-        idUsuario,
-        new Date().toISOString().split('T')[0],
-        this.detallesReserva
-    );
-
-    console.log('Datos de reserva a enviar:', reserva);
-    this.reservaService.crear(reserva).subscribe(
-        (response) => {
-            console.log('Reserva exitosa:', response);
-            const idReserva = response.reserva.idReserva; // Extraer el idReserva del response
-            this.saveDetallesReserva(idReserva); // Pasar el idReserva a la función
-            //this.createFactura(idReserva); // Crear factura usando el idReserva
-            reservaForm.reset();
-            this.tours.forEach(tour => tour.seleccionado = false);
-            this.changeStatus(0);
-        },
-        error => {
-            console.error('Error al hacer la reserva:', error);
-            this.changeStatus(2);
-        }
-    );
-}
-
-
-
-  saveDetallesReserva(reservaId: number) {
-    this.detallesReserva.forEach(detalle => {
-      detalle.idReserva = reservaId;
-      this.detalleService.crear(detalle).pipe(
-        catchError(error => {
-          console.error('Error creando detalle:', error);
-          return of(null);
-        })
-      ).subscribe(
-        (response) => {
-          console.log('Detalle creado:', response);
-        }
+  
+    // Crear los detalles de la reserva a partir de los tours seleccionados
+    this.detallesReserva = toursSeleccionados.map(tour => {
+      const fechaTour = tour.fechaSeleccionada || new Date().toISOString().split('T')[0];
+      return new Detalle(
+        0,
+        tour.idTour,
+        fechaTour,
+        '',
+        tour.empleadoSeleccionado ?? 0,
+        tour.cantVisitantes ?? 1,
+        0,
+        0,
+        0
       );
     });
+  
+    if (this.detallesReserva.length === 0) {
+      console.error('No se han agregado detalles de reserva válidos');
+      return;
+    }
+  
+    // Crear la reserva con el usuario y detalles válidos
+    const reserva = new Reserva(
+      0,
+      idUsuario,
+      new Date().toISOString().split('T')[0],
+      this.detallesReserva
+    );
+  
+    console.log('Reserva a enviar:', reserva);
+  
+    this.reservaService.crear(reserva).subscribe(
+      (response) => {
+        console.log('Reserva exitosa:', response);
+        const idReserva = response.reserva.idReserva;
+        this.saveDetallesReserva(idReserva, this.detallesReserva); // Envía todos los detalles juntos
+        this.createFactura(idReserva);
+        this.mostrarFactura
+        // Limpia el formulario después de enviar
+        reservaForm.reset();
+        this.detallesReserva = [];
+        this.tours.forEach(tour => tour.seleccionado = false);
+      },
+      (error) => {
+        console.error('Error al crear la reserva:', error);
+      }
+    );
   }
 
-  /*createFactura(reservaId: number) {
-    const fechaEmision = new Date().toISOString().split('T')[0];
-    this.facturaService.crear(reservaId, fechaEmision).pipe(
+    saveDetallesReserva(idReserva: number, detallesReserva: Detalle[]): void {
+      detallesReserva.forEach(detalle => {
+        detalle.idReserva = idReserva;
+        this.detalleService.crear(detalle).subscribe({
+          next: (response) => {
+            console.log('Detalle de reserva creado:', response);
+          },
+          error: (error) => {
+            console.error('Error creando detalle de reserva:', error);
+          }
+        });
+      });
+    }
+    
+  
+
+  createFactura(reservaId: number) {
+    this.facturaService.crear(reservaId).pipe(
       catchError(error => {
         console.error('Error creando factura:', error);
         return of(null);
@@ -193,7 +207,7 @@ export class ReservarComponent implements OnInit {
         }
       }
     );
-  }*/
+  }
 
   mostrarFactura(facturaId: number) {
     this.facturaService.mostrarFactura(facturaId).pipe(
