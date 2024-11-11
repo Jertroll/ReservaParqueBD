@@ -10,9 +10,13 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Inicio</a>
           </li>
-          <!-- Mostrar el botón de Administrador solo si es un usuario autenticado con rol de admin -->
+          <!-- Botón de Administrador visible solo para usuarios con rol de "admin" -->
           <li *ngIf="isAdmin" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin']">Administrador</a>
+          </li>
+          <!-- Botón de Guía visible solo para usuarios con rol de "Guia" -->
+          <li *ngIf="isGuide" class="nav-item">
+            <a class="nav-link" [routerLink]="['/guia']">Guía</a>
           </li>
         </ul>
         

@@ -6,12 +6,13 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, CommonModule], // Asegúrate de incluir CommonModule aquí
+  imports: [RouterOutlet, RouterLink, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   public isAdmin: boolean = false;
+  public isGuide: boolean = false; // Nueva propiedad para el rol de guía
   public isLoggedIn: boolean = false;
 
   ngOnInit() {
@@ -22,8 +23,9 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = true;
       const user = JSON.parse(identity);
       
-      // Verificar si el rol del usuario es "admin"
+      // Verificar el rol del usuario
       this.isAdmin = user.role === 'admin';
+      this.isGuide = user.role === 'Guia'; // Verificar si el rol es "Guia"
     }
   }
 
@@ -31,5 +33,6 @@ export class AppComponent implements OnInit {
     sessionStorage.clear();
     this.isLoggedIn = false;
     this.isAdmin = false;
+    this.isGuide = false;
   }
 }
