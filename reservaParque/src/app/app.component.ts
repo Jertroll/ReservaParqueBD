@@ -1,19 +1,35 @@
-
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-//PRIMENG
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, CommonModule], // Asegúrate de incluir CommonModule aquí
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  public identity:any;
+export class AppComponent implements OnInit {
+  public isAdmin: boolean = false;
+  public isLoggedIn: boolean = false;
+
+  ngOnInit() {
+    // Obtener la identidad del usuario desde sessionStorage
+    const identity = sessionStorage.getItem('identity');
+    
+    if (identity) {
+      this.isLoggedIn = true;
+      const user = JSON.parse(identity);
+      
+      // Verificar si el rol del usuario es "admin"
+      this.isAdmin = user.role === 'admin';
+    }
+  }
+
+  onLogout() {
+    sessionStorage.clear();
+    this.isLoggedIn = false;
+    this.isAdmin = false;
+  }
 }

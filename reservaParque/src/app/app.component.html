@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Tropical Walk</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,54 +10,49 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Inicio</a>
           </li>
+          <!-- Mostrar el botón de Administrador solo si es un usuario autenticado con rol de admin -->
+          <li *ngIf="isAdmin" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin']">Administrador</a>
+          </li>
         </ul>
-        <!-- Conditional rendering for login/logout buttons based on 'identity' -->
-        @if(!identity){
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a [routerLink]="['login']">Login</a></li>
-            <li class="nav-item"><a  [routerLink]="['reserva']">Reserva</a></li>
-            <li class="nav-item"><a  [routerLink]="['Admin']">Admin</a></li> 
-          </ul>
-        }    
-        @else {
-          <ul class="navbar-nav navbar-right">
-            @if(identity.image){
-              <li class="m-1">
-                <img src="" alt="Usuario autenticado">
-              </li>
-            }
-            <!--Presentamos un dropdown con opciones del menu para otras funcionalidades-->
-          </ul>
-        }  
+        
+        <!-- Mostrar botones según el estado de autenticación -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ng-container *ngIf="!isLoggedIn; else loggedIn">
+            <!-- Mostrar botón de Login si no está autenticado -->
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/login']">Login</a></li>
+          </ng-container>
+          <ng-template #loggedIn>
+            <!-- Mostrar botón de Logout si está autenticado -->
+            <li class="nav-item">
+              <a class="nav-link" href="#" (click)="onLogout()">Logout</a>
+            </li>
+          </ng-template>
+        </ul>
       </div>
     </div>
   </nav>
 
   <router-outlet></router-outlet>
 </div>
-<br> <br>
+<br><br>
+
 <!-- Footer -->
 <footer class="text-white text-center text-lg-start" style="background-color: #228B22;">
-  <!-- Grid container -->
   <div class="container-fluid p-4">
-    <!--Grid row-->
     <div class="row mt-4">
-      <!--Grid column-->
       <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Acerca de Nosotros</h5>
         <p>
           En Tropical Walk, nos apasiona conectar a las personas con la belleza natural de los parques nacionales de CR. Nos hemos dedicado a ofrecer experiencias únicas y memorables que permiten a nuestros clientes explorar y disfrutar de la biodiversidad y el esplendor de los entornos naturales protegidos.
         </p>
       </div>
-      <!--Grid column-->
 
-      <!--Grid column-->
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4 pb-1">Ubicacion</h5>
-
         <ul class="fa-ul" style="margin-left: 1.65em;">
           <li class="mb-3">
-            <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Guanacate, Liberia , CR</span>
+            <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Guanacaste, Liberia , CR</span>
           </li>
           <li class="mb-3">
             <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">TropicalwalkInfo.com</span>
@@ -70,9 +65,7 @@
           </li>
         </ul>
       </div>
-      <!--Grid column-->
 
-      <!--Grid column-->
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Horarios de Atencion al Cliente</h5>
         <table class="table text-center text-white">
@@ -88,17 +81,11 @@
           </tbody>
         </table>
       </div>
-      <!--Grid column-->
     </div>
-    <!--Grid row-->
   </div>
-  <!-- Grid container -->
 
-  <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2024 Copyright:
     <a class="text-white" href="https://TropicalWalk.com/">TropicalWalk.com</a>
   </div>
-  <!-- Copyright -->
 </footer>
-<!-- End of Footer -->
