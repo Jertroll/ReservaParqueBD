@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './facturacli.component.html',
-  styleUrls: ['./facturacli.component.css'] // Asegúrate de usar 'styleUrls' con 's' al final
+  styleUrls: ['./facturacli.component.css'] 
 })
 export class FacturacliComponent implements OnInit {
   public status: number;
@@ -27,6 +27,7 @@ export class FacturacliComponent implements OnInit {
     this._facturaService.getAllFacturas().subscribe(
       response => {
         if (response.status === 200) {
+          // Asigna las facturas obtenidas a la variable local
           this.facturas = response.data;
           this.status = 200;
         } else {
