@@ -1,1 +1,33 @@
-<p>facturacli works!</p>
+<div *ngIf="facturas && facturas.length > 0" class="factura-table">
+    <h2>Lista de Facturas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Factura</th>
+          <th>ID Reserva</th>
+          <th>Fecha de Emisión</th>
+          <th>Descuento</th>
+          <th>Impuesto</th>
+          <th>Subtotal</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let factura of facturas">
+          <td>{{ factura.idFactura }}</td>
+          <td>{{ factura.idReserva }}</td>
+          <td>{{ factura.fechaEmision }}</td>
+          <td>{{ factura.descuento | percent }}</td>
+          <td>{{ factura.impuesto }}</td>
+          <td>{{ factura.subTotal | currency }}</td>
+          <td>{{ factura.total | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div *ngIf="status !== 200 && status !== -1">
+    <p>Error al cargar las facturas. Status: {{ status }}</p>
+  </div>
+
+  

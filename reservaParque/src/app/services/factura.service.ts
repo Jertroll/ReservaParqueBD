@@ -32,6 +32,10 @@ export class FacturaService{
             })
           );
       }
+      getAllFacturas(): Observable<any> {
+        return this._http.get<any>(`${this.urlAPI}factura/`);
+    }
+        
       crear(idReserva: number): Observable<any> {
         let body = { idReserva };
         let headers = new HttpHeaders().set('Content-Type', 'application/json');

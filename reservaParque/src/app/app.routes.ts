@@ -17,7 +17,7 @@ import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usu
 import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
 import { DetallesUsuarioComponent } from './components/detalles/detalles-usuario/detalles-usuario.component';
 import { FacturasUsuarioComponent } from './components/factura/facturas-usuario/facturas-usuario.component';
-
+import { FacturacliComponent } from './components/factura/facturacli/facturacli.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent},
@@ -39,6 +39,6 @@ export const routes: Routes = [
 { path: 'usuariosTable', component: CrudUsuarioComponent },
 { path: 'Admin', component: AdminComponent },
 {path: "parqueRUD", component:ParquerudComponent},
-{path:'FacturasUsuarios',component:FacturasUsuarioComponent}
-
+{path:'FacturasUsuarios',component:FacturasUsuarioComponent},
+{path:'Facturas',component:FacturacliComponent}
 ];
