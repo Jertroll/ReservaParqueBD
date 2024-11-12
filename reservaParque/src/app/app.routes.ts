@@ -11,6 +11,7 @@ import { ParquerudComponent } from './components/parqueNacional/parquerud/parque
 import { EmpleadoCreateComponent } from './components/empleado/empleado-create/empleado-create.component';
 import { EmpleadoUpComponent } from './components/empleado/empleadoup/empleadoup.component';
 import { ReservarComponent } from './components/reserva/reservar/reservar.component';
+import { MostrarReservaComponent } from './components/reserva/mostrar-reserva/mostrar-reserva.component';
 import { AdminComponent } from './components/Admin/admin.component';
 import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usuario.component';
 import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
@@ -33,6 +34,7 @@ export const routes: Routes = [
 {path: "parqueRUD", component:ParquerudComponent},
 {path: "empleadosTable", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},
+{path:'reservas-usuarios',component:MostrarReservaComponent},
 {path: 'agregarUsuario', component:AgregarUsuarioComponent},
 { path: 'usuariosTable', component: CrudUsuarioComponent },
 { path: 'Admin', component: AdminComponent },
