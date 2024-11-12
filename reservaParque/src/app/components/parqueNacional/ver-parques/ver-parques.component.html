@@ -1,0 +1,62 @@
+<div>
+    <h1>Parques Nacionales</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Ubicacion</th>
+          <th>Descripción</th>
+          <th>Tipo Bosque</th>
+          <th>Tipo Clima</th>
+          <th>Correo</th>
+          <th>Telefono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="parques && parques.length > 0; else noParques">
+          <tr *ngFor="let parque of parques">
+            <td>{{ parque.idParque }}</td>
+            <td>{{ parque.nombre }}</td>
+            <td>{{ parque.ubicacion }}</td>
+            <td>{{ parque.descripcion }}</td>
+            <td>{{ parque.tipoBosque }}</td>
+            <td>{{ parque.tipoClima }}</td>
+            <td>{{ parque.correo }}</td>
+            <td>{{ parque.telefono }}</td>
+          </tr>
+        </ng-container>
+        <ng-template #noParques>
+          <tr>
+            <td colspan="9">No hay parques disponibles.</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <input 
+      type="text" 
+      [(ngModel)]="nombreParque" 
+      placeholder="Buscar tours por nombre de parque" 
+    />
+    <button (click)="buscarTours()" style="background-color: #369746; color: white;">Buscar</button>
+  </div>
+  
+  <div *ngIf="tours.length > 0" class="tour-results">
+    <h3>Tours en {{ nombreParque }}</h3>
+    <div *ngFor="let tour of tours" class="tour-item">
+      <h4>{{ tour.nombre }}</h4>
+      <p>Precio: {{ tour.precio }}</p>
+      <p>Descripción: {{ tour.descripcion }}</p>
+      <p>Hora de inicio: {{ tour.horaInicio}}</p>
+      <p>Duración: {{ tour.duracion}}</p>
+    </div>
+    <button (click)="regresar()" style="background-color: #080808; color: white;">Regresar</button> 
+  </div>
+  
+  <div *ngIf="tours.length === 0 && nombreParque">
+    <p>No se encontraron tours para el parque ingresado.</p>
+  </div>
+  
