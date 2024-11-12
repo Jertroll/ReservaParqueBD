@@ -38,7 +38,9 @@ export class FacturaService{
         return this._http.post(this.urlAPI + 'factura', body, { headers });
     }
     
-
+    getFacturasPorUsuario(idUsuario: number): Observable<any> {
+        return this._http.get(`${this.urlAPI}facturasUsuarios/${idUsuario}`);
+      }
 
     
 }

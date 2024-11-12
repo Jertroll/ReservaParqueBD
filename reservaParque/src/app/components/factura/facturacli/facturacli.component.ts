@@ -23,28 +23,5 @@ export class FacturacliComponent {
     this.idReserva = 0; // Asigna un valor predeterminado, actualízalo según sea necesario
   }
 
-  onSubmit(form: any) {
-    this._facturaService.crear(this.idReserva, this.factura).subscribe({
-      next: (response) => {
-        console.log(response);
-        if (response.status === 200) {
-          form.reset();
-          this.changeStatus(0);
-        } else {
-          this.changeStatus(1);
-        }
-      },
-      error: (error: Error) => {
-        this.changeStatus(2);
-      }
-    });
-  }
-
-  changeStatus(st: number) {
-    this.status = st;
-    let countdown = timer(5000);
-    countdown.subscribe(() => {
-      this.status = -1;
-    });
-  }
+  
 }
