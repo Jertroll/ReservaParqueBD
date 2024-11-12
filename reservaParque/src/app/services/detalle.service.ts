@@ -23,7 +23,9 @@ export class DetalleService {
   verDetalles(): Observable<{ status: number, message: string, data: Detalle[] }> {
     return this._http.get<{ status: number, message: string, data: Detalle[] }>(`${this.urlAPI}reserva`);
   }
-
+  getReservasUsuario(idUsuario: number): Observable<{ status: number, message: string, data: any[] }> {
+    return this._http.get<{ status: number, message: string, data: any[] }>(`${this.urlAPI}detalles/${idUsuario}`);
+  }
   actualizarDetalle(detalle: Detalle): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const body = JSON.stringify(detalle);

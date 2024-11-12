@@ -15,6 +15,7 @@ import { MostrarReservaComponent } from './components/reserva/mostrar-reserva/mo
 import { AdminComponent } from './components/Admin/admin.component';
 import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usuario.component';
 import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
+import { DetallesUsuarioComponent } from './components/detalles/detalles-usuario/detalles-usuario.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent},
@@ -31,6 +32,7 @@ export const routes: Routes = [
 {path: "empleadosTable", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},
 {path:'reservas-usuarios',component:MostrarReservaComponent},
+{path:'detallesUsuario',component:DetallesUsuarioComponent},
 {path: 'agregarUsuario', component:AgregarUsuarioComponent},
 { path: 'usuariosTable', component: CrudUsuarioComponent },
 { path: 'Admin', component: AdminComponent },
