@@ -18,6 +18,8 @@ import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/ag
 import { DetallesUsuarioComponent } from './components/detalles/detalles-usuario/detalles-usuario.component';
 import { FacturasUsuarioComponent } from './components/factura/facturas-usuario/facturas-usuario.component';
 import { FacturacliComponent } from './components/factura/facturacli/facturacli.component';
+//import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
+import { ClienteComponent } from './components/usuario/Cliente/cliente/cliente.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent},
@@ -28,8 +30,8 @@ export const routes: Routes = [
 {path: 'agregarTour', component:AgregarTourComponent},
 {path: 'tours', component:CrudTourComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
-
-
+//{path: 'parques/:idParque/tours', component: ToursParqueComponent },
+{path: 'agregarCliente', component:ClienteComponent},
 {path: "parqueRUD", component:ParquerudComponent},
 {path: "empleadosTable", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},

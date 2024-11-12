@@ -1,16 +1,20 @@
 <div class="login-container">
-    <h2>Iniciar Sesión</h2>
-    <form (ngSubmit)="onLogin()">
-      <div>
-        <label for="correo">Correo:</label>
-        <input type="email" [(ngModel)]="correo" name="correo" required />
-      </div>
-      <div>
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" [(ngModel)]="contrasena" name="contrasena" required />
-      </div>
-      <button type="submit">Ingresar</button>
-    </form>
-    <!-- Aquí se muestra el mensaje de error -->
-    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  <h2>Iniciar Sesión</h2>
+  <form (ngSubmit)="onLogin()">
+    <div>
+      <label for="correo">Correo:</label>
+      <input type="email" [(ngModel)]="correo" name="correo" required />
+    </div>
+    <div>
+      <label for="contrasena">Contraseña:</label>
+      <input type="password" [(ngModel)]="contrasena" name="contrasena" required />
+    </div>
+    <button type="submit">Ingresar</button>
+  </form>
+  
+  <!-- Mostrar mensaje de error si existe -->
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  <br>
+  <!-- Botón de registrarse con enlace al componente de registro -->
+  <button [routerLink]="['/agregarCliente']" class="register-button">Registrarme</button>
 </div>
