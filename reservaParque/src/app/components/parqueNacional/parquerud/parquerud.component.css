@@ -1,117 +1,208 @@
-/* Estilo para la tabla */
-h2 {
-    color: black;
-    font-size: 2rem; /* Tamaño del título */
-    text-align: center;
-    margin-bottom: 1rem; /* Espacio en la parte inferior del título */
+/* Estilo para el título */
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: Arial, sans-serif;
+  font-weight: bold; /* Aplica negrita */
+  background: linear-gradient(45deg, #0a0a0a 25%, #e7eb08 25%, #023b0b 50%, #35240a 50%, #070707 75%, #645c14 75%, #0c3606 100%);
+  background-size: 40px 40px; /* Tamaño de las rayas */
+  -webkit-background-clip: text; /* Hace que el fondo se recorte a la forma del texto */
+  color: transparent; /* Hace que el color del texto sea transparente para mostrar solo el fondo */
+  padding: 10px;
+  border-radius: 8px;
 }
+
+/* Estilo de la tabla */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  thead {
-    background-color: #f2f2f2;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #446149;
-    color: white;
-  }
-  
-  /* Estilo para los botones */
-  button {
-    padding: 5px 10px;
-    margin: 2px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    width: 100px;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  button:focus {
-    outline: none;
-  }
-  
-  .edit {
-    background-color:  #40a743;
-    color: white;
-  }
-  
-  .delete {
-    background-color:#d82013;
-    color: white;
-  }
-  
-  /* Estilo para los botones de acción */
-  td > button {
-    display: inline-block;
-    width: auto;
-  }
-  
-  /* Estilo para el formulario */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    margin: 5px 0 2px;
-  }
-  
-  input {
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-  }
-  
-  button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    opacity: 0.8;
-  }
-  
-  .alert {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 3px;
-  }
-  
-  .alert-success {
-    background-color: #dff0d8;
-    color: #3c763d;
-  }
-  
-  .alert-warning {
-    background-color: #fcf8e3;
-    color: #8a6d3b;
-  }
-  
-  .alert-danger {
-    background-color: #f2dede;
-    color: #a94442;
-  }
-  .buscar{
-    background-color: #446149;
-    color: white;
-    text-decoration: none;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+thead {
+  background-color: #2a7f5f;
+  color: white;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #024121;
+  color: white;
+  font-weight: bold;
+}
+
+/* Estilo de las filas para alternar colores */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Estilo para los botones */
+button {
+  padding: 5px 15px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Estilos para botones específicos */
+.buscar {
+  background-color: #369746;
+  color: white;
+}
+
+.agregar-parque {
+  background-color: #369746;
+  color: white;
+}
+.edit, .delete {
+  background-color: #369746;
+  color: white;
+  width: 100px; /* Establece un ancho fijo para ambos botones */
+  padding: 10px 20px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Asegura que los botones tengan el mismo tamaño */
+.edit, .delete {
+  width: 100px; /* Mismo tamaño para ambos */
+}
+
+/* Espacio y bordes en los botones de acción */
+td > button {
+  margin-right: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px; /* Asegura que los botones en las celdas de la tabla tengan el mismo tamaño */
+}
+
+/* Estilo para el formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+label {
+  margin: 5px 0 2px;
+  color: #333;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Botón de envío */
+button[type="submit"] {
+  background-color: #369746;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #369746;
+}
+
+/* Estilos para alertas */
+.alert {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Caja de resultados de tour */
+.tour-results {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 70vh;
+  overflow-y: auto;
+  color: #333;
+}
+
+.tour-results h3 {
+  margin-top: 0;
+  color: #449c77;
+}
+
+.tour-item {
+  background: linear-gradient(90deg,rgba(79, 224, 79, 0.5),rgba(88, 201, 238, 0.5), rgba(131, 215, 221, 0.5));background-color: #ffffff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Ajustes adicionales para botón de búsqueda y agregar */
+button {
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.buscar, .agregar-parque {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.buscar:hover, .agregar-parque:hover {
+  background-color: #1f914e;
+}
