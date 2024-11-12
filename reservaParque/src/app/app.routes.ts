@@ -15,7 +15,7 @@ import { AdminComponent } from './components/Admin/admin.component';
 import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usuario.component';
 import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
 import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
-
+import { ClienteComponent } from './components/usuario/Cliente/cliente/cliente.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent},
@@ -27,6 +27,7 @@ export const routes: Routes = [
 {path: 'tours', component:CrudTourComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
 {path: 'parques/:idParque/tours', component: ToursParqueComponent },
+{path: 'agregarCliente', component:ClienteComponent},
 
 
 

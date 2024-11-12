@@ -12,8 +12,9 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   public isAdmin: boolean = false;
-  public isGuide: boolean = false; // Nueva propiedad para el rol de guía
+  public isGuide: boolean = false;
   public isLoggedIn: boolean = false;
+  public isUsuario: boolean = false; // Nueva propiedad para usuarios con `type` usuario
 
   ngOnInit() {
     // Obtener la identidad del usuario desde sessionStorage
@@ -23,9 +24,10 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = true;
       const user = JSON.parse(identity);
       
-      // Verificar el rol del usuario
-      this.isAdmin = user.role === 'admin';
-      this.isGuide = user.role === 'Guia'; // Verificar si el rol es "Guia"
+      // Verificar el tipo de usuario
+      this.isUsuario = user.type === 'usuario';
+      this.isAdmin = user.role === 'admin' && !this.isUsuario;
+      this.isGuide = user.role === 'Guia' && !this.isUsuario;
     }
   }
 
@@ -34,5 +36,6 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = false;
     this.isAdmin = false;
     this.isGuide = false;
+    this.isUsuario = false;
   }
 }
