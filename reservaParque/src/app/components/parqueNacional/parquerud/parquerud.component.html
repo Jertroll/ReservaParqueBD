@@ -74,10 +74,10 @@
   <h3>Tours en {{ nombreParque }}</h3>
   <div *ngFor="let tour of tours" class="tour-item">
     <h4>{{ tour.nombre }}</h4>
-    <p>Precio: {{ tour.precio }}</p>
-    <p>Descripción: {{ tour.descripcion }}</p>
-    <p>Hora de inicio: {{ tour.horaInicio}}</p>
-    <p>Duración: {{ tour.duracion}}</p>
+    <p>Precio: {{ tour.precio | currency: 'USD' }}</p>
+      <p>Descripción: {{ tour.descripcion }}</p>
+      <p>Hora de inicio: {{ tour.horaInicio.substring(0, 5)  }}</p>
+      <p>Duración: {{ tour.duracion .substring(0, 5)  }}</p>
   </div>
   <button (click)="regresar()" style="background-color: #080808; color: white;">Regresar</button> 
 </div>

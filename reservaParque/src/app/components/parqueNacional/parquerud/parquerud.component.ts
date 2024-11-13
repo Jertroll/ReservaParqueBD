@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { DatePipe, CurrencyPipe,CommonModule } from '@angular/common';
 import { Parque } from '../../../models/parque'; 
 import { ParqueService } from '../../../services/parque.service'; 
 import { MatDialog } from '@angular/material/dialog';
@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-parquerud',
   standalone: true,
-  imports: [FormsModule, CommonModule, MatIconModule, NgFor, MatButtonModule, RouterModule
+  imports: [FormsModule, CommonModule, MatIconModule, NgFor, MatButtonModule, RouterModule, DatePipe, CurrencyPipe,
   
   ],
   templateUrl: './parquerud.component.html',

@@ -21,6 +21,8 @@ import { DetallesUsuarioComponent } from './components/detalles/detalles-usuario
 import { FacturasUsuarioComponent } from './components/factura/facturas-usuario/facturas-usuario.component';
 import { FacturacliComponent } from './components/factura/facturacli/facturacli.component';
 import { ResenaAgregarComponent } from './components/resena/resena-agregar/resena-agregar.component';
+import { VerParquesComponent } from './components/parqueNacional/ver-parques/ver-parques.component';
+
 export const routes: Routes = [
 {path: '', component:HomeComponent},
 {path: 'home', component:HomeComponent},
@@ -41,7 +43,7 @@ export const routes: Routes = [
 {path: 'agregarUsuario', component:AgregarUsuarioComponent},
 { path: 'usuariosTable', component: CrudUsuarioComponent },
 { path: 'Admin', component: AdminComponent },
-{path: "parqueRUD", component:ParquerudComponent},
 {path:'FacturasUsuarios',component:FacturasUsuarioComponent},
-{path:'Facturas',component:FacturacliComponent}
+{path:'Facturas',component:FacturacliComponent},
+{path:'ParquesTours',component:VerParquesComponent}
 ];

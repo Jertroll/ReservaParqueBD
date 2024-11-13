@@ -19,8 +19,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let detalle of detalles">
-          <!-- Eliminar la columna de ID de la reserva -->
-          <td>{{ detalle.fechaReserva | date: 'short' }}</td>
+          <td>{{ detalle.fechaReserva }}</td>
           <td>{{ detalle.fechaTour}}</td>
           <td>{{ detalle.horaTour }}</td>
           <td>{{ detalle.cantVisitantes }}</td>

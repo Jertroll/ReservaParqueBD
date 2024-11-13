@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import {DatePipe, CurrencyPipe, CommonModule } from '@angular/common';
 import { Parque } from '../../../models/parque'; 
 import { ParqueService } from '../../../services/parque.service'; 
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-ver-parques',
   standalone: true,
-  imports: [FormsModule, CommonModule,RouterModule],
+  imports: [FormsModule, CommonModule,RouterModule, DatePipe, CurrencyPipe,],
   templateUrl: './ver-parques.component.html',
   styleUrl: './ver-parques.component.css'
 })
