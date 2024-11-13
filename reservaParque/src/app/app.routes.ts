@@ -20,7 +20,7 @@ import { ClienteComponent } from './components/usuario/Cliente/cliente/cliente.c
 import { DetallesUsuarioComponent } from './components/detalles/detalles-usuario/detalles-usuario.component';
 import { FacturasUsuarioComponent } from './components/factura/facturas-usuario/facturas-usuario.component';
 import { FacturacliComponent } from './components/factura/facturacli/facturacli.component';
-
+import { ResenaAgregarComponent } from './components/resena/resena-agregar/resena-agregar.component';
 export const routes: Routes = [
 {path: '', component:HomeComponent},
 {path: 'home', component:HomeComponent},
@@ -35,7 +35,7 @@ export const routes: Routes = [
 
 
 
-{path: "parqueRUD", component:ParquerudComponent},
+{path: "resenaAgregar", component:ResenaAgregarComponent},
 {path: "empleadosTable", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},
 {path:'reservas-usuarios',component:MostrarReservaComponent},
