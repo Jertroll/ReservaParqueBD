@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { server } from './global';
 import { Resena } from '../models/resena';
 import { Observable, throwError } from 'rxjs';
@@ -17,16 +17,11 @@ export class ResenaService {
 
   // Crear una nueva reseña
   crearResena(resena: Resena): Observable<any> {
-    const resenaJson = JSON.stringify(resena);
-    const params = 'data=' + encodeURIComponent(resenaJson);
-    const headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');  // Cambiar a JSON
 
-    console.log('Datos enviados al backend:', params); // Log de los datos enviados
+    console.log('Datos enviados al backend:', resena); // Log de los datos enviados
 
-    return this._http.post(`${this.urlAPI}`, params, { headers });
+    return this._http.post(`${this.urlAPI}`, resena, { headers });  // Enviar datos directamente como JSON
   }
 
   // Obtener todas las reseñas
@@ -51,20 +46,9 @@ export class ResenaService {
 
   // Actualizar una reseña existente
   actualizarResena(id: number, resena: Resena): Observable<any> {
-    const resenaJson = JSON.stringify(resena);
-    const headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');  // Cambiar a JSON
 
-    const body = new URLSearchParams();
-    body.set('idUsuario', resena.idUsuario.toString());
-    body.set('idParque', resena.idParque.toString());
-    body.set('comentario', resena.comentario);
-    body.set('calificacion', resena.calificacion.toString());
-    body.set('fechaResena', resena.fechaResena);
-
-    return this._http.put(`${this.urlAPI}/${id}`, body.toString(), { headers });
+    return this._http.put(`${this.urlAPI}/${id}`, resena, { headers });
   }
 
   // Eliminar una reseña

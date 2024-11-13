@@ -19,39 +19,41 @@ export class LoginComponent {
   constructor(private loginService: LoginService, private router: Router) {}
 
   onLogin() {
-    this.loginService.login(this.correo, this.contrasena).subscribe({
-      next: (response) => {
-        console.log(response); // Ver el formato de la respuesta
+  this.loginService.login(this.correo, this.contrasena).subscribe({
+    next: (response) => {
+      console.log(response); // Verificar la respuesta para asegurarse de la estructura
 
-        if (response.status !== 401 && response.token && response.role) {
-          // Almacena el token en sessionStorage
-          sessionStorage.setItem('token', response.token);
+      if (response.token) {
+        // Almacena el token
+        sessionStorage.setItem('token', response.token);
 
-          // Obtener la identidad del usuario desde el backend usando el token
-          this.loginService.getIdentityFromAPI().subscribe({
-            next: (resp) => {
-              console.log(resp); // Verifica la identidad
-              this.loginService.setSession(response.token, response.role, resp);
-              // Guarda la identidad en sessionStorage
-              sessionStorage.setItem('idUsuario', JSON.stringify(resp));
-
-              // Redirige a la página principal
-              this.router.navigate(['/home']);
-            },
-            error: (error) => {
-              console.error('Error al obtener la identidad', error);
-              this.errorMessage = 'Error al obtener la identidad del usuario';
-            }
-          });
-        } else {
-          console.error('Error de credenciales', response.message);
-          this.errorMessage = response.message || 'Credenciales incorrectas';
-        }
-      },
-      error: (error) => {
-        console.error('Error en el inicio de sesión:', error);
-        this.errorMessage = error.error?.message || 'Error en el inicio de sesión, correo o contraseña incorrectos';
+        // Llama a getIdentityFromAPI para obtener la identidad completa del usuario
+        this.loginService.getIdentityFromAPI().subscribe({
+          next: (resp) => {
+            console.log(resp); // Verifica la identidad
+            this.loginService.setSession(response.token, response.role || '', resp);
+            sessionStorage.setItem('idUsuario', JSON.stringify(resp));
+            this.router.navigate(['/home']);
+          },
+          error: (error) => {
+            console.error('Error al obtener la identidad', error);
+            this.errorMessage = 'Error al obtener la identidad del usuario';
+          }
+        });
+      } else {
+        this.handleLoginError('Credenciales incorrectas');
       }
-    });
+    },
+    error: (error) => {
+      this.handleLoginError(error.error?.message || 'Correo o contraseña incorrectos');
+    }
+  });
+}
+
+  
+  private handleLoginError(message: string) {
+    // Asigna el mensaje de error a la variable para mostrarlo en la interfaz
+    this.errorMessage = message;
   }
+  
 }
