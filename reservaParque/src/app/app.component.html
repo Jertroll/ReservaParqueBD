@@ -1,5 +1,5 @@
-<div class="container-fluid">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container-fluid"> 
+  <nav class="navbar navbar-expand-lg navbar-transparent">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Tropical Walk</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +33,25 @@
             </li>
           </ng-template>
         </ul>
+        <!-- Conditional rendering for login/logout buttons based on 'identity' -->
+        @if(!identity){
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a [routerLink]="['login']">Login</a></li>
+            <li class="nav-item"><a  [routerLink]="['reserva']">Reserva</a></li>
+            <li class="nav-item"><a  [routerLink]="['Admin']">Admin</a></li> 
+            <li class="nav-item"><a  [routerLink]="['Facturas']">Ver Reservas</a></li>
+          </ul>
+        }    
+        @else {
+          <ul class="navbar-nav navbar-right">
+            @if(identity.image){
+              <li class="m-1">
+                <img src="" alt="Usuario autenticado">
+              </li>
+            }
+            <!-- Presentamos un dropdown con opciones del menú para otras funcionalidades-->
+          </ul>
+        }  
       </div>
     </div>
   </nav>
@@ -42,21 +61,23 @@
 <br><br>
 
 <!-- Footer -->
-<footer class="text-white text-center text-lg-start" style="background-color: #228B22;">
+<footer class="text-white text-center text-lg-start" style="background: linear-gradient(90deg, rgba(171, 206, 212, 0.5), rgba(112, 213, 247, 0.5), rgba(106, 247, 106, 0.5)); color: rgb(15, 15, 15);">
+  <!-- Grid container -->
   <div class="container-fluid p-4">
+    <!-- Grid row -->
     <div class="row mt-4">
+      <!-- Grid column -->
       <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Acerca de Nosotros</h5>
         <p>
           En Tropical Walk, nos apasiona conectar a las personas con la belleza natural de los parques nacionales de CR. Nos hemos dedicado a ofrecer experiencias únicas y memorables que permiten a nuestros clientes explorar y disfrutar de la biodiversidad y el esplendor de los entornos naturales protegidos.
         </p>
       </div>
-
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4 pb-1">Ubicacion</h5>
         <ul class="fa-ul" style="margin-left: 1.65em;">
           <li class="mb-3">
-            <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Guanacaste, Liberia , CR</span>
+            <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Guanacate, Liberia, CR</span>
           </li>
           <li class="mb-3">
             <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">TropicalwalkInfo.com</span>
@@ -70,8 +91,9 @@
         </ul>
       </div>
 
+      <!-- Grid column -->
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase mb-4">Horarios de Atencion al Cliente</h5>
+        <h5 class="text-uppercase mb-4">Horarios de Atención al Cliente</h5>
         <table class="table text-center text-white">
           <tbody class="font-weight-normal">
             <tr>
@@ -79,13 +101,15 @@
               <td>8 am - 9 pm</td>
             </tr>
             <tr>
-              <td>Sabado - Domingo:</td>
+              <td>Sábado - Domingo:</td>
               <td>8 am - 1 pm</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <!-- Grid column -->
     </div>
+    <!-- Grid row -->
   </div>
 
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

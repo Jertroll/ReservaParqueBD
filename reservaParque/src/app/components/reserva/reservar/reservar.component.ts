@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { timer } from 'rxjs';
+import { timer, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Tour } from '../../../models/tour';
 import { TourService } from '../../../services/tour.service';
 import { Reserva } from '../../../models/reserva';
@@ -13,7 +14,7 @@ import { EmpleadoService } from '../../../services/empleado.service';
 import { FacturaService } from '../../../services/factura.service';
 import { Factura } from '../../../models/factura';
 import { server } from '../../../services/global';
-import { getIssFromSession } from '../../../services/global';
+import { LoginService } from '../../../services/login.service';
 
 interface TourSeleccionable extends Tour {
   seleccionado?: boolean;
@@ -29,7 +30,7 @@ interface TourSeleccionable extends Tour {
   templateUrl: './reservar.component.html',
   styleUrls: ['./reservar.component.css']
 })
-export class ReservarComponent {
+export class ReservarComponent implements OnInit {
   public status: number = -1;
   public tours: TourSeleccionable[] = [];
   public reserva: Reserva = new Reserva(0, 0, '', []);
@@ -37,16 +38,18 @@ export class ReservarComponent {
   public empleados: Empleado[] = [];
   public factura: Factura = new Factura(0,0,'',0,0,0,0);
   public mostrarInfoFactura: boolean = false;
-  public facturaId: number=0 ;
-  public url:string;
+  public facturaId: number = 0;
+  public url: string;
+
   constructor(
     private tourService: TourService,
     private reservaService: ReservaService,
     private detalleService: DetalleService,
     private empleadoService: EmpleadoService,
-    private facturaService: FacturaService
+    private facturaService: FacturaService,
+    private loginService: LoginService
   ) {
-    this.url=server.url
+    this.url = server.url;
   }
 
   ngOnInit() {
@@ -55,150 +58,176 @@ export class ReservarComponent {
   }
 
   mostrarEmpleados() {
-    this.empleadoService.obtenerEmpleados().subscribe(
-      (response) => {
-        this.empleados = response.data.filter((empleado: Empleado) => empleado.rol === 'guia')
-           .map((empleado: Empleado)=>({ ...empleado, seleccionado: false }));
-      },
-      error => {
+    this.empleadoService.obtenerEmpleados().pipe(
+      catchError(error => {
         console.error('Error cargando empleados', error);
+        return of({ status: 500, message: 'Error', data: [] }); // Retorna un objeto con `data` vacío si ocurre un error
+      })
+    ).subscribe(
+      (response) => {
+        if ('data' in response) {
+          this.empleados = response.data.filter((empleado: Empleado) => empleado.rol === 'guia');
+        } else {
+          this.empleados = [];
+        }
       }
     );
   }
+  
 
   mostrarTours() {
-    this.tourService.verTours().subscribe(
-      (response) => {
-        this.tours = response.tours;
-      },
-      error => {
+    this.tourService.verTours().pipe(
+      catchError(error => {
         console.error('Error cargando tours', error);
+        return of({ tours: [] });
+      })
+    ).subscribe(
+      (response) => {
+        const toursResponse = response as { tours: Tour[] };
+        this.tours = toursResponse.tours;
       }
     );
   }
+  
 
   onTourSelectionChange(tour: TourSeleccionable, event: any) {
     tour.seleccionado = event.target.checked;
     if (tour.seleccionado) {
-      if (!tour.fechaSeleccionada) {
-        tour.fechaSeleccionada = new Date().toISOString().split('T')[0]; // Por defecto la fecha de hoy
-      }
-      tour.empleadoSeleccionado = 0;
-      tour.cantVisitantes = 0;
-
-      this.detallesReserva.push(new Detalle(0, 0, tour.fechaSeleccionada, '', tour.empleadoSeleccionado ?? 0, tour.cantVisitantes, 0, 0, tour.idTour));
+      tour.fechaSeleccionada = tour.fechaSeleccionada || new Date().toISOString().split('T')[0];
+      tour.empleadoSeleccionado = tour.empleadoSeleccionado ?? 0; // Asegura un valor predeterminado
+      tour.cantVisitantes = tour.cantVisitantes ?? 1; // Asegura al menos 1 visitante
+      
+      // Crea un nuevo detalle con valores seguros y válidos
+      this.detallesReserva.push(new Detalle(
+        0, 
+        tour.idTour, 
+        tour.fechaSeleccionada, 
+        '', 
+        tour.empleadoSeleccionado, 
+        tour.cantVisitantes, 
+        0, 
+        0, 
+        0
+      ));
     } else {
       this.detallesReserva = this.detallesReserva.filter(det => det.tour !== tour.idTour);
     }
   }
+  
 
   onSubmit(reservaForm: any) {
-    const idUsuario = parseInt(getIssFromSession());
-    console.log('getIssFromSession:',getIssFromSession());// Captura el ID del cliente desde sessionStorage
+    const idUsuario = this.loginService.getUserId();
+    if (idUsuario === null) {
+      console.error('ID de usuario no encontrado');
+      return;
+    }
+  
     const toursSeleccionados = this.tours.filter(tour => tour.seleccionado);
     if (toursSeleccionados.length === 0) {
       console.log('No se han seleccionado tours');
       return;
     }
   
-    this.detallesReserva = [];
-  
-    toursSeleccionados.forEach(tour => {
-      let fechaTour: string = '';
-      if (tour.fechaSeleccionada) {
-        const date = new Date(tour.fechaSeleccionada);
-        const day = ('0' + date.getDate()).slice(-2);
-        const month = ('0' + (date.getMonth() + 1)).slice(-2);
-        const year = date.getFullYear();
-        fechaTour = `${year}-${month}-${day}`;  // Formato YYYY-MM-DD
-      }
-  
-      if (tour.cantVisitantes === undefined || tour.cantVisitantes < 1) {
-        console.error('El campo cantVisitantes es inválido para el tour:', tour.idTour);
-        return;
-      }
-  
-      const empleadoId = tour.empleadoSeleccionado;
-      if (empleadoId === undefined) {
-        console.error('El campo empleadoSeleccionado es inválido para el tour:', tour.idTour);
-        return;
-      }
-  
-      const detalle = new Detalle(0, 0, fechaTour, "", empleadoId, tour.cantVisitantes, 0, 0, tour.idTour);
-      this.detallesReserva.push(detalle);
+    // Crear los detalles de la reserva a partir de los tours seleccionados
+    this.detallesReserva = toursSeleccionados.map(tour => {
+      const fechaTour = tour.fechaSeleccionada || new Date().toISOString().split('T')[0];
+      return new Detalle(
+        0,
+        tour.idTour,
+        fechaTour,
+        '',
+        tour.empleadoSeleccionado ?? 0,
+        tour.cantVisitantes ?? 1,
+        0,
+        0,
+        0
+      );
     });
   
+    if (this.detallesReserva.length === 0) {
+      console.error('No se han agregado detalles de reserva válidos');
+      return;
+    }
+  
+    // Crear la reserva con el usuario y detalles válidos
     const reserva = new Reserva(
-      0, // No es necesario enviar idReserva desde el frontend
-      idUsuario, // Asigna el ID del cliente aquí
+      0,
+      idUsuario,
       new Date().toISOString().split('T')[0],
       this.detallesReserva
     );
   
-    console.log('Datos de reserva a enviar:', reserva);
+    console.log('Reserva a enviar:', reserva);
+  
     this.reservaService.crear(reserva).subscribe(
       (response) => {
         console.log('Reserva exitosa:', response);
-        this.saveDetallesReserva(response.reserva.id);
-        const reservaId = response.reserva.idReserva;
-        this.createFactura(reservaId);
+        const idReserva = response.reserva.idReserva;
+        this.saveDetallesReserva(idReserva, this.detallesReserva); // Envía todos los detalles juntos
+        this.createFactura(idReserva);
+        this.mostrarFactura
+        // Limpia el formulario después de enviar
         reservaForm.reset();
+        this.detallesReserva = [];
         this.tours.forEach(tour => tour.seleccionado = false);
-        this.changeStatus(0);
       },
-      error => {
-        console.error('Error al hacer la reserva:', error);
-        this.changeStatus(2);
+      (error) => {
+        console.error('Error al crear la reserva:', error);
       }
     );
   }
+
+    saveDetallesReserva(idReserva: number, detallesReserva: Detalle[]): void {
+      detallesReserva.forEach(detalle => {
+        detalle.idReserva = idReserva;
+        this.detalleService.crear(detalle).subscribe({
+          next: (response) => {
+            console.log('Detalle de reserva creado:', response);
+          },
+          error: (error) => {
+            console.error('Error creando detalle de reserva:', error);
+          }
+        });
+      });
+    }
+    
   
 
-  saveDetallesReserva(reservaId: number) {
-    this.detallesReserva.forEach(detalle => {
-      detalle.idReserva = reservaId;
-      this.detalleService.crear(detalle).subscribe(
-        (response) => {
-          console.log('Detalle creado:', response);
-        },
-        (error: Error) => {
-          console.error('Error creando detalle:', error);
-        }
-      );
-    });
-  }
   createFactura(reservaId: number) {
-    const fechaEmision = new Date().toISOString().split('T')[0]
-    this.facturaService.crear(reservaId,fechaEmision).subscribe(
-      (response) => {
-        console.log('Factura creada:', response);
-        const facturaId = response.factura.idFactura; // Asume que la respuesta contiene el ID de la factura
-        this.mostrarFactura(facturaId);
-      },
-      (error) => {
+    this.facturaService.crear(reservaId).pipe(
+      catchError(error => {
         console.error('Error creando factura:', error);
+        return of(null);
+      })
+    ).subscribe(
+      (response) => {
+        if (response?.factura?.idFactura) {
+          console.log('Factura creada:', response);
+          this.mostrarFactura(response.factura.idFactura);
+        }
       }
     );
   }
-  mostrarFactura(facturaId: number){
-    this.facturaService.mostrarFactura(facturaId).subscribe(
-      (response) => {
-        this.factura = response;
-        console.log('Factura obtenida:', this.factura);
-        this.mostrarInfoFactura = true; 
-        // Aquí puedes agregar la lógica para mostrar la factura en la interfaz de usuario
-      },
-      (error) => {
+
+  mostrarFactura(facturaId: number) {
+    this.facturaService.mostrarFactura(facturaId).pipe(
+      catchError(error => {
         console.error('Error obteniendo factura:', error);
+        return of(null);
+      })
+    ).subscribe(
+      (response) => {
+        if (response) {
+          this.factura = response;
+          this.mostrarInfoFactura = true;
+          console.log('Factura obtenida:', this.factura);
+        }
       }
     );
   }
 
   changeStatus(st: number) {
     this.status = st;
-    let countdown = timer(5000);
-    countdown.subscribe(() => {
-      this.status = -1;
-    });
+    timer(5000).subscribe(() => this.status = -1);
   }
 }

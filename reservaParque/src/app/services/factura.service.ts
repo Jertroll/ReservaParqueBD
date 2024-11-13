@@ -32,17 +32,19 @@ export class FacturaService{
             })
           );
       }
-
-      crear(idReserva: number,fechaEmision:string): Observable<any> {
-        let params = `idReserva=${idReserva}&fechaEmision=${fechaEmision}`;
-        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-        let options = {
-          headers
-        };
-        return this._http.post(this.urlAPI + 'factura', params, options);
-      
+      getAllFacturas(): Observable<any> {
+        return this._http.get<any>(`${this.urlAPI}factura/`);
     }
-
+        
+      crear(idReserva: number): Observable<any> {
+        let body = { idReserva };
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.post(this.urlAPI + 'factura', body, { headers });
+    }
+    
+    getFacturasPorUsuario(idUsuario: number): Observable<any> {
+        return this._http.get(`${this.urlAPI}facturasUsuarios/${idUsuario}`);
+      }
 
     
 }

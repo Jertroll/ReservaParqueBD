@@ -1,3 +1,10 @@
+export interface Detalle {
+  NombreUsuario: string;
+  fechaReserva: Date;
+  NombreTour: string;
+  duracion:number;
+}
+
 export class Detalle {
   idDetalleReserva: number;
   tour: number;

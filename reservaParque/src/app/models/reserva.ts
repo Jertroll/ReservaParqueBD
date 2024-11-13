@@ -1,4 +1,10 @@
 import { Detalle } from "./detalle"; 
+export interface Reserva {
+  fechaInicio:string;
+  fechaFinal: string;
+  nombreUsuario:string;
+  correoUsuario:string;
+}
 export class Reserva {
   idReserva: number;
   idUsuario: number;

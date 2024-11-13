@@ -11,11 +11,15 @@ import { ParquerudComponent } from './components/parqueNacional/parquerud/parque
 import { EmpleadoCreateComponent } from './components/empleado/empleado-create/empleado-create.component';
 import { EmpleadoUpComponent } from './components/empleado/empleadoup/empleadoup.component';
 import { ReservarComponent } from './components/reserva/reservar/reservar.component';
+import { MostrarReservaComponent } from './components/reserva/mostrar-reserva/mostrar-reserva.component';
 import { AdminComponent } from './components/Admin/admin.component';
 import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usuario.component';
 import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
-import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
+//import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
 import { ClienteComponent } from './components/usuario/Cliente/cliente/cliente.component';
+import { DetallesUsuarioComponent } from './components/detalles/detalles-usuario/detalles-usuario.component';
+import { FacturasUsuarioComponent } from './components/factura/facturas-usuario/facturas-usuario.component';
+import { FacturacliComponent } from './components/factura/facturacli/facturacli.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent},
@@ -26,7 +30,7 @@ export const routes: Routes = [
 {path: 'agregarTour', component:AgregarTourComponent},
 {path: 'tours', component:CrudTourComponent},
 {path: 'agregarEmpleado', component:EmpleadoCreateComponent},
-{path: 'parques/:idParque/tours', component: ToursParqueComponent },
+//{path: 'parques/:idParque/tours', component: ToursParqueComponent },
 {path: 'agregarCliente', component:ClienteComponent},
 
 
@@ -34,9 +38,12 @@ export const routes: Routes = [
 {path: "parqueRUD", component:ParquerudComponent},
 {path: "empleadosTable", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},
+{path:'reservas-usuarios',component:MostrarReservaComponent},
+{path:'detallesUsuario',component:DetallesUsuarioComponent},
 {path: 'agregarUsuario', component:AgregarUsuarioComponent},
 { path: 'usuariosTable', component: CrudUsuarioComponent },
 { path: 'Admin', component: AdminComponent },
-{path: "parqueRUD", component:ParquerudComponent}
-
+{path: "parqueRUD", component:ParquerudComponent},
+{path:'FacturasUsuarios',component:FacturasUsuarioComponent},
+{path:'Facturas',component:FacturacliComponent}
 ];

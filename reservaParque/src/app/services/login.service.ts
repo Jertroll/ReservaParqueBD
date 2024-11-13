@@ -62,6 +62,15 @@ export class LoginService {
     sessionStorage.removeItem('identity');  // También eliminamos la identidad
     this.router.navigate(['/login']);  // Redirigir al login o la página de inicio de sesión
   }
+  getUserId(): number | null {
+    const identity = sessionStorage.getItem('identity');
+    if (identity) {
+        const user = JSON.parse(identity);
+        return parseInt(user.user_id) || null; // Convertir el ID a número
+    }
+    return null;
+}
+
 
   getToken(): string | null {
     return sessionStorage.getItem('token');

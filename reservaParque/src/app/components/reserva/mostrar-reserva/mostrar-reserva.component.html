@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>Buscar Reservas por Fecha</h2>
+  <form (ngSubmit)="obtenerReservasPorFecha()">
+    <div class="form-group">
+      <label for="fechaInicio">Fecha de Inicio</label>
+      <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio" name="fechaInicio" required>
+    </div>
+    <div class="form-group">
+      <label for="fechaFinal">Fecha de Finalización</label>
+      <input type="date" id="fechaFinal" [(ngModel)]="fechaFinal" name="fechaFinal" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+
+  <!-- Mostrar el mensaje "Reservas Encontradas" solo si ya se ha hecho la búsqueda y hay reservas -->
+  <h3 *ngIf="isSearched && reservas.length > 0">Reservas Encontradas</h3>
+
+  <!-- Mostrar el mensaje de "No se encontraron reservas" solo si ya se ha hecho la búsqueda y no hay reservas -->
+  <p *ngIf="isSearched && reservas.length === 0">No se encontraron reservas para las fechas seleccionadas.</p>
+
+  <!-- Tabla 1: Mostrar reservas filtradas por fecha -->
+  <table class="table table-bordered" *ngIf="reservas.length > 0">
+    <thead>
+      <tr>
+        <th>id de la reserva </th>
+        <th>id del usuario</th>
+        <th>Fecha de la reserva </th>
+        <th>Nombre del usuario</th>
+        <th>Correo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.idReserva }}</td>
+        <td>{{ reserva.idUsuario }}</td>
+        <td>{{ reserva.fechaReserva | date: 'shortDate' }}</td>
+        <td>{{ reserva.nombreUsuario }}</td>
+        <td>{{ reserva.correoUsuario }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botón para cargar y mostrar la segunda tabla -->
+  <button class="btn btn-secondary" (click)="mostrarDetallesReservas()">
+    Mostrar Reservas de Usuarios
+  </button>
+
+  <!-- Tabla 2: Mostrar todas las reservas de usuarios (visible solo después de hacer clic en el botón) -->
+  <div *ngIf="mostrarDetalles">
+    <h2>Reservas de Usuarios</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre del Usuario</th>
+          <th>Fecha de Reserva</th>
+          <th>Nombre del Tour</th>
+          <th>Fecha del Tour</th>
+          <th>Cantidad de Visitantes</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let detalle of detallesReserva">
+          <td>{{ detalle.NombreUsuario }}</td>
+          <td>{{ detalle.fechaReserva | date: 'shortDate' }}</td>
+          <td>{{ detalle.NombreTour }}</td>
+          <td>{{ detalle.fechaTour | date: 'shortDate' }}</td>
+          <td>{{ detalle.cantVisitantes }}</td>
+          <td>{{ detalle.subTotal | currency: 'USD' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

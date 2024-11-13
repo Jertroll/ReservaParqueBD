@@ -8,45 +8,32 @@ import { Detalle } from '../models/detalle';
   providedIn: 'root'
 })
 export class DetalleService {
-  private urlAPI:string
-  constructor(
-      private _http:HttpClient
-  ){
-      this.urlAPI=server.url
+  private urlAPI: string;
+
+  constructor(private _http: HttpClient) {
+    this.urlAPI = server.url;
   }
-  crear(detalle:Detalle):Observable<any>{
-    let reservaJson=JSON.stringify(detalle);
-    let params='data='+reservaJson;
-    let headers=new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-    let options={
-        headers
-    }
-    return this._http.post(this.urlAPI+'reserva',params,options);
+
+  crear(detalle: Detalle): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._http.post(this.urlAPI+'detalle', JSON.stringify(detalle), { headers: headers });
   }
+
 
   verDetalles(): Observable<{ status: number, message: string, data: Detalle[] }> {
     return this._http.get<{ status: number, message: string, data: Detalle[] }>(`${this.urlAPI}reserva`);
   }
-  actualizarDetalle(detalle: Detalle): Observable<any> {
-  let detalleJson = JSON.stringify(detalle);
-  let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-  /*let options = {
-    headers
-  }*/
-  const body = new URLSearchParams();
-    body.set('idReserva', detalle.idReserva.toString());
-    body.set('tour', detalle.tour.toString());
-    body.set('fechaTour', detalle.fechaTour);
-    body.set('horaTour', detalle.horaTour);
-    body.set('idEmpleado', detalle.idEmpleado.toString());
-    body.set('cantVisitantes', detalle.cantVisitantes.toString());
-    body.set('precioUnitario', detalle.precioUnitario.toString());
-    body.set('subTotal', detalle.subTotal.toString());
-
-
-  return this._http.put(`${this.urlAPI}reserva/${detalle.idDetalleReserva}`, body.toString(), { headers });
+  getReservasUsuario(idUsuario: number): Observable<{ status: number, message: string, data: any[] }> {
+    return this._http.get<{ status: number, message: string, data: any[] }>(`${this.urlAPI}detalles/${idUsuario}`);
   }
+  actualizarDetalle(detalle: Detalle): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(detalle);
+
+    return this._http.put(`${this.urlAPI}detalle/${detalle.idDetalleReserva}`, body, { headers });
+  }
+
   eliminarDetalle(id: number): Observable<any> {
-  return this._http.delete(`${this.urlAPI}reserva/${id}`);
+    return this._http.delete(`${this.urlAPI}detalle/${id}`);
   }
 }

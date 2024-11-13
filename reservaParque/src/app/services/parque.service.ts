@@ -81,4 +81,10 @@ export class ParqueService{
             })
           );
       }
+      obtenerToursPorParque(nombreParque: string): Observable<any[]> {
+        return this._http.get<any[]>(`${this.urlAPI}parques`, {
+          params: { nombreParque }
+        });
+      }
+      
 }

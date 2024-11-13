@@ -16,16 +16,21 @@ export class ReservaService {
   }
  
   crear(reserva: Reserva): Observable<any> { 
-   // const body = { reserva: reserva,clienteId:getIssFromSession()};
-    // servereserva.idUsuario=parseInt(getIssFromSession());
     return this._http.post<any>(`${this.urlAPI}reserva`, reserva);
   }
-  verReservas(): Observable<{ status: number, message: string, data: Reserva[] }> {
-    return this._http.get<{ status: number, message: string, data: Reserva[] }>(`${this.urlAPI}reserva`);
+  getReservasUsuarios(): Observable<any> {
+    return this._http.get<any>(`${this.urlAPI}reserva`);
   }
   verEmpleados(): Observable<{ status: number, message: string, data: Reserva[] }> {
     return this._http.get<{ status: number, message: string, data: Reserva[] }>(`${this.urlAPI}empleados`);
   }
+  getReservasPorFecha(fechaInicio: string, fechaFinal: string): Observable<any> {
+    const params = new HttpParams()
+        .set('fechaInicio', fechaInicio)
+        .set('fechaFinal', fechaFinal);
+
+    return this._http.post<any>(`${this.urlAPI}reserva/fecha`, {}, { params });
+}
   actualizarTour(reserva: Reserva): Observable<any> {
   let tourJson = JSON.stringify(reserva);
   let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');

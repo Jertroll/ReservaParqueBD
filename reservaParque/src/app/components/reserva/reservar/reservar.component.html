@@ -70,11 +70,11 @@
   <div *ngIf="mostrarInfoFactura" class="alert alert-info mt-3">
     <h4>Información de la Factura</h4>
     <p><strong>ID de Factura:</strong> {{ factura.idFactura }}</p>
-    <p><strong>Fecha de emision:</strong> {{ factura.fechaEmision }}</p>
-    <p><strong>Subtotal:</strong> {{ factura.subTotal }}</p>
-    <p><strong>Descuento:</strong> {{ factura.descuento }}</p>
-    <p><strong>Impuesto:</strong> {{ factura.impuesto }}</p>
-    <p><strong>Total:</strong> {{ factura.total }}</p>
+    <p><strong>Fecha de emision:</strong> {{ factura.fechaEmision | date }}</p>
+    <p><strong>Subtotal:</strong> {{ factura.subTotal | currency }}</p>
+    <p><strong>Descuento:</strong> {{ factura.descuento | percent }}</p>
+    <p><strong>Impuesto:</strong> {{ factura.impuesto | percent }}</p>
+    <p><strong>Total:</strong> {{ factura.total | currency }}</p>
     <!-- Agrega más detalles según la estructura de tu objeto 'factura' -->
   </div>
 </div>

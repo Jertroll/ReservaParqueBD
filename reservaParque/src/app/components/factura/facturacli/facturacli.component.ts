@@ -10,41 +10,35 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './facturacli.component.html',
-  styleUrls: ['./facturacli.component.css'] // Asegúrate de usar 'styleUrls' con 's' al final
+  styleUrls: ['./facturacli.component.css'] 
 })
-export class FacturacliComponent {
+export class FacturacliComponent implements OnInit {
   public status: number;
-  public factura: Factura;
-  public idReserva: number;
+  public facturas: Factura[] = [];
 
   constructor(private _facturaService: FacturaService) {
     this.status = -1;
-    this.factura = new Factura(0, 0, "", 0, 0, 0, 0);
-    this.idReserva = 0; // Asigna un valor predeterminado, actualízalo según sea necesario
   }
 
-  onSubmit(form: any) {
-    this._facturaService.crear(this.idReserva, this.factura).subscribe({
-      next: (response) => {
-        console.log(response);
+  ngOnInit(): void {
+    this.getFacturas();
+  }
+  getFacturas(): void {
+    this._facturaService.getAllFacturas().subscribe(
+      response => {
         if (response.status === 200) {
-          form.reset();
-          this.changeStatus(0);
+          // Asigna las facturas obtenidas a la variable local
+          this.facturas = response.data;
+          this.status = 200;
         } else {
-          this.changeStatus(1);
+          this.status = response.status;
         }
       },
-      error: (error: Error) => {
-        this.changeStatus(2);
+      error => {
+        console.error('Error fetching facturas:', error);
+        this.status = 500; // Status de error
       }
-    });
+    );
   }
-
-  changeStatus(st: number) {
-    this.status = st;
-    let countdown = timer(5000);
-    countdown.subscribe(() => {
-      this.status = -1;
-    });
-  }
+  
 }

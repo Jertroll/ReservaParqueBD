@@ -9,4 +9,6 @@ export class Factura {
       public total: number
     ) {}
   }
-  
+  export interface Factura {
+    NombreCliente: string;
+  }
