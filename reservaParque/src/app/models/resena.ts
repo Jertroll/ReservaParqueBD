@@ -1,11 +1,10 @@
 export class Resena {
     constructor(
-      public idTour: number,
-      public nombre: string,
+      public idResena: number,
+      public idUsuario: number,
       public idParque: number,
-      public precio: number,
-      public descripcion: string,
-      public horaInicio: number,
-      public duracion: number
+      public comentario: string,
+      public calificacion: number,
+      public fechaResena: string
     ) {}
   }

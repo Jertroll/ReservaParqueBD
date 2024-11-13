@@ -15,12 +15,12 @@ import { MostrarReservaComponent } from './components/reserva/mostrar-reserva/mo
 import { AdminComponent } from './components/Admin/admin.component';
 import { CrudUsuarioComponent } from './components/usuario/crud-usuario/crud-usuario.component';
 import { AgregarUsuarioComponent } from './components/usuario/agregar-usuario/agregar-usuario.component';
+//import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
+import { ClienteComponent } from './components/usuario/Cliente/cliente/cliente.component';
 import { DetallesUsuarioComponent } from './components/detalles/detalles-usuario/detalles-usuario.component';
 import { FacturasUsuarioComponent } from './components/factura/facturas-usuario/facturas-usuario.component';
 import { FacturacliComponent } from './components/factura/facturacli/facturacli.component';
-//import { ToursParqueComponent } from './components/parques/tours-parque/tours-parque.component'; 
-import { ClienteComponent } from './components/usuario/Cliente/cliente/cliente.component';
-
+import { ResenaAgregarComponent } from './components/resena/resena-agregar/resena-agregar.component';
 export const routes: Routes = [
 {path: '', component:HomeComponent},
 {path: 'home', component:HomeComponent},
@@ -33,6 +33,7 @@ export const routes: Routes = [
 //{path: 'parques/:idParque/tours', component: ToursParqueComponent },
 {path: 'agregarCliente', component:ClienteComponent},
 {path: "parqueRUD", component:ParquerudComponent},
+{path: "resenaAgregar", component:ResenaAgregarComponent},
 {path: "empleadosTable", component:EmpleadoUpComponent},
 {path:'reserva',component:ReservarComponent},
 {path:'reservas-usuarios',component:MostrarReservaComponent},

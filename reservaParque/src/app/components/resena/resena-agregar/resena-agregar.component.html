@@ -1,0 +1,64 @@
+<div class="container">
+    <h2>Reseñas</h2>
+    
+    <!-- Mensaje de estado -->
+    <p *ngIf="mensajeEstado" class="alert alert-info">{{ mensajeEstado }}</p>
+    
+    <!-- Formulario para agregar una reseña -->
+    <div class="card p-3 mb-4">
+        <h4>Agregar Reseña</h4>
+        <form (ngSubmit)="agregarResena()">
+            <!-- Campo ID Usuario (oculto) -->
+            <input type="hidden" [(ngModel)]="nuevaResena.idUsuario" name="idUsuario" />
+
+            <!-- Select ID Parque -->
+            <div class="form-group">
+                <label for="idParque">Parque Nacional</label>
+                <select id="idParque" class="form-control" [(ngModel)]="nuevaResena.idParque" name="idParque" required>
+                    <option *ngFor="let parque of parques" [value]="parque.idParque">
+                        {{ parque.nombre }}
+                    </option>
+                </select>
+            </div>
+            
+            <!-- Campo Comentario -->
+            <div class="form-group">
+                <label for="comentario">Comentario</label>
+                <textarea id="comentario" class="form-control" [(ngModel)]="nuevaResena.comentario" name="comentario" required></textarea>
+            </div>
+
+            <!-- Select Calificación -->
+            <div class="form-group">
+                <label for="calificacion">Calificación</label>
+                <select id="calificacion" class="form-control" [(ngModel)]="nuevaResena.calificacion" name="calificacion" required>
+                    <option *ngFor="let calificacion of [1, 2, 3, 4, 5]" [value]="calificacion">{{ calificacion }}</option>
+                </select>
+            </div>
+
+            <!-- Campo Fecha Reseña (solo lectura para evitar edición) -->
+            <div class="form-group">
+                <label for="fechaResena">Fecha de Reseña</label>
+                <input type="date" id="fechaResena" class="form-control" [(ngModel)]="nuevaResena.fechaResena" name="fechaResena" readonly />
+            </div>
+
+            <!-- Botones Agregar Reseña y Regresar -->
+            <div class="d-flex justify-content-between mt-3">
+                <button type="submit" class="btn btn-primary">Agregar Reseña</button>
+                <a [routerLink]="['/home']" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lista de reseñas -->
+    <div *ngIf="resenas.length > 0">
+        <h3>Lista de Reseñas</h3>
+        <ul class="list-group">
+            <li *ngFor="let resena of resenas" class="list-group-item">
+                <p><strong>Parque:</strong> {{ resena.idParque }}</p>
+                <p><strong>Comentario:</strong> {{ resena.comentario }}</p>
+                <p><strong>Calificación:</strong> {{ resena.calificacion }}</p>
+                <p><strong>Fecha:</strong> {{ resena.fechaResena }}</p>
+            </li>
+        </ul>
+    </div>
+</div>

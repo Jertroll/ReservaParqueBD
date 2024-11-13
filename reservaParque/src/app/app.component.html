@@ -1,5 +1,5 @@
-<div class="container-fluid">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container-fluid"> 
+  <nav class="navbar navbar-expand-lg navbar-transparent">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Tropical Walk</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,9 @@
           <!-- Botón de Guía visible solo para usuarios con rol de "Guia" y que no sean "usuario" -->
           <li *ngIf="isGuide" class="nav-item">
             <a class="nav-link" [routerLink]="['/guia']">Guía</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/resenaAgregar']">Reseña</a>
           </li>
         </ul>
         
@@ -42,9 +45,12 @@
 <br><br>
 
 <!-- Footer -->
-<footer class="text-white text-center text-lg-start" style="background-color: #228B22;">
+<footer class="text-white text-center text-lg-start" style="background: linear-gradient(90deg, rgba(171, 206, 212, 0.5), rgba(112, 213, 247, 0.5), rgba(106, 247, 106, 0.5)); color: rgb(15, 15, 15);">
+  <!-- Grid container -->
   <div class="container-fluid p-4">
+    <!-- Grid row -->
     <div class="row mt-4">
+      <!-- Grid column -->
       <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Acerca de Nosotros</h5>
         <p>
@@ -55,7 +61,7 @@
         <h5 class="text-uppercase mb-4 pb-1">Ubicacion</h5>
         <ul class="fa-ul" style="margin-left: 1.65em;">
           <li class="mb-3">
-            <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Guanacaste, Liberia , CR</span>
+            <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Guanacate, Liberia, CR</span>
           </li>
           <li class="mb-3">
             <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">TropicalwalkInfo.com</span>
@@ -68,6 +74,8 @@
           </li>
         </ul>
       </div>
+
+      <!-- Grid column -->
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
         <h5 class="text-uppercase mb-4">Horarios de Atención al Cliente</h5>
         <table class="table text-center text-white">
@@ -83,7 +91,9 @@
           </tbody>
         </table>
       </div>
+      <!-- Grid column -->
     </div>
+    <!-- Grid row -->
   </div>
 
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
