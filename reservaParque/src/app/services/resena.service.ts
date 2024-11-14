@@ -43,7 +43,15 @@ export class ResenaService {
       })
     );
   }
-
+  // Obtener reseñas por idParque
+  obtenerResenasPorParque(idParque: number): Observable<Resena[]> {
+    return this._http.get<Resena[]>(`${this.urlAPI}/parque/${idParque}`).pipe(
+      catchError((error) => {
+        console.error(`Error al obtener reseñas para el parque con ID ${idParque}:`, error);
+        return throwError(error);
+      })
+    );
+  }
   // Actualizar una reseña existente
   actualizarResena(id: number, resena: Resena): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');  // Cambiar a JSON
