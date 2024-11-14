@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>Lista de Reservas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID Reserva</th>
+        <th>ID Cliente</th>
+        <th>Fecha Reserva</th>
+        <th>Detalles del Tour</th>
+        <th>Cantidad de Visitantes</th>
+        <th>Guía</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.idReserva }}</td>
+        <td>{{ reserva.idCliente }}</td>
+        <td>{{ reserva.fechaReserva }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let detalle of reserva.detallesReserva">
+              Tour: {{ detalle.tour }} - Fecha: {{ detalle.fechaTour }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let detalle of reserva.detallesReserva">
+              Cantidad de Visitantes: {{ detalle.cantVisitantes }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let detalle of reserva.detallesReserva">
+              Guía: {{ detalle.idEmpleado }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botón de regresar -->
+  <button class="btn btn-secondary mt-3" (click)="regresar()">Regresar</button>
+</div>
+
