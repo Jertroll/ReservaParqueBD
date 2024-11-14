@@ -1,4 +1,5 @@
 <div>
+  <!-- Búsqueda de Tours por Nombre de Parque -->
   <div>
     <input 
       type="text" 
@@ -7,58 +8,94 @@
     />
     <button (click)="buscarTours()" style="background-color: #369746; color: white;">Buscar</button>
   </div>
-  
+
+  <!-- Resultados de Tours -->
   <div *ngIf="tours.length > 0" class="tour-results">
     <h3>Tours en {{ nombreParque }}</h3>
     <div *ngFor="let tour of tours" class="tour-item">
       <h4>{{ tour.nombre }}</h4>
       <p>Precio: {{ tour.precio | currency: 'USD' }}</p>
       <p>Descripción: {{ tour.descripcion }}</p>
-      <p>Hora de inicio: {{ tour.horaInicio.substring(0, 5)  }}</p>
-      <p>Duración: {{ tour.duracion .substring(0, 5)  }}</p>
+      <p>Hora de inicio: {{ tour.horaInicio.substring(0, 5) }}</p>
+      <p>Duración: {{ tour.duracion.substring(0, 5) }}</p>
     </div>
     <button (click)="regresar()" style="background-color: #080808; color: white;">Regresar</button> 
   </div>
-  
+
   <div *ngIf="tours.length === 0 && nombreParque">
     <p>No se encontraron tours para el parque ingresado.</p>
   </div>
-    <h1>Parques Nacionales</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Ubicacion</th>
-          <th>Descripción</th>
-          <th>Tipo Bosque</th>
-          <th>Tipo Clima</th>
-          <th>Correo</th>
-          <th>Telefono</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngIf="parques && parques.length > 0; else noParques">
-          <tr *ngFor="let parque of parques">
-            <td>{{ parque.idParque }}</td>
-            <td>{{ parque.nombre }}</td>
-            <td>{{ parque.ubicacion }}</td>
-            <td>{{ parque.descripcion }}</td>
-            <td>{{ parque.tipoBosque }}</td>
-            <td>{{ parque.tipoClima }}</td>
-            <td>{{ parque.correo }}</td>
-            <td>{{ parque.telefono }}</td>
-          </tr>
-        </ng-container>
-        <ng-template #noParques>
-          <tr>
-            <td colspan="9">No hay parques disponibles.</td>
-          </tr>
-        </ng-template>
-      </tbody>
-    </table>
-  </div>
-  
 
-  
+  <!-- Tabla de Parques con Reseñas -->
+  <br><br>
+  <div class="parque-container">
+    <h6>Lista de Parques Nacionales</h6>
+
+    <div *ngIf="parques.length > 0; else noParques">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID Parque</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Descripción</th>
+            <th>Tipo Bosque</th>
+            <th>Tipo Clima</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Reseñas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let parque of parques">
+            <tr>
+              <td>{{ parque.idParque }}</td>
+              <td>{{ parque.nombre }}</td>
+              <td>{{ parque.ubicacion }}</td>
+              <td>{{ parque.descripcion }}</td>
+              <td>{{ parque.tipoBosque }}</td>
+              <td>{{ parque.tipoClima }}</td>
+              <td>{{ parque.correo }}</td>
+              <td>{{ parque.telefono }}</td>
+              <td>
+                <button (click)="toggleResenas(parque)">
+                  {{ parque.showResenas ? 'Ocultar Reseñas' : 'Ver Reseñas' }}
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="parque.showResenas">
+              <td colspan="9">
+                <div *ngIf="parque.resenas && parque.resenas.length > 0">
+                  <h5>Reseñas</h5>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Comentario</th>
+                        <th>Calificación</th>
+                        <th>Fecha</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let resena of parque.resenas">
+                        <td>{{ resena.comentario }}</td>
+                        <td>{{ resena.calificacion }}</td>
+                        <td>{{ resena.fechaResena}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div *ngIf="!parque.resenas || parque.resenas.length === 0">
+                  <p>No hay reseñas disponibles</p>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noParques>
+      <p>No hay parques disponibles.</p>
+    </ng-template>
+  </div>
+</div>

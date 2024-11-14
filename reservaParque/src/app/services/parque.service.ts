@@ -86,5 +86,26 @@ export class ParqueService{
           params: { nombreParque }
         });
       }
+      obtenerParquesConResenas(): Observable<Parque[]> {
+        return this._http.get<{ status: number, message: string, data: Parque[] }>(`${this.urlAPI}parqueResena`).pipe(
+          map(response => {
+            // Si la respuesta contiene un arreglo de parques en "data", se lo retornamos directamente
+            if (Array.isArray(response.data)) {
+              return response.data.map(parque => ({
+                ...parque,
+                showDetails: false,
+                resenas: [] // Inicializamos las reseñas vacías
+              }));
+            } else {
+              // Si la respuesta no contiene parques, retornamos un arreglo vacío
+              return [];
+            }
+          }),
+          catchError(error => {
+            console.error('Error al obtener parques con reseñas:', error);
+            return throwError(error);
+          })
+        );
+      }
       
 }
