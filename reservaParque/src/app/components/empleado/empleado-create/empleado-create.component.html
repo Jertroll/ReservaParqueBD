@@ -11,52 +11,54 @@
       <p>Error de servidor!</p>
     </div>
   </span>
+  
   <form class="col-md-8 mx-auto" #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
+    
+    <!-- Cédula -->
+    <label for="cedula">Cédula</label>
+    <input id="cedula" type="text" #cedula="ngModel" class="form-control" name="cedula" [(ngModel)]="empleado.cedula" required>
+    <small *ngIf="!cedula.valid && cedula.touched" class="invalid-feedback d-block">Cédula es requerida</small>
 
-      <label for="cedula">Cédula</label>
-      <input id="cedula" type="text" #cedula="ngModel" class="form-control" name="cedula"
-        [(ngModel)]="empleado.cedula" required>
-      <small *ngIf="!cedula.valid && cedula.touched" class="invalid-feedback d-block">Cédula es requerida</small>
-      
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre"
-          pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="empleado.nombre" required>
-        <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">Formato no válido</small>
+    <!-- Nombre -->
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" #nombre="ngModel" class="form-control" name="nombre" pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="empleado.nombre" required>
+    <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">Formato no válido</small>
 
-        <label for="apellido">Apellido</label>
-        <input id="apellido" type="text" #apellido="ngModel" class="form-control" name="apellido"
-          pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="empleado.apellido" required>
-        <small *ngIf="!apellido.valid && apellido.touched" class="invalid-feedback d-block">Formato no válido</small>
+    <!-- Apellido -->
+    <label for="apellido">Apellido</label>
+    <input id="apellido" type="text" #apellido="ngModel" class="form-control" name="apellido" pattern="^(?=.*[a-z])(?=.*[A-Z]).{4,}$" [(ngModel)]="empleado.apellido" required>
+    <small *ngIf="!apellido.valid && apellido.touched" class="invalid-feedback d-block">Formato no válido</small>
 
-      <label for="correo">Correo</label>
-      <input id="correo" type="email" #correo="ngModel" class="form-control" name="correo" 
-        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$" [(ngModel)]="empleado.correo" required>
-      <small *ngIf="!correo.valid && correo.touched" class="invalid-feedback d-block">Formato inválido</small>
+    <!-- Correo -->
+    <label for="correo">Correo</label>
+    <input id="correo" type="email" #correo="ngModel" class="form-control" name="correo" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$" [(ngModel)]="empleado.correo" required>
+    <small *ngIf="!correo.valid && correo.touched" class="invalid-feedback d-block">Formato inválido</small>
 
-      <label for="contrasena">Contraseña</label>
-      <input id="contrasena" type="password" #contrasena="ngModel" class="form-control" name="contrasena" 
-        pattern=".{6,}" [(ngModel)]="empleado.contrasena" required>
-      <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">
-        La contraseña debe tener al menos 6 caracteres.
-      </small>
-      
+    <!-- Contraseña -->
+    <label for="contrasena">Contraseña</label>
+    <input id="contrasena" type="password" #contrasena="ngModel" class="form-control" name="contrasena" pattern=".{6,}" [(ngModel)]="empleado.contrasena" required>
+    <small *ngIf="!contrasena.valid && contrasena.touched" class="invalid-feedback d-block">La contraseña debe tener al menos 6 caracteres.</small>
 
-      <label for="telefono">Teléfono</label>
-      <input id="telefono" type="text" #telefono="ngModel" class="form-control" name="telefono" 
-        [(ngModel)]="empleado.telefono" required>
-      <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">Formato inválido</small>
+    <!-- Teléfono -->
+    <label for="telefono">Teléfono</label>
+    <input id="telefono" type="text" #telefono="ngModel" class="form-control" name="telefono" [(ngModel)]="empleado.telefono" required>
+    <small *ngIf="!telefono.valid && telefono.touched" class="invalid-feedback d-block">Formato inválido</small>
 
-      <label for="fechaIngreso">Fecha de Ingreso</label>
-      <input id="fechaIngreso" type="date" #fechaIngreso="ngModel" class="form-control" name="fechaIngreso"
-        [(ngModel)]="empleado.fechaIngreso" required>
-      <small *ngIf="!fechaIngreso.valid && fechaIngreso.touched" class="invalid-feedback d-block">Fecha de ingreso es requerida</small>
+    <!-- Fecha de Ingreso -->
+    <label for="fechaIngreso">Fecha de Ingreso</label>
+    <input id="fechaIngreso" type="date" #fechaIngreso="ngModel" class="form-control" name="fechaIngreso" [(ngModel)]="empleado.fechaIngreso" required>
+    <small *ngIf="!fechaIngreso.valid && fechaIngreso.touched" class="invalid-feedback d-block">Fecha de ingreso es requerida</small>
 
-      <label for="roll">Rol</label>
-      <input id="rol" type="text" #rol="ngModel" class="form-control" name="rol"
-        [(ngModel)]="empleado.rol" required>
-      <small *ngIf="!rol.valid && rol.touched" class="invalid-feedback d-block">Rol es requerido</small>
-    </div>
+    <!-- Select para Rol -->
+    <label for="rol">Rol</label>
+    <select id="rol" #rol="ngModel" class="form-control" name="rol" [(ngModel)]="empleado.rol" required>
+      <option value="">Selecciona un rol</option>
+      <option value="admin">Administrador</option>
+      <option value="Guia">Guía</option>
+    </select>
+    <small *ngIf="!rol.valid && rol.touched" class="invalid-feedback d-block">Rol es requerido</small>
+    
+    <!-- Botones -->
     <a routerLink="/empleadosTable">Empleado Tablas</a>
     <div class="button-container">
       <input type="submit" class="btn btn-primary mt-2" value="Guardar" [disabled]="empleadoForm.invalid">

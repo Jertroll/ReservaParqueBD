@@ -19,6 +19,9 @@ export class DetalleService {
     return this._http.post(this.urlAPI+'detalle', JSON.stringify(detalle), { headers: headers });
   }
 
+  verDetallesEmpleado(idEmpleado: number): Observable<{ status: number, message: string, data: Detalle[] }> {
+    return this._http.get<{ status: number, message: string, data: Detalle[] }>(`${this.urlAPI}detalles/empleado/${idEmpleado}`);
+  }
 
   verDetalles(): Observable<{ status: number, message: string, data: Detalle[] }> {
     return this._http.get<{ status: number, message: string, data: Detalle[] }>(`${this.urlAPI}reserva`);

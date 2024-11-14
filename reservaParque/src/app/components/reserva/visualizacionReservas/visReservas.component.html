@@ -1,0 +1,39 @@
+<div class="container" *ngIf="isGuide; else noAccess">
+  <h2>Reservas Asignadas al Guía</h2>
+  
+  <!-- Tabla de detalles de reservas -->
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID Detalle Reserva</th>
+        <th>Tour</th>
+        <th>Fecha del Tour</th>
+        <th>Cantidad de Visitantes</th>
+        <th>ID del Guía (Empleado)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Iteración sobre los detalles de reservas -->
+      <tr *ngFor="let detalle of detallesReserva">
+        <td>{{ detalle.idDetalleReserva }}</td>
+        <td>{{ detalle.tour }}</td>
+        <td>{{ detalle.fechaTour | date: 'shortDate' }}</td>
+        <td>{{ detalle.cantVisitantes }}</td>
+        <td>{{ detalle.idEmpleado }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Mensaje en caso de no encontrar detalles -->
+  <p *ngIf="detallesReserva.length === 0">No se encontraron reservas asignadas para el guía.</p>
+
+  <!-- Botón para regresar -->
+  <button class="btn btn-secondary mt-3" (click)="regresar()">Regresar</button>
+</div>
+
+<!-- Mensaje de acceso denegado si el usuario no es un guía -->
+<ng-template #noAccess>
+  <div class="alert alert-danger mt-3">
+    <p>No tienes acceso a esta sección.</p>
+  </div>
+</ng-template>

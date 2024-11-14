@@ -20,7 +20,7 @@ export class ResenaService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');  // Cambiar a JSON
 
     console.log('Datos enviados al backend:', resena); // Log de los datos enviados
-
+    
     return this._http.post(`${this.urlAPI}`, resena, { headers });  // Enviar datos directamente como JSON
   }
 

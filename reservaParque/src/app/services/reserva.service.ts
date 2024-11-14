@@ -14,7 +14,7 @@ export class ReservaService {
   ){
       this.urlAPI=server.url
   }
- 
+  
   crear(reserva: Reserva): Observable<any> { 
     return this._http.post<any>(`${this.urlAPI}reserva`, reserva);
   }
@@ -46,4 +46,7 @@ export class ReservaService {
   return this._http.delete(`${this.urlAPI}reserva/${id}`);
   }
 
+  obtenerReservas(): Observable<{ status: number, message: string, data: Reserva[] }> {
+    return this._http.get<{ status: number, message: string, data: Reserva[] }>(`${this.urlAPI}reserva`);
+  }
 }
