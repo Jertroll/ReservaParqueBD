@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
       this.isUsuario = user.type === 'usuario';
       this.isAdmin = user.role === 'admin' && !this.isUsuario;
       this.isGuide = user.role === 'Guia' && !this.isUsuario;
+
     }
   }
 
