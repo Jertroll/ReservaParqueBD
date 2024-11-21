@@ -48,7 +48,7 @@ export const routes: Routes = [
 { path: 'Admin', component: AdminComponent },
 {path:'FacturasUsuarios',component:FacturasUsuarioComponent},
 {path:'Facturas',component:FacturacliComponent},
-//{path:'ParquesTours',component:VerParquesComponent}
+{path:'ParquesTours',component:VerParquesComponent},
 {path: "parqueRUD", component:ParquerudComponent},
 {path: "Guia", component:GuiaComponent},
 {path: "visReservas", component:VisReservasComponent}
