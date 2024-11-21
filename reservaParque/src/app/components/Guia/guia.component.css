@@ -15,6 +15,19 @@
     text-align: center;
     padding: 20px; /* Agregado para un mejor espaciado */
 }
+h1{
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold; /* Aplica negrita */
+    background: linear-gradient(45deg, #0a0a0a 25%, #e7eb08 25%, #023b0b 50%, #35240a 50%, #070707 75%, #645c14 75%, #0c3606 100%);
+    background-size: 40px 40px; /* Tamaño de las rayas */
+    -webkit-background-clip: text; /* Hace que el fondo se recorte a la forma del texto */
+    color: transparent; /* Hace que el color del texto sea transparente para mostrar solo el fondo */
+    padding: 10px;
+    border-radius: 8px;
+}
 
 .card-container {
     margin: 20px auto;

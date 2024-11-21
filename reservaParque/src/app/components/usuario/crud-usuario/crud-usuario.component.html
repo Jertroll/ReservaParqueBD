@@ -1,10 +1,10 @@
 <div class="search-container">
     <input type="text" placeholder="Buscar cliente..." [(ngModel)]="searchTerm" class="search-input">
-    <button mat-button class="buscar" (click)="search()">
+    <button mat-button class="buscar" (click)="search()" style="background-color: #0e130eb6; color: white;">
       <mat-icon>search</mat-icon>Buscar
     </button>
   
-    <button mat-button class="agregarUsuario" [routerLink]="['/agregarUsuario']">
+    <button mat-button class="agregarUsuario" [routerLink]="['/agregarUsuario']" style="background-color: #205020; color: white;">
         <mat-icon>add</mat-icon>Agregar Usuario
     </button>
   </div>
@@ -32,10 +32,10 @@
                     <td>{{ usuario.telefono }}</td>
                     <td>{{ usuario.alergias }}</td>
                     <td>
-                      <button mat-button class="edit" (click)="actualizarUsuario(usuario)">
+                      <button mat-button class="edit" (click)="actualizarUsuario(usuario)" style="background-color: #225c22; color: white;">
                           <mat-icon>edit</mat-icon>Editar
                         </button>
-                        <button mat-button class="delete" (click)="eliminarUsuario(usuario)">
+                        <button mat-button class="delete" (click)="eliminarUsuario(usuario)" style="background-color: #a00f0f; color: white;">
                           <mat-icon>delete</mat-icon>Eliminar
                         </button>
                     </td>
@@ -50,7 +50,7 @@
     </table>
   </div>
   <div class="back-button-container">
-    <button mat-button class="back" [routerLink]="['/Admin']">
+    <button mat-button class="back" [routerLink]="['/Admin']" style="background-color: #0e130eb6; color: white;">
         <mat-icon>arrow_back</mat-icon>Regresar
     </button>
   </div>

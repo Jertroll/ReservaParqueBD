@@ -53,8 +53,8 @@
     <label for="rol">Rol</label>
     <select id="rol" #rol="ngModel" class="form-control" name="rol" [(ngModel)]="empleado.rol" required>
       <option value="">Selecciona un rol</option>
-      <option value="admin">Administrador</option>
-      <option value="Guia">Guía</option>
+      <option value="admin">admin</option>
+      <option value="Guia">Guia</option>
     </select>
     <small *ngIf="!rol.valid && rol.touched" class="invalid-feedback d-block">Rol es requerido</small>
     

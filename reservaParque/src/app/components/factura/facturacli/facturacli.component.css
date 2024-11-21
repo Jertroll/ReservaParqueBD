@@ -1,118 +1,119 @@
-.factura-table {
-    text-align: center;
-    margin: 20px auto;
-    width: 90%; /* Ajuste del ancho para mejor visualización */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  }
-  
-  .factura-table h2 {
-    font-size: 28px;
-    font-w.factura-table {
-        text-align: center;
-        margin: 20px auto;
-        width: 90%;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .factura-table h2 {
-        font-size: 28px;
-        font-weight: bold;
-        color: #1e4820;
-        text-shadow: 1px 1px 3px #95a800;
-        margin-bottom: 20px;
-    }
-    
-    .factura-table table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 16px;
-    }
-    
-    .factura-table th,
-    .factura-table td {
-        padding: 12px;
-        border: 1px solid #003300;
-        text-align: center;
-    }
-    
-    .factura-table th {
-        background-color: #004d00;
-        color: #fff;
-        font-weight: bold;
-    }
-    
-    .factura-table tbody tr:nth-child(even) {
-        background-color: #e6f2e6;
-    }
-    
-    .factura-table tbody tr:nth-child(odd) {
-        background-color: #f9f9f9;
-    }
-    
-    .factura-table tbody td {
-        color: #333;
-        font-size: 14px;
-    }
-    
-    .factura-table tbody tr:hover {
-        background-color: #cce6cc;
-    }
-    
-    p {
-        color: #b00000;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 20px;
-    }
-    height: bold;
-    color: #1e4820;
-    text-align: center;
-    text-shadow: 1px 1px 3px #95a800;
-    margin-bottom: 20px; /* Más separación */
-  }
-  
-  .factura-table table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px; /* Tamaño de letra ajustado */
-  }
-  
-  .factura-table th,
-  .factura-table td {
-    padding: 12px; /* Más espacio en las celdas */
-    border: 1px solid #003300;
-    text-align: center; /* Centrado del contenido */
-  }
-  
-  .factura-table th {
-    background-color: #004d00; /* Color verde más oscuro para contraste */
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .factura-table tbody tr:nth-child(even) {
-    background-color: #e6f2e6;
-  }
-  
-  .factura-table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9; /* Color más claro */
-  }
-  
-  .factura-table tbody td {
-    color: #333;
-    font-size: 14px; /* Tamaño de texto más legible */
-  }
-  
-  .factura-table tbody tr:hover {
-    background-color: #cce6cc; /* Efecto hover sutil */
-  }
-  
-  p {
-    color: #b00000;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px; /* Separación de los textos de error */
-  }
-  
+/* Título de la tabla */
+h2 {
+  color: black;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  background: linear-gradient(45deg, #0a0a0a 25%, #e7eb08 25%, #023b0b 50%, #35240a 50%, #070707 75%, #645c14 75%, #0c3606 100%);
+  background-size: 40px 40px;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+thead {
+  background-color: #2a7f5f;
+  color: white;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #024121;
+  color: white;
+  font-weight: bold;
+}
+
+/* Estilo de las filas para alternar colores */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Estilo para los botones dentro de la tabla (si aplicable) */
+td > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  margin: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100px; /* Asegura que los botones en las celdas de la tabla tengan el mismo tamaño */
+}
+
+td > button:hover {
+  opacity: 0.8;
+}
+
+/* Botones generales (si hay botones específicos) */
+button {
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Botón Regresar (si es necesario) */
+.back {
+  background-color: #e6e9ec;
+  color: black;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back:hover {
+  background-color: #e0e6ee;
+}
+
+/* Alertas (si es necesario) */
+.alert {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.alert-warning {
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  color: #a94442;
+}

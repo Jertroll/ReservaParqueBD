@@ -13,8 +13,8 @@
           </li>
           
           <!-- Botón de Administrador -->
-          <li *ngIf="isAdmin" class="nav-item">
-            <a class="nav-link" [routerLink]="['/Admin']">Administrador</a>
+          <li *ngIf="isAdmin" class="nav-item bold-text" >
+            <a class="nav-link bold-text" [routerLink]="['/Admin']" >Administrador</a>
           </li>
           
           <!-- Botón de Guía -->
@@ -25,19 +25,19 @@
           <!-- Botones visibles solo para usuarios con tipo "usuario" -->
           <ng-container *ngIf="isUsuario">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/resenaAgregar']">Reseña</a>
+              <a class="nav-link bold" [routerLink]="['/resenaAgregar']">Reseña</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/reserva']">Reservar</a>
+              <a class="nav-link bold" [routerLink]="['/reserva']">Reservar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/detallesUsuario']">Ver Reservas</a>
+              <a class="nav-link bold" [routerLink]="['/detallesUsuario']">Ver Reservas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/FacturasUsuarios']">Ver Facturas</a>
+              <a class="nav-link bold" [routerLink]="['/FacturasUsuarios']">Ver Facturas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/ParquesTours']">Ver Parques</a>
+              <a class="nav-link bold" [routerLink]="['/ParquesTours']">Ver Parques</a>
             </li>
           </ng-container>
         </ul>
@@ -61,7 +61,7 @@
 </div>
 <br> <br>
 <!-- Footer -->
-<footer class="text-white text-center text-lg-start" style="background-color: #228B22;">
+<footer class="text-white text-center text-lg-start" style="background: linear-gradient(90deg, rgba(171, 206, 212, 0.5), rgba(112, 213, 247, 0.5), rgba(106, 247, 106, 0.5));">
   <!-- Grid container -->
   <div class="container-fluid p-4">
     <!--Grid row-->

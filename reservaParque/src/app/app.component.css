@@ -43,6 +43,7 @@ footer a {
 footer a:hover {
     color: #004c3f;
     text-decoration: underline;
+    font-weight: bold;
 }
 
 /* Footer títulos */
@@ -62,7 +63,7 @@ footer .text-center {
 }
 
 h5{
-    color: rgb(5, 83, 48);
+    color: rgb(9, 61, 38);
 }
 
 ul{
@@ -71,3 +72,11 @@ ul{
 p{
     color: rgb(3, 3, 3);
 }
+.bold-text {
+    color: black;
+  }
+
+  .bold{
+    color: black;
+  }
+  

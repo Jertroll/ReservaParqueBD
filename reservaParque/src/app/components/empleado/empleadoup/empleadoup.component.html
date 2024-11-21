@@ -1,9 +1,9 @@
 <div>
   <input type="text" placeholder="Buscar Empleado..." [(ngModel)]="searchTerm">
-  <button mat-button class="buscar" (click)="search()">
+  <button mat-button class="buscar" (click)="search()" style="background-color: #0e130eb6; color: white;">
     <mat-icon>search</mat-icon> Buscar
   </button>
-  <button mat-button class="agregarCliente" [routerLink]="['/agregarEmpleado']">
+  <button mat-button class="agregarCliente" [routerLink]="['/agregarEmpleado']" style="background-color: #265f26; color: white;">
     <mat-icon>add</mat-icon> Agregar Empleado
   </button>
   <h2>Empleados</h2>
@@ -52,7 +52,7 @@
 </div>
 
 <div class="back-button-container">
-  <button mat-button class="back" [routerLink]="['/Admin']">
+  <button mat-button class="back" [routerLink]="['/Admin']" style="background-color: #0e130eb6; color: white;">
     <mat-icon>arrow_back</mat-icon> Regresar
   </button>
 </div>

@@ -66,7 +66,7 @@ export class ReservarComponent implements OnInit {
     ).subscribe(
       (response) => {
         if ('data' in response) {
-          this.empleados = response.data.filter((empleado: Empleado) => empleado.rol === 'guia');
+          this.empleados = response.data.filter((empleado: Empleado) => empleado.rol === 'Guia');
         } else {
           this.empleados = [];
         }

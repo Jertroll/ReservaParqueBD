@@ -11,7 +11,8 @@
 
     </div>
   </div>
-
+<br>
+<br>
   <h3>Reservar</h3>
   <span>
     <ng-container [ngSwitch]="status">
@@ -75,6 +76,5 @@
     <p><strong>Descuento:</strong> {{ factura.descuento | percent }}</p>
     <p><strong>Impuesto:</strong> {{ factura.impuesto | percent }}</p>
     <p><strong>Total:</strong> {{ factura.total | currency }}</p>
-    <!-- Agrega más detalles según la estructura de tu objeto 'factura' -->
   </div>
 </div>

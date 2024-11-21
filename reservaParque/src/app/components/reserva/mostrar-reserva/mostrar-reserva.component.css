@@ -1,0 +1,57 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Espaciado entre campos del formulario */
+  }
+  
+  label {
+    display: block; /* Asegura que el texto del label esté en una línea separada */
+    margin-bottom: 5px; /* Añade un pequeño margen debajo del label */
+  }
+  
+  input[type="date"] {
+    width: 100%; /* Hace que el campo de entrada use el 100% del espacio disponible */
+    padding: 8px;
+    box-sizing: border-box; /* Asegura que el padding no exceda el ancho total */
+  }
+  
+  button {
+    margin-top: 10px; 
+    color: #eff0ef;
+  }
+  
+  .table {
+    margin-top: 20px; /* Añade espacio entre el formulario y la tabla */
+    width: 100%; /* Asegura que la tabla ocupe el ancho completo */
+    text-align: left; /* Alinea el texto a la izquierda */
+  }
+  
+  h3, p {
+    margin-top: 20px; 
+  }
+  
+  .btn-secondary {
+    margin-top: 15px; 
+  }
+  
+  div.table-container {
+    margin-top: 20px; 
+  }
+  
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold; /* Aplica negrita */
+    background: linear-gradient(45deg, #0a0a0a 25%, #e7eb08 25%, #023b0b 50%, #35240a 50%, #070707 75%, #645c14 75%, #0c3606 100%);
+    background-size: 40px 40px; /* Tamaño de las rayas */
+    -webkit-background-clip: text; /* Hace que el fondo se recorte a la forma del texto */
+    color: transparent; /* Hace que el color del texto sea transparente para mostrar solo el fondo */
+    padding: 10px;
+    border-radius: 8px;
+  }
