@@ -110,7 +110,40 @@ table {
     background-color: #f2dede;
     color: #a94442;
   }
-  .buscar{
-    background-color: #446149;
-    color: white;
-  }
+
+
+/* Botón de búsqueda */
+.buscar {
+  background-color: #e6e9ec; /* Azul */
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.buscar:hover {
+  background-color: #e0e6ee;
+}
+
+/* Botón de agregar empleado */
+.agregarCliente {
+  background-color: #e6e9ec; /* Verde */
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.agregarCliente:hover {
+  background-color: #e0e6ee;
+}
+
+/* Botón para regresar */
+.back {
+  background-color: #e6e9ec; /* Gris */
+  color: white;
+  border-radius: 6px;
+  padding: 03rem 1rem;
+}
+
+.back:hover {
+  background-color: #e0e6ee;
+}

@@ -1,116 +1,164 @@
-/* Estilo para la tabla */
+/* Título de la tabla */
 h2 {
-    color: black;
-    font-size: 2rem; /* Tamaño del título */
-    text-align: center;
-    margin-bottom: 1rem; /* Espacio en la parte inferior del título */
+  color: black;
+  font-size: 2rem; /* Tamaño del título */
+  text-align: center;
+  margin-bottom: 1rem; /* Espacio en la parte inferior del título */
 }
+
+/* Tabla */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  thead {
-    background-color: #f2f2f2;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #446149;
-    color: white;
-  }
-  
-  /* Estilo para los botones */
-  button {
-    padding: 5px 10px;
-    margin: 2px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    width: 100px;
-  }
-  
-  button:hover {
-    opacity: 0.8;
-  }
-  
-  button:focus {
-    outline: none;
-  }
-  
-  .edit {
-    background-color:  #40a743;
-    color: white;
-  }
-  
-  .delete {
-    background-color:#d82013;
-    color: white;
-  }
-  
-  /* Estilo para los botones de acción */
-  td > button {
-    display: inline-block;
-    width: auto;
-  }
-  
-  /* Estilo para el formulario */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    margin: 5px 0 2px;
-  }
-  
-  input {
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-  }
-  
-  button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    opacity: 0.8;
-  }
-  
-  .alert {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 3px;
-  }
-  
-  .alert-success {
-    background-color: #dff0d8;
-    color: #3c763d;
-  }
-  
-  .alert-warning {
-    background-color: #fcf8e3;
-    color: #8a6d3b;
-  }
-  
-  .alert-danger {
-    background-color: #f2dede;
-    color: #a94442;
-  }
-  .buscar{
-    background-color: #446149;
-    color: white;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #446149;
+  color: white;
+}
+
+/* Botones generales */
+button {
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Botón Buscar */
+.buscar {
+  background-color: #e6e9ec;
+  color: black;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.buscar:hover {
+  background-color: #e0e6ee;
+}
+
+/* Botón Agregar Tour */
+.agregar-tour {
+  background-color: #e6e9ec;
+  color: black;
+  border-radius: 4px;
+  padding: 10px;
+  margin-left: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.agregar-tour:hover {
+  background-color: #e0e6ee;
+}
+
+/* Botón Regresar */
+.back {
+  background-color: #e6e9ec;
+  color: black;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back:hover {
+  background-color: #e0e6ee;
+}
+
+/* Botones de acción (Editar y Eliminar) */
+.edit {
+  background-color: #40a743;
+  color: white;
+}
+
+.delete {
+  background-color: #d82013;
+  color: white;
+}
+
+.edit:hover,
+.delete:hover {
+  opacity: 0.8;
+}
+
+/* Estilo de botones dentro de la tabla */
+td > button {
+  display: inline-block;
+  width: auto;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 5px 0 2px;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+/* Alertas */
+.alert {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.alert-warning {
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  color: #a94442;
+}
