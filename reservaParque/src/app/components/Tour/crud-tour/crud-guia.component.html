@@ -1,0 +1,42 @@
+<div>
+    <h2>Tours</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Parque</th>
+          <th>Precio</th>
+          <th>Descripción</th>
+          <th>Hora de Inicio</th>
+          <th>Duración</th>
+          <th>Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="tours && tours.length > 0; else noTours">
+          <tr *ngFor="let tour of tours">
+            <td>{{ tour.idTour }}</td>
+            <td>{{ tour.nombre }}</td>
+            <td>{{ tour.nombreParque }}</td>
+            <td>{{ tour.precio }}</td>
+            <td>{{ tour.descripcion }}</td>
+            <td>{{ tour.horaInicio }}</td>
+            <td>{{ tour.duracion }}</td>
+            <td><img [src]="url + 'tour/image/' + tour.imagen" class="imagen" width="100"></td>
+          </tr>
+        </ng-container>
+        <ng-template #noTours>
+          <tr>
+            <td colspan="8">No hay tours disponibles.</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+  <div class="back-button-container">
+    <button mat-button class="back" [routerLink]="['/Admin']">
+      <mat-icon>arrow_back</mat-icon>Regresar
+    </button>
+  </div>
+  
