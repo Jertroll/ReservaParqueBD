@@ -27,7 +27,7 @@ export class ParqueAgregarComponent {
     this._parqueService.crear(this.parque).subscribe({
       next:(response)=>{
         console.log(response);
-        if(response.status==200){
+        if(response.status==201){
           form.reset();            
           this.changeStatus(0);
         }else{
