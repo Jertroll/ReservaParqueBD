@@ -12,40 +12,53 @@
 }
 
 /* Estilo para los enlaces dentro del navbar */
-.navbar a {
-    color: #000;
-    float: left; /* Flota los enlaces hacia la izquierda */
-    font-size: 1.1em; /* Tamaño de fuente */
-    text-align: center; /* Alineación del texto al centro */
-    padding: 14px 16px; /* Espaciado alrededor del contenido */
-    text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+    background: linear-gradient(90deg, rgba(171, 206, 212, 0.5), rgba(112, 213, 247, 0.5), rgba(106, 247, 106, 0.5));
+    backdrop-filter: blur(8px); /* Ajusta el nivel de desenfoque */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    z-index: 10;
 }
 
-/* Cambia el color de fondo de los enlaces cuando se pasa el cursor sobre ellos */
-.navbar a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #000;
-}
-
-/* Puedes agregar estos estilos a tu archivo de estilos global o específico del componente */
+/* Footer */
 footer {
     width: 100%;
-    background-color: #23242a;
-    color: rgb(15, 15, 15);
+    background: linear-gradient(90deg, rgba(171, 206, 212, 0.5), rgba(112, 213, 247, 0.5), rgba(106, 247, 106, 0.5));
+    color: black;
+    text-align: center;
+    padding: 20px 0;
 }
 
+/* Footer enlaces */
 footer a {
-    color: #0c0c0c;
+    color: black;
     text-decoration: none;
 }
 
 footer a:hover {
-    color: #030303;
+    color: #004c3f;
     text-decoration: underline;
 }
 
-.navbar-green {
-    background: linear-gradient(90deg,rgba(221, 248, 221, 0.5),rgba(109, 242, 247, 0.5), rgba(4, 124, 68, 0.5));
+/* Footer títulos */
+footer h5 {
+    color: rgb(5, 83, 48);
+}
+
+/* Footer texto */
+footer p, footer ul {
+    color: black;
+}
+
+/* Copyright */
+footer .text-center {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: black;
 }
 
 h5{
